@@ -3,12 +3,19 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import './App.scss';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
 import { HomePage } from './pages/HomePage';
+import { WalletPage } from './pages/WalletPage';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <ProtectedRoutes />,
-        children: [{ index: true, element: <HomePage /> }],
+        children: [
+            { index: true, element: <HomePage /> },
+            {
+                path: 'wallet',
+                element: <WalletPage />,
+            },
+        ],
     },
     {
         path: '*',
@@ -25,7 +32,7 @@ function App() {
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
-    
+
     return <RouterProvider router={router} />;
 }
 
