@@ -1,6 +1,5 @@
-import React from 'react';
-import { CustomTabBar } from '../../components/layout/CustomTabBar';
 import { Navigate, Outlet } from 'react-router-dom';
+import { CustomTabBar } from '../../components/layout/CustomTabBar';
 
 const ProtectedRoutes = () => {
     const user = 'test';
