@@ -1,6 +1,6 @@
+import { TablerFileText, TablerHome, TablerMoneybag, TablerUser, TablerWallet } from '@/components/icon';
 import { TabBar } from 'antd-mobile';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { TablerMoneybag, TablerHome, TablerFileText, TablerUser, TablerWallet } from '../../icon';
 import styles from './CustomTabBar.module.scss';
 
 const CustomTabBar = () => {
