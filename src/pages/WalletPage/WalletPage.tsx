@@ -1,6 +1,5 @@
 import { TablerArrowBarUp } from '@/components/icon';
 import { Button, Space } from 'antd-mobile';
-import styles from './WalletPage.module.scss';
 
 const WalletPage = () => {
     return (
