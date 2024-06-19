@@ -2,18 +2,10 @@ import React from 'react';
 
 type FlexProps = React.HTMLAttributes<HTMLDivElement> & {
     children: React.ReactNode;
-    direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-    wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-    justify?:
-        | 'normal'
-        | 'flex-start'
-        | 'center'
-        | 'flex-end'
-        | 'stretch'
-        | 'space-between'
-        | 'space-around'
-        | 'space-evenly';
-    align?: 'normal' | 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
+    direction?: React.CSSProperties['flexDirection'];
+    wrap?: React.CSSProperties['flexWrap'];
+    justify?: React.CSSProperties['justifyContent'];
+    align?: React.CSSProperties['alignItems'];
     gap?: number;
 };
 
