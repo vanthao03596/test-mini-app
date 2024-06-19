@@ -50,7 +50,7 @@ const queryClient = new QueryClient({
 
 function App() {
     const { ready, isReady } = useWebApp();
-    const { expand, isExpanded } = useWebAppViewport();
+    const { expand } = useWebAppViewport();
 
     useEffect(() => {
         ready();
@@ -63,7 +63,7 @@ function App() {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
 
-    return <>{isExpanded.toString()}</>
+    return <>{Telegram.WebApp.isExpanded}</>
     return (
         <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
