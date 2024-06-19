@@ -42,7 +42,7 @@ const CustomTabBar = () => {
 
     return (
         <div className={styles.container}>
-            <TabBar activeKey={pathname} onChange={(value) => setRouteActive(value)}>
+            <TabBar activeKey={pathname} onChange={(value) => setRouteActive(value)} safeArea>
                 {tabs.map((item) => (
                     <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
                 ))}
