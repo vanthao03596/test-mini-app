@@ -5,7 +5,9 @@ const useWebApp = () => {
 
   const ready: typeof Telegram.WebApp.ready = () => {
     Telegram.WebApp.ready();
-    setIsReady(true);
+    setTimeout(() => {
+      setIsReady(true);
+    }, 1000)
   };
 
   return {
