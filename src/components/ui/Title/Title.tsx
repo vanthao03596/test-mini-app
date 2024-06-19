@@ -8,14 +8,20 @@ type TitleProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const Title = (props: TitleProps) => {
-    const { text, gradient = true, fontSize = 20, className: originClassName, ...rest } = props;
+    const { text, gradient = true, fontSize = 32, className: customClassName, style: customStyle, ...rest } = props;
 
     return (
         <div
-            className={clsx(originClassName, {
+            className={clsx(customClassName, {
                 textGradient: gradient,
             })}
-            style={{ textTransform: 'uppercase', fontSize: fontSize, textAlign: 'center', fontWeight: 500 }}
+            style={{
+                fontWeight: 500,
+                fontSize: fontSize,
+                textAlign: 'center',
+                textTransform: 'uppercase',
+                ...customStyle,
+            }}
             {...rest}
         >
             {text}

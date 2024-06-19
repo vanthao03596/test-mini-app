@@ -1,6 +1,10 @@
 .container {
     padding: 1rem;
 
+    .pageTitle {
+        margin-bottom: 2rem;
+    }
+
     .actions {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -8,21 +12,31 @@
         align-items: center;
 
         .icon {
-            border: 1px solid var(--adm-color-primary);
+            border: 2px solid var(--adm-color-primary);
             border-radius: 50%;
             padding: 0.75rem;
+
+            .svg {
+                color: var(--adm-color-primary);
+                font-size: 1.25rem;
+            }
+        }
+
+        .text {
+            color: var(--adm-color-primary);
+            font-weight: 500;
         }
     }
 
     .balances {
         .title {
-            margin: 1rem 0;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 1.25rem;
+            margin: 2rem 0 1rem;
         }
 
         .list {
+            border-radius: 1rem;
+            overflow: hidden;
+
             .item {
                 .description {
                     color: var(--adm-color-weak);
@@ -30,7 +44,12 @@
                 }
 
                 .amount {
-                    color: var(--adm-color-primary);
+                    color: var(--custom-color-secondary);
+                }
+
+                .icon {
+                    color: var(--adm-color-weak);
+                    font-size: 1.25rem;
                 }
             }
         }

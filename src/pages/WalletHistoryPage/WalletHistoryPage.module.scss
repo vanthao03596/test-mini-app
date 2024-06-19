@@ -1,0 +1,23 @@
+.container {
+    padding: 1rem;
+
+    .title {
+        margin-bottom: 1rem;
+    }
+
+    .balance {
+        .amountText {
+            color: var(--custom-color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .historyText {
+            margin-bottom: 1rem;
+        }
+    }
+
+    .list {
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--tg-theme-button-color);
+
+    .numberContainer {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .arrow {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.25rem;
+        cursor: pointer;
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 2.625rem;
+        cursor: pointer;
+    }
+}

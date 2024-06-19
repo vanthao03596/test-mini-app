@@ -1,11 +1,13 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import './App.scss';
-import { ProtectedRoutes } from './routes/ProtectedRoute';
-import { HomePage } from './pages/HomePage';
-import { WalletPage } from './pages/WalletPage';
 import useWebApp from './hooks/useWebApp';
 import useWebAppViewport from './hooks/useWebAppViewport';
+import { HomePage } from './pages/HomePage';
+import { WalletHistoryPage } from './pages/WalletHistoryPage';
+import { WalletPage } from './pages/WalletPage';
+import { ProtectedRoutes } from './routes/ProtectedRoute';
 
 const router = createBrowserRouter([
     {
@@ -17,6 +19,10 @@ const router = createBrowserRouter([
                 path: 'wallet',
                 element: <WalletPage />,
             },
+            {
+                path: 'wallet/history',
+                element: <WalletHistoryPage />,
+            },
         ],
     },
     {
@@ -25,14 +31,22 @@ const router = createBrowserRouter([
     },
 ]);
 
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 10000,
+        },
+    },
+});
+
 function App() {
-    const {ready, isReady} = useWebApp();
-    const {expand} = useWebAppViewport();
+    const { ready, isReady } = useWebApp();
+    const { expand } = useWebAppViewport();
 
     useEffect(() => {
-        ready()
+        ready();
         if (isReady) {
-          expand();
+            expand();
         }
     }, [expand, isReady, ready]);
 
@@ -40,7 +54,11 @@ function App() {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
 
-    return <RouterProvider router={router} />;
+    return (
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+        </QueryClientProvider>
+    );
 }
 
 export default App;
