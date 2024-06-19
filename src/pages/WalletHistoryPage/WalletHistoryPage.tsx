@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
+import { TablerCheck } from '@/components/icon';
 
 type TransactionsData = {
     id: number;
@@ -19,6 +20,10 @@ type TransactionsData = {
     extra_type: string;
     created_at: Date;
     updated_at: Date;
+    wallet: {
+        id: number;
+        type: string;
+    };
 };
 
 type TransactionsResponse = {
@@ -89,31 +94,41 @@ const WalletHistoryPage = () => {
             )}
 
             {/* List  */}
-            <List className={styles.list}>
-                {dataTransactions?.data.map((item, index) => (
-                    <List.Item key={index}>
-                        <Flex justify='space-between'>
-                            <Flex>
-                                icon
-                                <Flex direction='column'>
-                                    <div>{item.transactionable_type}</div>
-                                    <div>{dayjs(item.created_at).format('HH:mm MM/DD/YYYY ')}</div>
+            {dataTransactions?.data && (
+                <List className={styles.list}>
+                    {dataTransactions?.data.map((item, index) => (
+                        <List.Item key={index} className={styles.item}>
+                            <Flex justify='space-between' gap={64}>
+                                {/* Left */}
+                                <Flex align='center' gap={8}>
+                                    <TablerCheck className={styles.icon} />
+                                    <Flex direction='column'>
+                                        <div className={styles.type}>{item.transactionable_type}</div>
+                                        <div className={styles.date}>
+                                            {dayjs(item.created_at).format('HH:mm MM/DD/YYYY ')}
+                                        </div>
+                                    </Flex>
+                                </Flex>
+                                {/* Right */}
+                                <Flex direction='column' align='flex-end'>
+                                    <div className={styles.amount}>+{item.amount}</div>
+                                    <div className={styles.unit}>{item.wallet.type}</div>
                                 </Flex>
                             </Flex>
-                        </Flex>
-                    </List.Item>
-                ))}
-            </List>
+                        </List.Item>
+                    ))}
+                </List>
+            )}
 
             {/* Pagination */}
             {dataTransactions && dataTransactions?.data.length > 0 && (
-                <div className={styles.pagination}>
+                <Flex justify='center' className={styles.pagination}>
                     <CustomPagination
                         pageNumber={dataTransactions.current_page}
                         totalPages={dataTransactions.last_page}
                         handlePageChange={handleChangePageSize}
                     />
-                </div>
+                </Flex>
             )}
         </div>
     );

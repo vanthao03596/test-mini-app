@@ -8,7 +8,7 @@ type TitleProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 const Title = (props: TitleProps) => {
-    const { text, gradient = true, fontSize = 32, className: customClassName, style: customStyle, ...rest } = props;
+    const { text, gradient = true, fontSize = 36, className: customClassName, style: customStyle, ...rest } = props;
 
     return (
         <div

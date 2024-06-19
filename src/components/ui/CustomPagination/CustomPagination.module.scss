@@ -2,28 +2,34 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: var(--tg-theme-button-color);
+    color: var(--adm-color-primary);
 
     .numberContainer {
         display: flex;
         gap: 0.5rem;
+
+        .number {
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 1.25rem;
+            cursor: pointer;
+
+            &.active {
+                background: var(--adm-color-primary);
+                color: var(--adm-color-text-dark-solid);
+                border-radius: 0.5rem;
+            }
+        }
     }
 
     .arrow {
-        width: 2rem;
-        height: 2rem;
         display: flex;
         align-items: center;
-        justify-content: center;
-        border-radius: 0.25rem;
-        cursor: pointer;
-    }
-
-    .center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 2.625rem;
+        font-size: 1.5rem;
         cursor: pointer;
     }
 }

@@ -1,5 +1,7 @@
 import usePagination from '@/hooks/usePagination';
 import styles from './CustomPagination.module.scss';
+import { TablerChevronLeft, TablerChevronRight } from '@/components/icon';
+import clsx from 'clsx';
 
 interface CustomPaginationProps {
     handlePageChange: (page: number) => void;
@@ -27,32 +29,30 @@ const CustomPagination = (props: CustomPaginationProps) => {
 
     return (
         <div className={styles.container}>
-            {/* Arrow left*/}
+            {/* Back */}
             <div className={styles.arrow} onClick={handleClickPrevious}>
-                Back
+                <TablerChevronLeft />
             </div>
 
             {/* Page number */}
             <div className={styles.numberContainer}>
-                {listPagination?.map((item, index) => {
-                    if (Number(item) === pageNumber)
-                        return (
-                            <div key={index} onClick={() => handlePageChange(Number(item))}>
-                                {item}
-                            </div>
-                        );
-
-                    return (
-                        <div onClick={() => handlePageChange(Number(item))} className={styles.center}>
-                            {item}
-                        </div>
-                    );
-                })}
+                {listPagination?.map((item, index) => (
+                    <div
+                        key={index}
+                        className={clsx({
+                            [styles.number]: true,
+                            [styles.active]: Number(item) === pageNumber,
+                        })}
+                        onClick={() => handlePageChange(Number(item) || 1)}
+                    >
+                        {item}
+                    </div>
+                ))}
             </div>
 
-            {/* Arrow right*/}
+            {/* Next */}
             <div className={styles.arrow} onClick={handleClickNext}>
-                Next
+                <TablerChevronRight />
             </div>
         </div>
     );

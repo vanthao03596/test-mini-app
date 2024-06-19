@@ -7,7 +7,7 @@
 
     .balance {
         .amountText {
-            color: var(--custom-color-secondary);
+            color: var(--adm-color-yellow);
             margin-bottom: 1rem;
         }
 
@@ -19,5 +19,37 @@
     .list {
         border-radius: 1rem;
         overflow: hidden;
+
+        .item {
+            .icon {
+                flex-shrink: 0;
+                font-size: 1.25rem;
+                color: var(--adm-color-primary);
+            }
+
+            .type {
+                text-transform: capitalize;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .date {
+                color: var(--adm-color-weak);
+            }
+
+            .amount {
+                color: var(--adm-color-primary);
+            }
+
+            .unit {
+                color: var(--adm-color-weak);
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .pagination {
+        margin-top: 1rem;
     }
 }
