@@ -49,6 +49,7 @@ function App() {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
 
+    return <div>{isExpanded.toString()}</div>
     if (!isExpanded) {
         return <></>
     }
