@@ -70,7 +70,7 @@ function App() {
         if(isExpanded && !isCompleted) {
             setTimeout(() => {
                 setIsCompleted(true)
-            })
+            }, 1500)
         }
     }, [isExpanded, isCompleted])
 
