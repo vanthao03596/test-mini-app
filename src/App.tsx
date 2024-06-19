@@ -31,7 +31,9 @@ function App() {
 
     useEffect(() => {
         window.Telegram.WebApp.ready()
-        window.Telegram.WebApp.expand();
+        setTimeout(() => {
+          window.Telegram.WebApp.expand();
+        }, 3000)
     }, []);
 
     useEffect(() => {
