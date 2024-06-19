@@ -73,3 +73,29 @@ export function TablerArrowBarUp(props: SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+
+export function TablerArrowBarToDown(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <path
+                fill='none'
+                stroke='currentColor'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M4 20h16m-8-6V4m0 10l4-4m-4 4l-4-4'
+            ></path>
+        </svg>
+    );
+}
+
+export function TablerHistory(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <g fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'>
+                <path d='M12 8v4l2 2'></path>
+                <path d='M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5'></path>
+            </g>
+        </svg>
+    );
+}

@@ -1,17 +1,46 @@
-import { TablerArrowBarUp } from '@/components/icon';
-import { Button, Space } from 'antd-mobile';
+import { TablerArrowBarToDown, TablerArrowBarUp, TablerHistory } from '@/components/icon';
+import { Flex } from '@/components/ui/Flex';
+import { Space } from 'antd-mobile';
+import { Link } from 'react-router-dom';
+import styles from './WalletPage.module.scss';
+
+const actions = [
+    {
+        icon: <TablerArrowBarUp fontSize={20} />,
+        text: 'Send',
+        link: '/wallet/send',
+    },
+    {
+        icon: <TablerArrowBarToDown fontSize={20} />,
+        text: 'Receive',
+        link: '/wallet/receive',
+    },
+    {
+        icon: <TablerHistory fontSize={20} />,
+        text: 'History',
+        link: '/wallet/history',
+    },
+];
 
 const WalletPage = () => {
     return (
-        <div>
-            <Space direction='vertical' justify='center' align='center'>
-                <Button color='primary' fill='outline' shape='rounded'>
-                    <Space>
-                        <TablerArrowBarUp />
-                    </Space>
-                </Button>
-                <div>Send</div>
-            </Space>
+        <div className={styles.container}>
+            {/* Actions */}
+            <div className={styles.actions}>
+                {actions.map((item, index) => (
+                    <Link to={item.link}>
+                        <Space direction='vertical' justify='center' align='center' key={index}>
+                            <div className={styles.icon}>
+                                <Flex align='center' justify='center'>
+                                    {item.icon}
+                                </Flex>
+                            </div>
+                            <div>{item.text}</div>
+                        </Space>
+                    </Link>
+                ))}
+            </div>
+            {/* Balances */}
         </div>
     );
 };

@@ -1,0 +1,14 @@
+.container {
+    .actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        align-items: center;
+
+        .icon {
+            border: 1px solid var(--adm-color-primary);
+            border-radius: 50%;
+            padding: 1rem;
+        }
+    }
+}
