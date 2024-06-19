@@ -8,7 +8,7 @@ import { HomePage } from './pages/HomePage';
 import { WalletHistoryPage } from './pages/WalletHistoryPage';
 import { WalletPage } from './pages/WalletPage';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
-// import useWebAppEvent from './hooks/useWebAppEvent';
+import useWebAppEvent from './hooks/useWebAppEvent';
 // import { SpinLoading } from 'antd-mobile';
 // import styles from './App.module.scss'
 const router = createBrowserRouter([
@@ -63,6 +63,10 @@ function App() {
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
+
+    useWebAppEvent('viewportChanged', () => {
+        alert(Telegram.WebApp.isExpanded)
+    })
 
     return <>{isExpanded.toString()}</>
     return (
