@@ -26,13 +26,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    const {ready} = useWebApp();
+    const {ready, isReady} = useWebApp();
     const {expand} = useWebAppViewport();
 
     useEffect(() => {
         ready();
-        expand();
-    }, []);
+        if (isReady) {
+          expand();
+        }
+    }, [isReady]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
