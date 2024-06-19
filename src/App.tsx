@@ -8,6 +8,7 @@ import { HomePage } from './pages/HomePage';
 import { WalletHistoryPage } from './pages/WalletHistoryPage';
 import { WalletPage } from './pages/WalletPage';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
+import useWebAppEvent from './hooks/useWebAppEvent';
 // import { SpinLoading } from 'antd-mobile';
 // import styles from './App.module.scss'
 const router = createBrowserRouter([
@@ -50,20 +51,20 @@ const queryClient = new QueryClient({
 
 function App() {
     const { ready, isReady } = useWebApp();
-    const { expand } = useWebAppViewport();
+    const { expand, isExpanded } = useWebAppViewport();
 
     useEffect(() => {
         ready();
         if (isReady) {
             expand();
         }
-    }, [isReady]);
+    }, [isReady, ready, expand]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
 
-    return <>{Telegram.WebApp.isExpanded}</>
+    return <>{isExpanded.toString()}</>
     return (
         <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
