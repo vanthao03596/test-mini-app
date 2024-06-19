@@ -1,15 +1,14 @@
-import React from 'react';
-import styles from './WalletHistoryPage.module.scss';
-import { useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import axiosAuth from '@/lib/axios';
-import { WalletBalanceResponse } from '../WalletPage/WalletPage';
-import usePageSize from '@/hooks/usePageSize';
 import CustomPagination from '@/components/ui/CustomPagination/CustomPagination';
-import { Title } from '@/components/ui/Title';
 import { Flex } from '@/components/ui/Flex';
+import { Title } from '@/components/ui/Title';
+import usePageSize from '@/hooks/usePageSize';
+import axiosAuth from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
 import { List } from 'antd-mobile';
 import dayjs from 'dayjs';
+import { useSearchParams } from 'react-router-dom';
+import { WalletBalanceResponse } from '../WalletPage/WalletPage';
+import styles from './WalletHistoryPage.module.scss';
 
 type TransactionsData = {
     id: number;
