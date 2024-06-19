@@ -1,5 +1,5 @@
 import { TablerFileText, TablerHome, TablerMoneybag, TablerUser, TablerWallet } from '@/components/icon';
-import { TabBar } from 'antd-mobile';
+import { SafeArea, TabBar } from 'antd-mobile';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CustomTabBar.module.scss';
 
@@ -47,6 +47,7 @@ const CustomTabBar = () => {
                     <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
                 ))}
             </TabBar>
+            <SafeArea position='bottom' />
         </div>
     );
 };
