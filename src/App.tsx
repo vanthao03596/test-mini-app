@@ -8,8 +8,8 @@ import { HomePage } from './pages/HomePage';
 import { WalletHistoryPage } from './pages/WalletHistoryPage';
 import { WalletPage } from './pages/WalletPage';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
-import { SpinLoading } from 'antd-mobile';
-import styles from './App.module.scss'
+// import { SpinLoading } from 'antd-mobile';
+// import styles from './App.module.scss'
 const router = createBrowserRouter([
     {
         path: '/',
@@ -40,29 +40,30 @@ const queryClient = new QueryClient({
     },
 });
 
-function Loading() {
-    return (
-        <div className={styles.loadingDiv} >
-            <SpinLoading color='primary'/>
-        </div>
-    )
-}
+// function Loading() {
+//     return (
+//         <div className={styles.loadingDiv} >
+//             <SpinLoading color='primary'/>
+//         </div>
+//     )
+// }
 
 function App() {
     const { ready, isReady } = useWebApp();
-    const { expand } = useWebAppViewport();
+    const { expand, isExpanded } = useWebAppViewport();
 
     useEffect(() => {
         ready();
         if (isReady) {
             expand();
         }
-    }, [expand, isReady, ready]);
+    }, [isReady]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
 
+    return <>{isExpanded.toString()}</>
     return (
         <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} />
