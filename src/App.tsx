@@ -4,6 +4,8 @@ import './App.scss';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
 import { HomePage } from './pages/HomePage';
 import { WalletPage } from './pages/WalletPage';
+import useWebApp from './hooks/useWebApp';
+import useWebAppViewport from './hooks/useWebAppViewport';
 
 const router = createBrowserRouter([
     {
@@ -24,9 +26,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+    const {ready} = useWebApp();
+    const {expand} = useWebAppViewport();
+
     useEffect(() => {
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
+        ready();
+        expand();
     }, []);
 
     useEffect(() => {
