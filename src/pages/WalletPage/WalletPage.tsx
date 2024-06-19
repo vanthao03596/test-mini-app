@@ -1,10 +1,10 @@
+import IMAGES from '@/assets/images';
 import { TablerArrowBarToDown, TablerArrowBarUp, TablerHistory } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
+import { Title } from '@/components/ui/Title';
 import { Avatar, List, Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
-import IMAGES from '@/assets/images';
-import clsx from 'clsx';
 
 const actions = [
     {
@@ -75,9 +75,7 @@ const WalletPage = () => {
             {/* Balances */}
             <div className={styles.balances}>
                 {/* Title */}
-                <Flex justify='center' className={clsx('textGradient', styles.title)}>
-                    Balance
-                </Flex>
+                <Title text='balance' className='123' />
                 {/* List */}
                 <List className={styles.list}>
                     {balances.map((item, index) => (
