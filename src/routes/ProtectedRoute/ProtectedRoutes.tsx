@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { CustomTabBar } from '../../components/layout/CustomTabBar';
+import { SafeArea } from 'antd-mobile';
 
 const ProtectedRoutes = () => {
     const user = 'test';
@@ -8,6 +9,7 @@ const ProtectedRoutes = () => {
         <>
             <Outlet />
             <CustomTabBar />
+            <SafeArea position='bottom' />
         </>
     ) : (
         <Navigate to={'/login'} replace />

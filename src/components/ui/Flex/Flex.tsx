@@ -28,6 +28,10 @@ const Flex = (props: FlexProps) => {
                 [styles[wrap]]: true,
                 [styles[`justify-${justify}`]]: true,
             })}
+
+            style={{
+                display: "flex",
+            }}
         >
             {children}
         </div>
