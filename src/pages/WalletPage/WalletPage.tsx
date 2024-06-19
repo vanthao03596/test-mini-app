@@ -101,15 +101,15 @@ const WalletPage = () => {
                             <Link to={item.link}>
                                 <Flex justify='space-between'>
                                     {/* Left */}
-                                    <Flex align='center' gap={8}>
-                                        <Avatar src={item.image} />
+                                    <Flex align='center'>
+                                        <Avatar src={item.image} className={styles.image} />
                                         <Flex direction='column'>
                                             <div className={styles.name}>{item.name}</div>
                                             <div className={styles.description}>{item.description}</div>
                                         </Flex>
                                     </Flex>
                                     {/* Right */}
-                                    <Flex align='center' gap={4}>
+                                    <Flex align='center'>
                                         <div className={styles.amount}>{item.amount}</div>
                                         <TablerChevronRight className={styles.icon} />
                                     </Flex>

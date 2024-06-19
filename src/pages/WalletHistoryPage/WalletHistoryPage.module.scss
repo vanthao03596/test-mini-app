@@ -21,21 +21,24 @@
         overflow: hidden;
 
         .item {
-            .icon {
-                flex-shrink: 0;
-                font-size: 1.25rem;
-                color: var(--adm-color-primary);
-            }
+            .left {
+                .icon {
+                    flex-shrink: 0;
+                    font-size: 1.25rem;
+                    color: var(--adm-color-primary);
+                    margin-right: 0.5rem;
+                }
 
-            .type {
-                text-transform: capitalize;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
+                .type {
+                    text-transform: capitalize;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
 
-            .date {
-                color: var(--adm-color-weak);
+                .date {
+                    color: var(--adm-color-weak);
+                }
             }
 
             .amount {

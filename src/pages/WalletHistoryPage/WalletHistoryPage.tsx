@@ -100,7 +100,7 @@ const WalletHistoryPage = () => {
                         <List.Item key={index} className={styles.item}>
                             <Flex justify='space-between' gap={64}>
                                 {/* Left */}
-                                <Flex align='center' gap={8}>
+                                <Flex align='center' className={styles.left}>
                                     <TablerCheck className={styles.icon} />
                                     <Flex direction='column'>
                                         <div className={styles.type}>{item.transactionable_type}</div>
