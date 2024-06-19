@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useWebAppEvent from "./useWebAppEvent";
 
 const useWebAppViewport = () => {
   const [isExpanded, setIsExpanded] = useState(Telegram.WebApp.isExpanded);
@@ -11,11 +12,15 @@ const useWebAppViewport = () => {
 
   const expand = () => {
     Telegram.WebApp.expand();
-    setIsExpanded(Telegram.WebApp.isExpanded);
-    setViewportHeight(Telegram.WebApp.viewportHeight);
-    setViewportStableHeight(Telegram.WebApp.viewportStableHeight);
-
   }
+
+  useWebAppEvent('viewportChanged', ({isStateStable}) => {
+    if (isStateStable) {
+      setIsExpanded(Telegram.WebApp.isExpanded);
+      setViewportHeight(Telegram.WebApp.viewportHeight);
+      setViewportStableHeight(Telegram.WebApp.viewportStableHeight);
+    }
+})
 
   return {
     expand,
