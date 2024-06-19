@@ -36,7 +36,7 @@ function Loading() {
 
 function App() {
     const {ready, isReady} = useWebApp();
-    const {expand} = useWebAppViewport();
+    const {expand, isExpanded, isCompleted} = useWebAppViewport();
 
     useEffect(() => {
         ready()
@@ -49,7 +49,11 @@ function App() {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
     }, []);
 
-    return isReady ? <RouterProvider router={router} /> : <Loading />;
+    if (!isExpanded) {
+        return <></>
+    }
+
+    return isCompleted ? <RouterProvider router={router} /> : <Loading />;
 }
 
 export default App;

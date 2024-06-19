@@ -9,11 +9,16 @@ const useWebAppViewport = () => {
     Telegram.WebApp.viewportStableHeight
   );
 
+  const [isCompleted, setIsCompleted] = useState(false)
+
   const expand = () => {
     Telegram.WebApp.expand();
     setIsExpanded(Telegram.WebApp.isExpanded);
     setViewportHeight(Telegram.WebApp.viewportHeight);
     setViewportStableHeight(Telegram.WebApp.viewportStableHeight);
+    setTimeout(() => {
+      setIsCompleted(true)
+    }, 1500)
   }
 
   return {
@@ -21,6 +26,7 @@ const useWebAppViewport = () => {
     isExpanded,
     viewportHeight,
     viewportStableHeight,
+    isCompleted
   };
 };
 
