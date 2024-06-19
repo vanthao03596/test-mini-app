@@ -4,8 +4,8 @@ import './App.scss';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
 import { HomePage } from './pages/HomePage';
 import { WalletPage } from './pages/WalletPage';
-// import useWebApp from './hooks/useWebApp';
-// import useWebAppViewport from './hooks/useWebAppViewport';
+import useWebApp from './hooks/useWebApp';
+import useWebAppViewport from './hooks/useWebAppViewport';
 
 const router = createBrowserRouter([
     {
@@ -26,15 +26,15 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-    // const {ready, isReady} = useWebApp();
-    // const {expand} = useWebAppViewport();
+    const {ready, isReady} = useWebApp();
+    const {expand} = useWebAppViewport();
 
     useEffect(() => {
-        window.Telegram.WebApp.ready()
-        setTimeout(() => {
-          window.Telegram.WebApp.expand();
-        }, 3000)
-    }, []);
+        ready()
+        if (isReady) {
+          expand();
+        }
+    }, [expand, isReady, ready]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
