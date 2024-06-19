@@ -27,3 +27,8 @@ body {
     background-clip: text;
     color: transparent;
 }
+
+#root {
+    min-height: 100vh;
+    position: relative;
+}
