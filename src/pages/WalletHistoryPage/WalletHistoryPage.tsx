@@ -1,5 +1,5 @@
 import { TablerCheck } from '@/components/icon';
-import CustomPagination from '@/components/ui/CustomPagination/CustomPagination';
+
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
 import usePageSize from '@/hooks/usePageSize';
@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
+import { CustomPagination } from '@/components/ui/CustomPagination';
 
 type TransactionsData = {
     id: number;
