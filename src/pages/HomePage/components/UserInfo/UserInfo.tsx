@@ -61,6 +61,7 @@ const UserInfo = (props: UserInfoProps) => {
                         visible={isModalOpen}
                         content={<ModalContent />}
                         closeOnAction
+                        closeOnMaskClick
                         onClose={() => {
                             setIsModalOpen(false);
                         }}
