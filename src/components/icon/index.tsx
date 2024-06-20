@@ -145,17 +145,6 @@ export function TablerChevronLeft(props: SVGProps<SVGSVGElement>) {
     );
 }
 
-export function TablerArrowBackUp(props: SVGProps<SVGSVGElement>) {
-    return (
-        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
-            <g fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'>
-                <path d='m9 14l-4-4l4-4'></path>
-                <path d='M5 10h11a4 4 0 1 1 0 8h-1'></path>
-            </g>
-        </svg>
-    );
-}
-
 export function TablerInfoCircle(props: SVGProps<SVGSVGElement>) {
     return (
         <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
@@ -174,6 +163,32 @@ export function TablerRocket(props: SVGProps<SVGSVGElement>) {
                 <path d='M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3-5a9 9 0 0 0 6-8a3 3 0 0 0-3-3a9 9 0 0 0-8 6a6 6 0 0 0-5 3'></path>
                 <path d='M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3m4-8a1 1 0 1 0 2 0a1 1 0 1 0-2 0'></path>
             </g>
+        </svg>
+    );
+}
+
+export function MaterialSymbolsKeyboardBackspaceRounded(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <path
+                fill='currentColor'
+                d='m6.8 13l2.9 2.9q.275.275.275.7t-.275.7t-.7.275t-.7-.275l-4.6-4.6q-.15-.15-.213-.325T3.426 12t.063-.375t.212-.325l4.6-4.6q.275-.275.7-.275t.7.275t.275.7t-.275.7L6.8 11H20q.425 0 .713.288T21 12t-.288.713T20 13z'
+            ></path>
+        </svg>
+    );
+}
+
+export function TablerExternalLink(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <path
+                fill='none'
+                stroke='currentColor'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5'
+            ></path>
         </svg>
     );
 }

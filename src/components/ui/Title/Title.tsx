@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import styles from './Title.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { TablerArrowBackUp } from '@/components/icon';
+import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
 
 type TitleProps = React.HTMLAttributes<HTMLDivElement> & {
     text: string;
@@ -42,13 +42,11 @@ const Title = (props: TitleProps) => {
             }}
             {...rest}
         >
-            {/* Text */}
             {text}
 
-            {/* Back */}
             {hasBack && (
                 <div className={styles.icon} onClick={handleBack}>
-                    <TablerArrowBackUp fontSize={24} />
+                    <MaterialSymbolsKeyboardBackspaceRounded fontSize={32} />
                 </div>
             )}
         </div>

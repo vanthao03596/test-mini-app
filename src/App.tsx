@@ -11,6 +11,7 @@ import { ProtectedRoutes } from './routes/ProtectedRoute';
 import { SpinLoading } from 'antd-mobile';
 import styles from './App.module.scss';
 import '@/lib/dayjs';
+import { ResearchPage } from './pages/ResearchPage';
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: 'wallet/history',
                 element: <WalletHistoryPage />,
+            },
+            {
+                path: 'research',
+                element: <ResearchPage />,
             },
         ],
     },
