@@ -74,7 +74,7 @@ const WalletPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Wallet' className={styles.pageTitle} />
+            <Title text='Wallet' variant='white' className={styles.pageTitle} />
 
             {/* Actions */}
             <div className={styles.actions}>
@@ -93,7 +93,7 @@ const WalletPage = () => {
             {/* Balances */}
             <div className={styles.balances}>
                 {/* Title */}
-                <Title text='Balance' fontSize={24} gradient={false} className={styles.title} />
+                <Title text='Balance' fontSize={24} className={styles.title} />
                 {/* List */}
                 <List className={styles.list}>
                     {balances.map((item, index) => (
@@ -101,13 +101,13 @@ const WalletPage = () => {
                             <Link to={item.link}>
                                 <Flex justify='space-between'>
                                     {/* Left */}
-                                    <Flex align='center'>
+                                    <Space align='center'>
                                         <Avatar src={item.image} className={styles.image} />
                                         <Flex direction='column'>
                                             <div className={styles.name}>{item.name}</div>
                                             <div className={styles.description}>{item.description}</div>
                                         </Flex>
-                                    </Flex>
+                                    </Space>
                                     {/* Right */}
                                     <Flex align='center'>
                                         <div className={styles.amount}>{item.amount}</div>

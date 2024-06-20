@@ -1,30 +1,56 @@
 import clsx from 'clsx';
 import React from 'react';
+import styles from './Title.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { TablerArrowBackUp } from '@/components/icon';
 
 type TitleProps = React.HTMLAttributes<HTMLDivElement> & {
     text: string;
-    gradient?: boolean;
+    hasBack?: boolean;
+    variant?: 'gradient' | 'primary' | 'gold' | 'white';
     fontSize?: number;
 };
 
 const Title = (props: TitleProps) => {
-    const { text, gradient = true, fontSize = 36, className: customClassName, style: customStyle, ...rest } = props;
+    const {
+        text,
+        hasBack = false,
+        variant = 'primary',
+        fontSize = 32,
+        className: customClassName,
+        style: customStyle,
+        ...rest
+    } = props;
+    const navigate = useNavigate();
+
+    const handleBack = () => {
+        navigate(-1);
+    };
 
     return (
         <div
             className={clsx(customClassName, {
-                textGradient: gradient,
+                [styles.title]: true,
+                [styles.primary]: variant === 'primary',
+                [styles.gold]: variant === 'gold',
+                [styles.white]: variant === 'white',
+                textGradient: variant === 'gradient',
             })}
             style={{
-                fontWeight: 500,
                 fontSize: fontSize,
-                textAlign: 'center',
-                textTransform: 'uppercase',
                 ...customStyle,
             }}
             {...rest}
         >
+            {/* Text */}
             {text}
+
+            {/* Back */}
+            {hasBack && (
+                <div className={styles.icon} onClick={handleBack}>
+                    <TablerArrowBackUp fontSize={24} />
+                </div>
+            )}
         </div>
     );
 };

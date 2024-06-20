@@ -1,5 +1,5 @@
 .container {
-    padding: 1rem;
+    padding: var(--custom-page-padding);
 
     .pageTitle {
         margin-bottom: 2rem;
@@ -38,10 +38,6 @@
             overflow: hidden;
 
             .item {
-                .image {
-                    margin-right: 0.5rem;
-                }
-
                 .description {
                     color: var(--adm-color-weak);
                     font-size: 0.875rem;

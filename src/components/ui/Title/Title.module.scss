@@ -1,0 +1,32 @@
+.title {
+    position: relative;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+
+    &.primary {
+        color: var(--adm-color-primary);
+    }
+
+    &.gold {
+        color: var(--adm-color-yellow);
+    }
+
+    &.white {
+        color: white;
+    }
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        background: var(--adm-color-background);
+        display: flex;
+        align-items: center;
+        border-radius: 0.5rem;
+        border: 1px solid var(--adm-color-border);
+        color: var(--adm-color-primary);
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+}

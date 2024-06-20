@@ -1,15 +1,15 @@
+import { TablerCheck } from '@/components/icon';
 import CustomPagination from '@/components/ui/CustomPagination/CustomPagination';
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
 import usePageSize from '@/hooks/usePageSize';
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
-import { List } from 'antd-mobile';
+import { List, Space } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
-import { TablerCheck } from '@/components/icon';
 
 type TransactionsData = {
     id: number;
@@ -72,12 +72,10 @@ const WalletHistoryPage = () => {
         queryFn: getTransactions,
     });
 
-    console.log('dataTransactions', dataTransactions);
-
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text={unit ? unit + ' balance' : 'history'} className={styles.title} />
+            <Title text={unit ? unit + ' balance' : 'history'} variant='white' className={styles.title} hasBack />
 
             {/* Balance */}
             {unit && (
@@ -85,22 +83,23 @@ const WalletHistoryPage = () => {
                     {dataBalances && (
                         <Title
                             fontSize={36}
+                            variant='gold'
                             text={dataBalances[unit as keyof WalletBalanceResponse] + ''}
                             className={styles.amountText}
                         />
                     )}
-                    <Title text='History' fontSize={24} gradient={false} className={styles.historyText}></Title>
+                    <Title text='History' fontSize={24} className={styles.historyText}></Title>
                 </Flex>
             )}
 
             {/* List  */}
-            {dataTransactions?.data && (
+            {dataTransactions?.data && dataTransactions.data.length > 0 && (
                 <List className={styles.list}>
-                    {dataTransactions?.data.map((item, index) => (
+                    {dataTransactions.data.map((item, index) => (
                         <List.Item key={index} className={styles.item}>
                             <Flex justify='space-between' gap={64}>
                                 {/* Left */}
-                                <Flex align='center' className={styles.left}>
+                                <Space align='center'>
                                     <TablerCheck className={styles.icon} />
                                     <Flex direction='column'>
                                         <div className={styles.type}>{item.transactionable_type}</div>
@@ -108,7 +107,7 @@ const WalletHistoryPage = () => {
                                             {dayjs(item.created_at).format('HH:mm MM/DD/YYYY ')}
                                         </div>
                                     </Flex>
-                                </Flex>
+                                </Space>
                                 {/* Right */}
                                 <Flex direction='column' align='flex-end'>
                                     <div className={styles.amount}>+{item.amount}</div>
