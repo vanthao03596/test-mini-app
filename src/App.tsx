@@ -9,7 +9,8 @@ import { WalletHistoryPage } from './pages/WalletHistoryPage';
 import { WalletPage } from './pages/WalletPage';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
 import { SpinLoading } from 'antd-mobile';
-import styles from './App.module.scss'
+import styles from './App.module.scss';
+import '@/lib/dayjs';
 
 const router = createBrowserRouter([
     {
@@ -43,10 +44,10 @@ const queryClient = new QueryClient({
 
 function Loading() {
     return (
-        <div className={styles.loadingDiv} >
-            <SpinLoading color='primary'/>
+        <div className={styles.loadingDiv}>
+            <SpinLoading color='primary' />
         </div>
-    )
+    );
 }
 
 function App() {
@@ -67,19 +68,19 @@ function App() {
     }, []);
 
     useEffect(() => {
-        if(isExpanded && !isCompleted) {
+        if (isExpanded && !isCompleted) {
             setTimeout(() => {
-                setIsCompleted(true)
-            }, 1500)
+                setIsCompleted(true);
+            }, 1500);
         }
-    }, [isExpanded, isCompleted])
+    }, [isExpanded, isCompleted]);
 
     if (!isExpanded) {
-        return <></>
+        return <></>;
     }
 
     if (!isCompleted) {
-        return <Loading />
+        return <Loading />;
     }
 
     return (

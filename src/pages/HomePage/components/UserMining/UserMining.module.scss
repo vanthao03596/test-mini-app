@@ -1,0 +1,70 @@
+.container {
+    margin-top: 1rem;
+
+    .mine {
+        position: relative;
+
+        .card {
+            border: 1px solid var(--adm-color-border);
+            color: var(--adm-color-primary);
+            padding-bottom: 2rem;
+
+            .amount {
+                font-size: 2rem;
+                font-weight: 500;
+            }
+
+            .time {
+                margin-top: 1rem;
+            }
+
+            .text {
+                margin-top: 0.25rem;
+            }
+        }
+
+        .btn {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+    }
+
+    .description {
+        margin-top: 2rem;
+
+        .card {
+            border: 1px solid var(--adm-color-border);
+            color: var(--adm-color-primary);
+            padding-top: 2rem;
+            font-weight: 500;
+            flex: 1;
+
+            &.left {
+                margin-right: 0.5rem;
+            }
+
+            &.right {
+                margin-left: 0.5rem;
+            }
+
+            .amount {
+                font-size: 1.5rem;
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 0.5rem;
+                    color: var(--custom-color-primary-dark);
+                    cursor: pointer;
+                }
+            }
+
+            .text {
+                margin-top: 0.25rem;
+                color: var(--custom-color-primary-dark);
+            }
+        }
+    }
+}
