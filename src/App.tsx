@@ -12,6 +12,7 @@ import { SpinLoading } from 'antd-mobile';
 import styles from './App.module.scss';
 import '@/lib/dayjs';
 import { ResearchPage } from './pages/ResearchPage';
+import { QuestPage } from './pages/QuestPage';
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: 'research',
                 element: <ResearchPage />,
+            },
+            {
+                path: 'quest',
+                element: <QuestPage />,
             },
         ],
     },

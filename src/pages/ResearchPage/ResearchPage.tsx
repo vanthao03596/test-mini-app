@@ -27,6 +27,7 @@ const ResearchPage = () => {
             {/* Title */}
             <Title text='Research' variant='white' className={styles.pageTitle} />
 
+            {/* List */}
             <div className={styles.list}>
                 {researchData?.data.map((item) => (
                     <Card key={item.id} className={styles.item}>
@@ -70,6 +71,13 @@ const ResearchPage = () => {
                     </Card>
                 ))}
             </div>
+
+            {/* Other */}
+            <Flex justify='center' className={styles.other}>
+                <Link to='https://gemx.io/research' target='blank'>
+                    <Flex justify='center'>Figure out more other research articles</Flex>
+                </Link>
+            </Flex>
         </div>
     );
 };

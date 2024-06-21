@@ -2,12 +2,12 @@
     padding: var(--custom-page-padding);
 
     .title {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     .balance {
         .amountText {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .historyText {
@@ -38,7 +38,8 @@
             }
 
             .amount {
-                color: var(--adm-color-primary);
+                color: var(--custom-color-primary-dark);
+                font-weight: 500;
             }
 
             .unit {

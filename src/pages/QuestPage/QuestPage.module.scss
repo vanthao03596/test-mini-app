@@ -27,18 +27,10 @@
             }
 
             .main {
+                margin-top: 0.5rem;
+
                 & > * + * {
                     margin-top: 0.5rem;
-                }
-
-                .author {
-                    margin-top: 1rem;
-
-                    .avatar {
-                        border-radius: 50%;
-                        width: 2rem;
-                        height: 2rem;
-                    }
                 }
 
                 .title {
@@ -49,17 +41,17 @@
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 2;
+                    text-transform: capitalize;
                 }
 
-                .description {
-                    overflow: hidden;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 3;
+                .reward {
+                    border: 1px solid var(--adm-color-border);
+                    padding: 0.25rem;
+                    border-radius: 0.25rem;
                 }
 
                 .footer {
-                    .date {
+                    .state {
                         color: var(--adm-color-weak);
                     }
 
@@ -71,10 +63,11 @@
         }
     }
 
-    .other {
+    .pagination {
         margin-top: 1rem;
-        font-size: 1rem;
-        color: var(--adm-color-text-light-solid);
-        font-weight: 500;
+    }
+
+    .marginRight {
+        margin-right: 0.5rem;
     }
 }

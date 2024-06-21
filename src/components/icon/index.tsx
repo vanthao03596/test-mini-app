@@ -192,3 +192,40 @@ export function TablerExternalLink(props: SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+
+export function TablerCalendarMonth(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <path
+                fill='none'
+                stroke='currentColor'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm12-4v4M8 3v4m-4 4h16M7 14h.013m2.997 0h.005m2.995 0h.005m3 0h.005m-3.005 3h.005m-6.01 0h.005m2.995 0h.005'
+            ></path>
+        </svg>
+    );
+}
+
+export function TablerEye(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <g fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'>
+                <path d='M10 12a2 2 0 1 0 4 0a2 2 0 0 0-4 0'></path>
+                <path d='M21 12q-3.6 6-9 6t-9-6q3.6-6 9-6t9 6'></path>
+            </g>
+        </svg>
+    );
+}
+
+export function TablerGift(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <g fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'>
+                <path d='M3 9a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm9-1v13'></path>
+                <path d='M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7m2.5-4a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5a2.5 2.5 0 0 1 0 5'></path>
+            </g>
+        </svg>
+    );
+}

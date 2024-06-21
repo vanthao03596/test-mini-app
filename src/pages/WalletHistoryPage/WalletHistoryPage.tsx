@@ -11,6 +11,7 @@ import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
 import { CustomPagination } from '@/components/ui/CustomPagination';
+import { DATE_FORMAT_TYPE } from '@/constants/public';
 
 type TransactionsData = {
     id: number;
@@ -83,7 +84,7 @@ const WalletHistoryPage = () => {
                 <Flex justify='center' align='center' direction='column' className={styles.balance}>
                     {dataBalances && (
                         <Title
-                            fontSize={36}
+                            fontSize={32}
                             variant='gold'
                             text={dataBalances[unit as keyof WalletBalanceResponse] + ''}
                             className={styles.amountText}
@@ -105,7 +106,7 @@ const WalletHistoryPage = () => {
                                     <Flex direction='column'>
                                         <div className={styles.type}>{item.transactionable_type}</div>
                                         <div className={styles.date}>
-                                            {dayjs(item.created_at).format('HH:mm MM/DD/YYYY ')}
+                                            {dayjs(item.created_at).format(DATE_FORMAT_TYPE)}
                                         </div>
                                     </Flex>
                                 </Space>
