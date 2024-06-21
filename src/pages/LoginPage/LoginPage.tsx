@@ -1,6 +1,6 @@
 import { Title } from '@/components/ui/Title';
 import axiosAuth from '@/lib/axios';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button, Form, Input, Toast } from 'antd-mobile';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +35,8 @@ type User = {
 const LoginPage = () => {
     const navigate = useNavigate();
 
+    const queryClient = useQueryClient();
+
     const updateUser = async (address: string) => {
         const res = await axiosAuth.post<{
             user: User;
@@ -45,11 +47,12 @@ const LoginPage = () => {
     const mutation = useMutation({
         mutationKey: ['update-user'],
         mutationFn: updateUser,
-        onSuccess: async () => {
+        onSuccess: async (data) => {
             Toast.show({
                 icon: 'success',
                 content: 'Login success',
             });
+            queryClient.setQueryData(['get-user'], data);
             setTimeout(() => {
                 navigate('/');
             }, 200);
