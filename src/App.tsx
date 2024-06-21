@@ -77,7 +77,7 @@ function App() {
             expand();
             enableClosingConfirmation()
         }
-    }, [isReady, ready, expand, enableClosingConfirmation]);
+    }, [isReady]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
