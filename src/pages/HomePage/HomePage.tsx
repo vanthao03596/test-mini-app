@@ -45,6 +45,7 @@ const HomePage = () => {
                         lastClaim={lastClaimData.last_claim}
                         address={accountData.user.address}
                         gasPower={accountData.user.gas_power}
+                        level={accountData.user.gas_rate_lvl}
                     />
                 </>
             )}

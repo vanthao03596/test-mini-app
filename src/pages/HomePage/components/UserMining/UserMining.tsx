@@ -1,14 +1,13 @@
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 
-import { TablerRocket } from '@/components/icon';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button, Card } from 'antd-mobile';
-import clsx from 'clsx';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { useCountdown } from 'usehooks-ts';
+import { MiningBooster } from '../MiningBooster';
+import MiningSpeed from '../MiningSpeed/MiningSpeed';
 import styles from './UserMining.module.scss';
 
 type UserMiningProps = {
@@ -16,6 +15,7 @@ type UserMiningProps = {
     lastClaim: Date | null;
     address: string;
     gasPower: number;
+    level: number;
 };
 
 const HOURS_TO_CLAIM = 6;
@@ -31,7 +31,7 @@ const secondsToHms = (d: number) => {
 };
 
 const UserMining = (props: UserMiningProps) => {
-    const { address, gasPower, gemInSecond, lastClaim } = props;
+    const { address, gasPower, gemInSecond, lastClaim, level } = props;
 
     const diffTime = dayjs.utc().diff(dayjs.utc(lastClaim), 'seconds');
     const isCountDown = diffTime < HOURS_TO_CLAIM_TO_SECONDS;
@@ -107,22 +107,8 @@ const UserMining = (props: UserMiningProps) => {
 
             {/* Description */}
             <Flex className={styles.description}>
-                {/* Left */}
-                <Card className={clsx(styles.card, styles.left)}>
-                    <div className={styles.amount}>{(gemInSecond * 3600).toFixed(2)} GXP</div>
-                    <div className={styles.text}>Base mining speed</div>
-                </Card>
-
-                {/* Right */}
-                <Card className={clsx(styles.card, styles.right)}>
-                    <Flex className={styles.amount} align='center'>
-                        {gasPower}
-                        <Link to={'https://gemx.io/membership'} target='blank' className={styles.icon}>
-                            <TablerRocket />
-                        </Link>
-                    </Flex>
-                    <div className={styles.text}>Booster coefficient</div>
-                </Card>
+                <MiningSpeed gemInSecond={gemInSecond} level={level} />
+                <MiningBooster gasPower={gasPower} />
             </Flex>
         </div>
     );
