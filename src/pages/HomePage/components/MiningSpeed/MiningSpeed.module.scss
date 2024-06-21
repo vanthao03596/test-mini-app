@@ -1,5 +1,4 @@
 .card {
-    border: 1px solid var(--adm-color-border);
     color: var(--adm-color-primary);
     padding-top: 2rem;
     font-weight: 500;
@@ -35,7 +34,6 @@
         max-height: 55vh;
         overflow-y: auto;
         padding: 0 0.5rem;
-            
 
         &::-webkit-scrollbar {
             width: 2px;

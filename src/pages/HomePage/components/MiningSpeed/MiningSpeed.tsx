@@ -1,8 +1,9 @@
-import { Card, List, Modal } from 'antd-mobile';
-import clsx from 'clsx';
-import styles from './MiningSpeed.module.scss';
-import { useState } from 'react';
+import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
+import { List, Modal } from 'antd-mobile';
+import clsx from 'clsx';
+import { useState } from 'react';
+import styles from './MiningSpeed.module.scss';
 
 type MiningSpeedProps = {
     gemInSecond: number;
@@ -46,7 +47,8 @@ const MiningSpeed = (props: MiningSpeedProps) => {
 
     return (
         <>
-            <Card
+            <CustomCard
+                border='normal'
                 className={clsx(styles.card, styles.left)}
                 onClick={() => {
                     setIsModalOpen(true);
@@ -54,7 +56,7 @@ const MiningSpeed = (props: MiningSpeedProps) => {
             >
                 <div className={styles.amount}>{(gemInSecond * 3600).toFixed(2)} GXP</div>
                 <div className={styles.text}>Mining mining speed</div>
-            </Card>
+            </CustomCard>
 
             <Modal
                 visible={isModalOpen}

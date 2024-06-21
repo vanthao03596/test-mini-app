@@ -1,6 +1,7 @@
 import { TablerCopy, TablerShare3 } from '@/components/icon';
+import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
-import { Button, Card, Space, Toast } from 'antd-mobile';
+import { Button, Space, Toast } from 'antd-mobile';
 import { useCopyToClipboard } from 'usehooks-ts';
 import styles from './NetworkShare.module.scss';
 
@@ -24,7 +25,7 @@ const NetworkShare = () => {
     };
 
     return (
-        <Card className={styles.card}>
+        <CustomCard border='normal' className={styles.card}>
             <div className={styles.wrapper}>
                 <div className={styles.title}>Invite friends and earn together</div>
 
@@ -44,7 +45,7 @@ const NetworkShare = () => {
                     </Space>
                 </Button>
             </div>
-        </Card>
+        </CustomCard>
     );
 };
 

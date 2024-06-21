@@ -1,15 +1,16 @@
 import { TablerNetwork } from '@/components/icon';
+import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
-import { Card, Divider, Space } from 'antd-mobile';
-import styles from './UserNetwork.module.scss';
+import { Divider, Space } from 'antd-mobile';
+import styles from './NetworkInfo.module.scss';
 
 const TOTAL = 123;
 const F1 = 100;
 const F2 = 23;
 
-const UserNetwork = () => {
+const NetworkInfo = () => {
     return (
-        <Card className={styles.card}>
+        <CustomCard border='normal' className={styles.card}>
             <div className={styles.wrapper}>
                 {/* Title */}
                 <div className={styles.title}>Your network</div>
@@ -40,8 +41,8 @@ const UserNetwork = () => {
                     </Space>
                 </Flex>
             </div>
-        </Card>
+        </CustomCard>
     );
 };
 
-export default UserNetwork;
+export default NetworkInfo;

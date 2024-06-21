@@ -1,13 +1,13 @@
 import { IconamoonLightning2Fill } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
-import { UserNetwork } from './components/UserNetwork';
+import { NetworkInfo } from './components/NetworkInfo';
 import styles from './UserPage.module.scss';
 import { NetworkShare } from './components/NetworkShare';
 
 const UserPage = () => {
     return (
         <div className={styles.container}>
-            <UserNetwork />
+            <NetworkInfo />
             <Flex justify='center' align='center' className={styles.speed}>
                 <IconamoonLightning2Fill className={styles.icon} />
                 <div>Maximize your data: More nodes, more faster mining!</div>

@@ -1,16 +1,17 @@
+import { TablerCalendarMonth, TablerExternalLink, TablerEye, TablerGift } from '@/components/icon';
+import { CustomCard } from '@/components/ui/CustomCard';
 import { CustomPagination } from '@/components/ui/CustomPagination';
+import { Flex } from '@/components/ui/Flex';
+import { Title } from '@/components/ui/Title';
+import { DATE_FORMAT_TYPE } from '@/constants/public';
 import usePageSize from '@/hooks/usePageSize';
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
+import { Space } from 'antd-mobile';
+import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
 import styles from './QuestPage.module.scss';
 import { QuestsResponse } from './QuestPage.types';
-import { Title } from '@/components/ui/Title';
-import { Flex } from '@/components/ui/Flex';
-import { Card, Space } from 'antd-mobile';
-import dayjs from 'dayjs';
-import { TablerCalendarMonth, TablerExternalLink, TablerEye, TablerGift } from '@/components/icon';
-import { Link } from 'react-router-dom';
-import { DATE_FORMAT_TYPE } from '@/constants/public';
 
 const QuestPage = () => {
     const { page, handleChangePageSize } = usePageSize();
@@ -34,7 +35,7 @@ const QuestPage = () => {
             {/* List */}
             <div className={styles.list}>
                 {dataQuests?.data.map((item) => (
-                    <Card key={item.id} className={styles.item}>
+                    <CustomCard border='normal' key={item.id} className={styles.item}>
                         {/* Banner */}
                         <div className={styles.banner}>
                             <img src={item.image} alt='' />
@@ -97,7 +98,7 @@ const QuestPage = () => {
                                 </Link>
                             </Flex>
                         </div>
-                    </Card>
+                    </CustomCard>
                 ))}
             </div>
 

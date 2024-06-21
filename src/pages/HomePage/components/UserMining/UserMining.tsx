@@ -1,8 +1,9 @@
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 
+import { CustomCard } from '@/components/ui/CustomCard';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Button, Card } from 'antd-mobile';
+import { Button } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useCountdown } from 'usehooks-ts';
@@ -80,7 +81,7 @@ const UserMining = (props: UserMiningProps) => {
             {/* Mine */}
             <div className={styles.mine}>
                 {/* Card */}
-                <Card className={styles.card}>
+                <CustomCard border='normal' className={styles.card}>
                     <Flex align='center' direction='column'>
                         {/* Amount */}
                         <div className={styles.amount}>{!lastClaim ? 0 : rewardAmount.toFixed(4)}</div>
@@ -91,7 +92,7 @@ const UserMining = (props: UserMiningProps) => {
                             {isCountDown ? 'Time until the next rewards' : 'Reward is ready'}
                         </div>
                     </Flex>
-                </Card>
+                </CustomCard>
 
                 {/* Button */}
                 <Button

@@ -1,6 +1,4 @@
 .card {
-    border: 1px solid var(--adm-color-border);
-
     .wrapper {
         & > * + * {
             margin-top: 1rem;
@@ -23,10 +21,10 @@
 
             .icon {
                 margin-left: 0.5rem;
-                font-size: 1rem;
+                font-size: 1.25rem;
             }
         }
-        
+
         .btnShare {
             width: 100%;
         }
