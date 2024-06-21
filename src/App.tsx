@@ -66,7 +66,7 @@ function Loading() {
 }
 
 function App() {
-    const { ready, isReady } = useWebApp();
+    const { ready, isReady, enableClosingConfirmation } = useWebApp();
     const { expand, isExpanded } = useWebAppViewport();
 
     const [isCompleted, setIsCompleted] = useState(false);
@@ -75,8 +75,9 @@ function App() {
         ready();
         if (isReady) {
             expand();
+            enableClosingConfirmation()
         }
-    }, [isReady, ready, expand]);
+    }, [isReady, ready, expand, enableClosingConfirmation]);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');

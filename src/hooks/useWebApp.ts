@@ -10,9 +10,13 @@ const useWebApp = () => {
     }, 500)
   };
 
+  const enableClosingConfirmation = () => {
+    Telegram.WebApp.enableClosingConfirmation();
+  }
   return {
     ready,
     isReady,
+    enableClosingConfirmation
   };
 };
 
