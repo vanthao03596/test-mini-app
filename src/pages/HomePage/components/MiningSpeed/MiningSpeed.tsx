@@ -26,6 +26,7 @@ const ModalContent = ({ level }: Pick<MiningSpeedProps, 'level'>) => {
                             [styles.item]: true,
                             [styles.active]: item.level === level,
                         })}
+                        key={item.level}
                     >
                         <Flex justify='space-between'>
                             <div className={styles.level}>Level {item.level}</div>

@@ -13,6 +13,7 @@ import styles from './App.module.scss';
 import '@/lib/dayjs';
 import { ResearchPage } from './pages/ResearchPage';
 import { QuestPage } from './pages/QuestPage';
+import { UserPage } from './pages/UserPage';
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
             {
                 path: 'quest',
                 element: <QuestPage />,
+            },
+            {
+                path: 'user',
+                element: <UserPage />,
             },
         ],
     },

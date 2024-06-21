@@ -1,0 +1,14 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .speed {
+        padding: 0 1rem;
+        margin: 1rem 0;
+
+        .icon {
+            color: var(--adm-color-primary);
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+    }
+}

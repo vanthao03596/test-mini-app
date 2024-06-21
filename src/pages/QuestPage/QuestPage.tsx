@@ -69,8 +69,8 @@ const QuestPage = () => {
                                             amount: i.params.total_token_amount / i.params.number_of_rewards,
                                             unit: i.params.token_type,
                                         }))
-                                        .map((reward) => (
-                                            <Space className={styles.reward}>
+                                        .map((reward, index) => (
+                                            <Space key={index} className={styles.reward}>
                                                 <div>{reward.amount}</div>
                                                 <div>{reward.unit}</div>
                                             </Space>

@@ -1,0 +1,34 @@
+.card {
+    border: 1px solid var(--adm-color-border);
+
+    .wrapper {
+        & > * + * {
+            margin-top: 1rem;
+        }
+
+        .title {
+            color: var(--adm-color-weak);
+        }
+
+        .link {
+            border: 1px solid var(--adm-color-border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+
+            .text {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .icon {
+                margin-left: 0.5rem;
+                font-size: 1rem;
+            }
+        }
+        
+        .btnShare {
+            width: 100%;
+        }
+    }
+}
