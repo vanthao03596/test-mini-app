@@ -91,7 +91,7 @@ function App() {
         }
     }, [isExpanded, isCompleted]);
 
-    if (!isExpanded) {
+    if (!isExpanded && !isReady) {
         return <></>;
     }
 
