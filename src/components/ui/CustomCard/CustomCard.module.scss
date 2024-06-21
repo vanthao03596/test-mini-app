@@ -1,5 +1,5 @@
 .borderPrimary {
-    border: 1px solid var(--adm-color-primary);
+    border: 1px solid #026547;
 }
 
 .borderNormal {
@@ -7,7 +7,7 @@
 }
 
 .borderGradient {
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-image: linear-gradient(to bottom, var(--adm-color-primary), rgba(0, 0, 0, 0)) 1;
 }

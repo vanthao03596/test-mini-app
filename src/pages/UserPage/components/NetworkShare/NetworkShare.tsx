@@ -25,7 +25,7 @@ const NetworkShare = () => {
     };
 
     return (
-        <CustomCard border='normal' className={styles.card}>
+        <CustomCard className={styles.card}>
             <div className={styles.wrapper}>
                 <div className={styles.title}>Invite friends and earn together</div>
 

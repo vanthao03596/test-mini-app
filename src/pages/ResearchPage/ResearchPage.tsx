@@ -31,7 +31,7 @@ const ResearchPage = () => {
             {/* List */}
             <div className={styles.list}>
                 {researchData?.data.map((item) => (
-                    <CustomCard border='normal' key={item.id} className={styles.item}>
+                    <CustomCard key={item.id} className={styles.item}>
                         {/* Image */}
                         <div className={styles.banner}>
                             <img src={item.img_path} alt='' />

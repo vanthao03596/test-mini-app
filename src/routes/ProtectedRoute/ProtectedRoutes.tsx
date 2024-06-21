@@ -2,7 +2,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { CustomTabBar } from '../../components/layout/CustomTabBar';
 
 const ProtectedRoutes = () => {
-    const user = 'test';
+    const user = '123';
 
     return user ? (
         <>

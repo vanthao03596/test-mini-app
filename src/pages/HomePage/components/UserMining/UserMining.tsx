@@ -81,7 +81,7 @@ const UserMining = (props: UserMiningProps) => {
             {/* Mine */}
             <div className={styles.mine}>
                 {/* Card */}
-                <CustomCard border='normal' className={styles.card}>
+                <CustomCard className={styles.card}>
                     <Flex align='center' direction='column'>
                         {/* Amount */}
                         <div className={styles.amount}>{!lastClaim ? 0 : rewardAmount.toFixed(4)}</div>
@@ -92,18 +92,20 @@ const UserMining = (props: UserMiningProps) => {
                             {isCountDown ? 'Time until the next rewards' : 'Reward is ready'}
                         </div>
                     </Flex>
-                </CustomCard>
 
-                {/* Button */}
-                <Button
-                    color='primary'
-                    fill='solid'
-                    className={styles.btn}
-                    disabled={!acceptClaim}
-                    onClick={handleMining}
-                >
-                    {lastClaim ? (acceptClaim ? 'Claim' : 'Mining') : 'Start mining'}
-                </Button>
+                    <Flex justify='center'>
+                        {/* Button */}
+                        <Button
+                            color='primary'
+                            fill='solid'
+                            className={styles.btn}
+                            disabled={!acceptClaim}
+                            onClick={handleMining}
+                        >
+                            {lastClaim ? (acceptClaim ? 'Claim' : 'Mining') : 'Start mining'}
+                        </Button>
+                    </Flex>
+                </CustomCard>
             </div>
 
             {/* Description */}

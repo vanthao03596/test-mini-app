@@ -35,7 +35,7 @@ const QuestPage = () => {
             {/* List */}
             <div className={styles.list}>
                 {dataQuests?.data.map((item) => (
-                    <CustomCard border='normal' key={item.id} className={styles.item}>
+                    <CustomCard key={item.id} className={styles.item}>
                         {/* Banner */}
                         <div className={styles.banner}>
                             <img src={item.image} alt='' />

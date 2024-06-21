@@ -1,0 +1,12 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .pageTitle {
+        margin-bottom: 2rem;
+    }
+
+    .form {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+}

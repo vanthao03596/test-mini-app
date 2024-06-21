@@ -31,7 +31,7 @@ const ModalContent = ({ level }: Pick<MiningSpeedProps, 'level'>) => {
                     >
                         <Flex justify='space-between'>
                             <div className={styles.level}>Level {item.level}</div>
-                            <div className={styles.speed}>{item.speed.toFixed(2)} GEM</div>
+                            <div className={styles.speed}>{item.speed.toFixed(2)} GXP</div>
                         </Flex>
                     </List.Item>
                 ))}
@@ -48,7 +48,6 @@ const MiningSpeed = (props: MiningSpeedProps) => {
     return (
         <>
             <CustomCard
-                border='normal'
                 className={clsx(styles.card, styles.left)}
                 onClick={() => {
                     setIsModalOpen(true);

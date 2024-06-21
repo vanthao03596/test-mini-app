@@ -14,6 +14,7 @@ import '@/lib/dayjs';
 import { ResearchPage } from './pages/ResearchPage';
 import { QuestPage } from './pages/QuestPage';
 import { UserPage } from './pages/UserPage';
+import { LoginPage } from './pages/LoginPage';
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
             },
         ],
     },
+    { path: '/login', element: <LoginPage /> },
     {
         path: '*',
         element: <Navigate to='/' />,

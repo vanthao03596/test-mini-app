@@ -10,7 +10,7 @@ const F2 = 23;
 
 const NetworkInfo = () => {
     return (
-        <CustomCard border='normal' className={styles.card}>
+        <CustomCard className={styles.card}>
             <div className={styles.wrapper}>
                 {/* Title */}
                 <div className={styles.title}>Your network</div>

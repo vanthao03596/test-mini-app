@@ -11,10 +11,14 @@ type CustomCardProps = CardProps &
     }>;
 
 const CustomCard = (props: CustomCardProps) => {
-    const { children, border = '', className: customClassName } = props;
+    const { children, border = 'primary', className: customClassName, ...rest } = props;
     const borderClass = `border${capitalizeFirstLetter(border)}`;
 
-    return <Card className={clsx(customClassName, border && styles[borderClass])}>{children}</Card>;
+    return (
+        <Card className={clsx(customClassName, border && styles[borderClass])} {...rest}>
+            {children}
+        </Card>
+    );
 };
 
 export default CustomCard;

@@ -11,7 +11,7 @@ type MiningBoosterProps = {
 
 const MiningBooster = ({ gasPower }: MiningBoosterProps) => {
     return (
-        <CustomCard border='normal' className={clsx(styles.card, styles.right)}>
+        <CustomCard className={clsx(styles.card, styles.right)}>
             <Flex className={styles.amount} align='center'>
                 {gasPower}
                 <Link to={'https://gemx.io/membership'} target='blank' className={styles.icon}>
