@@ -5,23 +5,32 @@ import { Title } from '@/components/ui/Title';
 import axiosAuth from '@/lib/axios';
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 import stripTag from '@/utils/stripTag';
-import { useQuery } from '@tanstack/react-query';
-import { Avatar, Space } from 'antd-mobile';
+import { Avatar, InfiniteScroll, Space } from 'antd-mobile';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ResearchPage.module.scss';
 import { ResearchResponse } from './ResearchPage.types';
+import { InfiniteScrollContent } from './components/InfiniteScrollContent';
 
 const ResearchPage = () => {
+    const [data, setData] = useState<ResearchResponse['data']>([]);
+    const [hasMore, setHasMore] = useState<boolean>(true);
+    const [page, setPage] = useState<number>(1);
+
     const getLastResearch = async () => {
-        const res = await axiosAuth.get<ResearchResponse>('/latest-research');
+        const res = await axiosAuth.get<ResearchResponse>(`/latest-research?page=${page}`);
         return res.data;
     };
 
-    const { data: researchData } = useQuery({
-        queryKey: ['last-research'],
-        queryFn: getLastResearch,
-    });
+    const loadMore = async () => {
+        const append = await getLastResearch();
+        if (append.data.length > 0) {
+            setData((prev) => [...prev, ...append.data]);
+            setHasMore(true);
+            setPage(page + 1);
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -30,7 +39,7 @@ const ResearchPage = () => {
 
             {/* List */}
             <div className={styles.list}>
-                {researchData?.data.map((item) => (
+                {data.map((item) => (
                     <CustomCard key={item.id} className={styles.item}>
                         {/* Image */}
                         <div className={styles.banner}>
@@ -73,12 +82,9 @@ const ResearchPage = () => {
                 ))}
             </div>
 
-            {/* Other */}
-            <Flex justify='center' className={styles.other}>
-                <Link to='https://gemx.io/research' target='blank'>
-                    <Flex justify='center'>Figure out more other research articles</Flex>
-                </Link>
-            </Flex>
+            <InfiniteScroll loadMore={loadMore} hasMore={hasMore}>
+                <InfiniteScrollContent hasMore={hasMore} />
+            </InfiniteScroll>
         </div>
     );
 };
