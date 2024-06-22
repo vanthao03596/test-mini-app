@@ -24,7 +24,7 @@ export type User = {
     mint_gxp_per_second: number;
 };
 
-export type CursorBasedResponse = {
+export type CursorBased = {
     next_cursor: string | null;
     next_page_url: string | null;
     path: string;

@@ -1,4 +1,4 @@
-import { CursorBasedResponse, User } from '@/types/public.types';
+import { CursorBased, User } from '@/types/public.types';
 
 enum Language {
     En = 'en',
@@ -44,6 +44,6 @@ export type Research = {
     research_coin: ResearchCoin[];
 };
 
-export type ResearchResponse = CursorBasedResponse & {
+export type ResearchResponse = CursorBased & {
     data: Research[];
 };

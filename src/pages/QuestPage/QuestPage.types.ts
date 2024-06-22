@@ -1,4 +1,4 @@
-import { CursorBasedResponse } from '@/types/public.types';
+import { CursorBased } from '@/types/public.types';
 
 export type Quest = {
     id: number;
@@ -22,7 +22,7 @@ export type Quest = {
     slug: string;
 };
 
-export type QuestsResponse = CursorBasedResponse & {
+export type QuestsResponse = CursorBased & {
     data: Quest[];
 };
 
