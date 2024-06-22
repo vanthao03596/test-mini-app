@@ -94,6 +94,7 @@ const WalletPage = () => {
             <div className={styles.balances}>
                 {/* Title */}
                 <Title text='Balance' fontSize={24} className={styles.title} />
+                
                 {/* List */}
                 <List className={styles.list}>
                     {balances.map((item, index) => (
