@@ -1,4 +1,6 @@
-type QuestsData = {
+import { CursorBasedResponse } from '@/types/public.types';
+
+export type Quest = {
     id: number;
     name: string;
     image: string;
@@ -20,24 +22,8 @@ type QuestsData = {
     slug: string;
 };
 
-export type QuestsResponse = {
-    current_page: number;
-    data: QuestsData[];
-    first_page_url: string;
-    from: number;
-    last_page: number;
-    last_page_url: string;
-    links: {
-        url?: string;
-        label: string;
-        active: boolean;
-    }[];
-    next_page_url?: string;
-    path: string;
-    per_page: number;
-    prev_page_url?: string;
-    to: number;
-    total: number;
+export type QuestsResponse = CursorBasedResponse & {
+    data: Quest[];
 };
 
 export type QuestCardProps = {
@@ -45,6 +31,6 @@ export type QuestCardProps = {
     views: number;
     title: string;
     endDate: Date;
-    rewards: QuestsData['rewards'];
+    rewards: Quest['rewards'];
     slug: string;
 };

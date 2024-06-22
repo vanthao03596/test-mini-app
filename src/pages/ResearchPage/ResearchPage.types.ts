@@ -1,15 +1,9 @@
-import { User } from '@/types/public.types';
+import { CursorBasedResponse, User } from '@/types/public.types';
 
 enum Language {
     En = 'en',
     Vi = 'vi',
 }
-
-type Link = {
-    url: null | string;
-    label: string;
-    active: boolean;
-};
 
 type Pivot = {
     research_id: number;
@@ -50,18 +44,6 @@ export type Research = {
     research_coin: ResearchCoin[];
 };
 
-export type ResearchResponse = {
-    current_page: number;
+export type ResearchResponse = CursorBasedResponse & {
     data: Research[];
-    first_page_url: string;
-    from: number;
-    last_page: number;
-    last_page_url: string;
-    links: Link[];
-    next_page_url: string;
-    path: string;
-    per_page: number;
-    prev_page_url: null;
-    to: number;
-    total: number;
 };

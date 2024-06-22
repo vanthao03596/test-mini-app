@@ -23,3 +23,12 @@ export type User = {
     gas_price: number;
     mint_gxp_per_second: number;
 };
+
+export type CursorBasedResponse = {
+    next_cursor: string | null;
+    next_page_url: string | null;
+    path: string;
+    per_page: number;
+    prev_cursor: string | null;
+    prev_page_url: string | null;
+};

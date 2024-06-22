@@ -10,19 +10,30 @@ import { ResearchCard } from './components/ResearchCard';
 const ResearchPage = () => {
     const [data, setData] = useState<ResearchResponse['data']>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [page, setPage] = useState<number>(1);
+    const [nextUrl, setNextUrl] = useState<ResearchResponse['next_page_url']>('/latest-research');
 
     const getLastResearch = async () => {
-        const res = await axiosAuth.get<ResearchResponse>(`/latest-research?page=${page}`);
-        return res.data;
+        if (nextUrl) {
+            const res = await axiosAuth.get<ResearchResponse>(nextUrl);
+            return res.data;
+        }
     };
 
     const loadMore = async () => {
         const append = await getLastResearch();
-        if (append.data.length > 0) {
+
+        if (!append) return;
+
+        if (append.data) {
             setData((prev) => [...prev, ...append.data]);
-            setHasMore(true);
-            setPage(page + 1);
+
+            if (append.next_page_url) {
+                setHasMore(true);
+                setNextUrl(append.next_page_url);
+            } else {
+                setHasMore(false);
+                setNextUrl(null);
+            }
         }
     };
 
