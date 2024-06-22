@@ -15,34 +15,47 @@ const router = createBrowserRouter([
         path: '/',
         element: <ProtectedRoutes />,
         children: [
-            { index: true, 
-                lazy: async () => {const { HomePage } = await import("./pages/HomePage")
-                return { Component: HomePage }},  
-             },
+            {
+                index: true,
+                lazy: async () => {
+                    const { HomePage } = await import('./pages/HomePage');
+                    return { Component: HomePage };
+                },
+            },
             {
                 path: 'wallet',
-                lazy: async () => {const { WalletPage } = await import("./pages/WalletPage")
-                return { Component: WalletPage }},  
+                lazy: async () => {
+                    const { WalletPage } = await import('./pages/WalletPage');
+                    return { Component: WalletPage };
+                },
             },
             {
                 path: 'wallet/history',
-                lazy: async () => {const { WalletHistoryPage } = await import("./pages/WalletHistoryPage")
-                return { Component: WalletHistoryPage }},  
+                lazy: async () => {
+                    const { WalletHistoryPage } = await import('./pages/WalletHistoryPage');
+                    return { Component: WalletHistoryPage };
+                },
             },
             {
                 path: 'research',
-                lazy: async () => {const { ResearchPage } = await import("./pages/ResearchPage")
-                return { Component: ResearchPage }},  
+                lazy: async () => {
+                    const { ResearchPage } = await import('./pages/ResearchPage');
+                    return { Component: ResearchPage };
+                },
             },
             {
                 path: 'quest',
-                lazy: async () => {const { QuestPage } = await import("./pages/QuestPage")
-                return { Component: QuestPage }},  
+                lazy: async () => {
+                    const { QuestPage } = await import('./pages/QuestPage');
+                    return { Component: QuestPage };
+                },
             },
             {
                 path: 'user',
-                lazy: async () => {const { UserPage } = await import("./pages/UserPage")
-                return { Component: UserPage }},  
+                lazy: async () => {
+                    const { UserPage } = await import('./pages/UserPage');
+                    return { Component: UserPage };
+                },
             },
         ],
     },
@@ -79,12 +92,21 @@ function App() {
         ready();
         if (isReady) {
             expand();
-            enableClosingConfirmation()
+            enableClosingConfirmation();
         }
     }, [isReady]);
 
     useEffect(() => {
+        // Change color theme
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
+
+        /**
+         * * Create sticky app
+         * ? https://docs.telegram-mini-apps.com/platform/sticky-app
+         */
+        document.body.classList.add('mobile-body');
+        document.getElementById('wrap')?.classList.add('mobile-wrap');
+        document.getElementById('content')?.classList.add('mobile-content');
     }, []);
 
     useEffect(() => {
