@@ -4,16 +4,10 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import './App.module.scss';
 import useWebApp from './hooks/useWebApp';
 import useWebAppViewport from './hooks/useWebAppViewport';
-import { HomePage } from './pages/HomePage';
-import { WalletHistoryPage } from './pages/WalletHistoryPage';
-import { WalletPage } from './pages/WalletPage';
 import { ProtectedRoutes } from './routes/ProtectedRoute';
 import { SpinLoading } from 'antd-mobile';
 import styles from './App.module.scss';
 import '@/lib/dayjs';
-import { ResearchPage } from './pages/ResearchPage';
-import { QuestPage } from './pages/QuestPage';
-import { UserPage } from './pages/UserPage';
 import { LoginPage } from './pages/LoginPage';
 
 const router = createBrowserRouter([
@@ -21,26 +15,34 @@ const router = createBrowserRouter([
         path: '/',
         element: <ProtectedRoutes />,
         children: [
-            { index: true, element: <HomePage /> },
+            { index: true, 
+                lazy: async () => {const { HomePage } = await import("./pages/HomePage")
+                return { Component: HomePage }},  
+             },
             {
                 path: 'wallet',
-                element: <WalletPage />,
+                lazy: async () => {const { WalletPage } = await import("./pages/WalletPage")
+                return { Component: WalletPage }},  
             },
             {
                 path: 'wallet/history',
-                element: <WalletHistoryPage />,
+                lazy: async () => {const { WalletHistoryPage } = await import("./pages/WalletHistoryPage")
+                return { Component: WalletHistoryPage }},  
             },
             {
                 path: 'research',
-                element: <ResearchPage />,
+                lazy: async () => {const { ResearchPage } = await import("./pages/ResearchPage")
+                return { Component: ResearchPage }},  
             },
             {
                 path: 'quest',
-                element: <QuestPage />,
+                lazy: async () => {const { QuestPage } = await import("./pages/QuestPage")
+                return { Component: QuestPage }},  
             },
             {
                 path: 'user',
-                element: <UserPage />,
+                lazy: async () => {const { UserPage } = await import("./pages/UserPage")
+                return { Component: UserPage }},  
             },
         ],
     },
