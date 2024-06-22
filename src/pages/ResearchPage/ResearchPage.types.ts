@@ -47,3 +47,20 @@ export type Research = {
 export type ResearchResponse = CursorBased & {
     data: Research[];
 };
+
+export type TopicsResponse = {
+    topics: {
+        cmc_id: number | null;
+        id: number;
+        img_path: string | null;
+        is_hot: boolean | null;
+        name: string;
+        position: string | null;
+        sidebar_for: string | null;
+        slug: string;
+        tag_type: string | null;
+        type: string;
+        created_at: Date;
+        updated_at: Date;
+    }[];
+};

@@ -28,6 +28,14 @@
         }
     }
 
+    .tabs {
+        margin-bottom: 1rem;
+
+        .item {
+            flex-shrink: 0;
+        }
+    }
+
     .list {
         margin-top: 1rem;
 
