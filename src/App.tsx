@@ -97,16 +97,7 @@ function App() {
     }, [isReady]);
 
     useEffect(() => {
-        // Change color theme
         document.documentElement.setAttribute('data-prefers-color-scheme', 'dark');
-
-        /**
-         * * Create sticky app
-         * ? https://docs.telegram-mini-apps.com/platform/sticky-app
-         */
-        document.body.classList.add('mobile-body');
-        document.getElementById('wrap')?.classList.add('mobile-wrap');
-        document.getElementById('content')?.classList.add('mobile-content');
     }, []);
 
     useEffect(() => {

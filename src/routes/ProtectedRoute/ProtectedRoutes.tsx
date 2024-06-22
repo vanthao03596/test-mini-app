@@ -45,12 +45,10 @@ const ProtectedRoutes = () => {
     if (!data) return null;
 
     return data.user ? (
-        <div id='wrap'>
-            <div id='content'>
-                <Outlet />
-                <CustomTabBar />
-            </div>
-        </div>
+        <>
+            <Outlet />
+            <CustomTabBar />
+        </>
     ) : (
         <Navigate to={'/login'} replace />
     );
