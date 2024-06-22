@@ -5,6 +5,26 @@
         margin-bottom: 2rem;
     }
 
+    .header {
+        padding: 12px;
+        background: var(--adm-color-background);
+        display: flex;
+        align-items: center;
+        position: sticky;
+        z-index: 999999;
+        top: 0;
+        left: 0;
+
+        .left {
+            flex: auto;
+        }
+
+        .right {
+            flex: none;
+            padding-left: var(--padding-left);
+        }
+    }
+
     .list {
         & > * + * {
             margin-top: 1rem;
