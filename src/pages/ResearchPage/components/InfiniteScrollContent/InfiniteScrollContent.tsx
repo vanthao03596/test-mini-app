@@ -11,10 +11,10 @@ const InfiniteScrollContent = ({ hasMore }: InfiniteScrollContentProps) => {
     return (
         <div className={styles.container}>
             {hasMore ? (
-                <>
+                <div className={styles.loading}>
                     <span>Loading</span>
                     <DotLoading className={styles.icon} />
-                </>
+                </div>
             ) : (
                 <Flex justify='center' className={styles.other}>
                     <Link to='https://gemx.io/research' target='blank'>

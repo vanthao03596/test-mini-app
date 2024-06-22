@@ -15,15 +15,6 @@ const ResearchPage = () => {
 
     const getLastResearch = async () => {
         // Create url with search
-        // let url = '';
-        // if (!search) {
-        //     if (nextUrl) url = nextUrl;
-        //     else url = '/latest-research';
-        // } else {
-        //     if (nextUrl) url = nextUrl;
-        //     else url = `/latest-research?search=${search}`;
-        // }
-
         let url = '/latest-research';
 
         if (nextUrl) {
