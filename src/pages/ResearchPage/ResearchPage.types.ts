@@ -31,7 +31,7 @@ type ResearchUser = Required<
     Pick<User, 'id' | 'image_path' | 'address' | 'gas_price' | 'mint_gxp_per_second' | 'name'>
 >;
 
-type Research = {
+export type Research = {
     id: number;
     title: string;
     img_path: string;
