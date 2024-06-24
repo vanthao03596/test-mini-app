@@ -12,13 +12,13 @@ type MiningBoosterProps = {
 const MiningBooster = ({ gasPower }: MiningBoosterProps) => {
     return (
         <CustomCard className={clsx(styles.card, styles.right)}>
-            <Flex className={styles.amount} align='center'>
-                {gasPower}
-                <Link to={'https://gemx.io/membership'} target='blank' className={styles.icon}>
-                    <TablerRocket />
-                </Link>
-            </Flex>
-            <div className={styles.text}>Booster coefficient</div>
+            <Link to='/booster'>
+                <Flex className={styles.amount} align='center'>
+                    {gasPower}
+                    <TablerRocket className={styles.icon} />
+                </Flex>
+                <div className={styles.text}>Booster coefficient</div>
+            </Link>
         </CustomCard>
     );
 };

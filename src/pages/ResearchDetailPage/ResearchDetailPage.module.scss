@@ -11,6 +11,16 @@
     .content {
         line-height: 1.25;
 
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 1rem 0;
+        }
+
         img {
             width: 100%;
             object-fit: cover;
@@ -18,8 +28,14 @@
             overflow: hidden;
         }
 
-        p {
-            margin: 1rem 0;
+        li {
+            margin: 0.5rem 0;
+            list-style-position: inside;
+
+            p {
+                margin: 0;
+                display: inline;
+            }
         }
     }
 

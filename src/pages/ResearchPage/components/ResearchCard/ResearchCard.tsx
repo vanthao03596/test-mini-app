@@ -29,7 +29,9 @@ const ResearchCard = (props: ResearchCardProps) => {
                 </Space>
 
                 {/* Title */}
-                <div className={styles.title}>{title}</div>
+                <Link to={`/research/${id}`} className={styles.title}>
+                    {title}
+                </Link>
 
                 {/* Description */}
                 <div className={styles.description}>{stripTag(content_short)}</div>

@@ -58,7 +58,7 @@ const ResearchDetailPage = () => {
         <div className={styles.container}>
             {/* Can view */}
             {detail && (!detail.is_fee || (detail.is_fee && detail.is_bought)) && (
-                <>
+                <CustomCard>
                     {/* Title */}
                     <div className={styles.title}>{detail.title}</div>
 
@@ -67,12 +67,12 @@ const ResearchDetailPage = () => {
                         className={styles.content}
                         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(detail.content) }}
                     ></div>
-                </>
+                </CustomCard>
             )}
 
             {/* Must bought to view */}
             {detail && detail.is_fee && !detail.is_bought && (
-                <>
+                <CustomCard>
                     {/* Title */}
                     <div className={styles.title}>{detail.title}</div>
 
@@ -94,7 +94,7 @@ const ResearchDetailPage = () => {
                             </Link>
                         </Flex>
                     </CustomCard>
-                </>
+                </CustomCard>
             )}
         </div>
     );

@@ -1,6 +1,6 @@
+import { LoginPage } from '@/pages/LoginPage';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoutes } from './ProtectedRoute';
-import { LoginPage } from '@/pages/LoginPage';
 
 const router = createBrowserRouter([
     {
@@ -54,6 +54,13 @@ const router = createBrowserRouter([
                 lazy: async () => {
                     const { UserPage } = await import('@/pages/UserPage');
                     return { Component: UserPage };
+                },
+            },
+            {
+                path: 'booster',
+                lazy: async () => {
+                    const { BoosterPage } = await import('@/pages/BoosterPage');
+                    return { Component: BoosterPage };
                 },
             },
         ],
