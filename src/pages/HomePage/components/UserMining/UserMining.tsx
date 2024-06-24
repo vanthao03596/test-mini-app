@@ -10,6 +10,7 @@ import { useCountdown } from 'usehooks-ts';
 import { MiningBooster } from '../MiningBooster';
 import MiningSpeed from '../MiningSpeed/MiningSpeed';
 import styles from './UserMining.module.scss';
+import secondsToHms from '@/utils/secondsToHms';
 
 type UserMiningProps = {
     gemInSecond: number;
@@ -22,14 +23,6 @@ type UserMiningProps = {
 const HOURS_TO_CLAIM = 6;
 const HOURS_TO_CLAIM_TO_SECONDS = HOURS_TO_CLAIM * 60 * 60;
 const ONE_DAY_TO_SECONDS = 24 * 60 * 60;
-
-const secondsToHms = (d: number) => {
-    d = Number(d);
-    const h = Math.floor(d / 3600);
-    const m = Math.floor((d % 3600) / 60);
-    const s = Math.floor((d % 3600) % 60);
-    return ('0' + h).slice(-2) + ':' + ('0' + m).slice(-2) + ':' + ('0' + s).slice(-2);
-};
 
 const UserMining = (props: UserMiningProps) => {
     const { address, gasPower, gemInSecond, lastClaim, level } = props;

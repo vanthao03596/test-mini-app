@@ -1,4 +1,5 @@
 import { DotLoading } from 'antd-mobile';
+import styles from './InfiniteScrollContent.module.scss';
 
 type InfiniteScrollContentProps = {
     hasMore?: boolean;
@@ -7,10 +8,10 @@ type InfiniteScrollContentProps = {
 const InfiniteScrollContent = ({ hasMore }: InfiniteScrollContentProps) => {
     return (
         hasMore && (
-            <>
+            <div className={styles.loading}>
                 <span>Loading</span>
-                <DotLoading />
-            </>
+                <DotLoading className={styles.icon} />
+            </div>
         )
     );
 };

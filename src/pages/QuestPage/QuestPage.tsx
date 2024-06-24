@@ -1,22 +1,32 @@
 import { Title } from '@/components/ui/Title';
 import axiosAuth from '@/lib/axios';
-import { InfiniteScroll } from 'antd-mobile';
+import { Button, InfiniteScroll, SearchBar } from 'antd-mobile';
 import { useState } from 'react';
 import { InfiniteScrollContent } from './components/InfiniteScrollContent';
 import { QuestCard } from './components/QuestCard';
 import styles from './QuestPage.module.scss';
 import { QuestsResponse } from './QuestPage.types';
 
+const BASE_URL = '/latest-campaign';
+
 const QuestPage = () => {
     const [data, setData] = useState<QuestsResponse['data']>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [nextUrl, setNextUrl] = useState<QuestsResponse['next_page_url']>('/latest-campaign');
+    const [nextUrl, setNextUrl] = useState<QuestsResponse['next_page_url']>(BASE_URL);
+    const [search, setSearch] = useState<string>('');
 
     const getQuests = async () => {
+        // Create url
+        let url = BASE_URL;
         if (nextUrl) {
-            const res = await axiosAuth.get<QuestsResponse>(nextUrl);
-            return res.data;
+            url = nextUrl;
+        } else if (search) {
+            url = `${BASE_URL}?search=${search}`;
         }
+
+        // Fetch
+        const res = await axiosAuth.get<QuestsResponse>(url);
+        return res.data;
     };
 
     const loadMore = async () => {
@@ -37,10 +47,32 @@ const QuestPage = () => {
         }
     };
 
+    const doSearch = () => {
+        setData([]);
+        setHasMore(true);
+        setNextUrl('');
+    };
+
+    const handleSearchChange = (value: string) => {
+        setSearch(value);
+    };
+
     return (
         <div className={styles.container}>
             {/* Title */}
             <Title text='Quest' variant='white' className={styles.pageTitle} />
+
+            {/* Search */}
+            <div className={styles.search}>
+                <div className={styles.left}>
+                    <SearchBar onChange={handleSearchChange} />
+                </div>
+                <div className={styles.right}>
+                    <Button size='small' color='primary' onClick={doSearch}>
+                        Search
+                    </Button>
+                </div>
+            </div>
 
             {/* List */}
             <div className={styles.list}>

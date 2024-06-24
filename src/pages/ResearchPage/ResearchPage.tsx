@@ -8,10 +8,12 @@ import { ResearchResponse, TopicsResponse } from './ResearchPage.types';
 import { InfiniteScrollContent } from './components/InfiniteScrollContent';
 import { ResearchCard } from './components/ResearchCard';
 
+const BASE_URL = '/latest-research';
+
 const ResearchPage = () => {
     const [data, setData] = useState<ResearchResponse['data']>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [nextUrl, setNextUrl] = useState<ResearchResponse['next_page_url']>('/latest-research');
+    const [nextUrl, setNextUrl] = useState<ResearchResponse['next_page_url']>(BASE_URL);
     const [search, setSearch] = useState<string>('');
     const [topic, setTopic] = useState<string>('');
 
@@ -27,17 +29,17 @@ const ResearchPage = () => {
 
     const getLastResearch = async () => {
         // Create url with search
-        let url = '/latest-research';
+        let url = BASE_URL;
 
         if (nextUrl) {
             url = nextUrl;
         } else {
             if (search && topic) {
-                url = `/latest-research?search=${search}&topics=${topic}`;
+                url = `${BASE_URL}?search=${search}&topics=${topic}`;
             } else if (search) {
-                url = `/latest-research?search=${search}`;
+                url = `${BASE_URL}?search=${search}`;
             } else if (topic) {
-                url = `/latest-research?topics=${topic}`;
+                url = `${BASE_URL}?topics=${topic}`;
             }
         }
 
@@ -94,8 +96,8 @@ const ResearchPage = () => {
                 ))}
             </CapsuleTabs>
 
-            {/* Header */}
-            <div className={styles.header}>
+            {/* Search */}
+            <div className={styles.search}>
                 <div className={styles.left}>
                     <SearchBar onChange={handleSearchChange} />
                 </div>
