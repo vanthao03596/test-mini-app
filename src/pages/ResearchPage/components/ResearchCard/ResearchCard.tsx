@@ -12,7 +12,7 @@ import styles from './ResearchCard.module.scss';
 type ResearchCardProps = Research;
 
 const ResearchCard = (props: ResearchCardProps) => {
-    const { img_path, user, title, content_short, created_at, slug } = props;
+    const { img_path, user, title, content_short, created_at, id } = props;
 
     return (
         <CustomCard className={styles.card}>
@@ -37,7 +37,7 @@ const ResearchCard = (props: ResearchCardProps) => {
                 {/* Footer */}
                 <Flex justify='space-between' align='center' className={styles.footer}>
                     <div className={styles.date}>{capitalizeFirstLetter(dayjs.utc(created_at).fromNow())}</div>
-                    <Link to={`https://gemx.io/research/${slug}`} target='blank' className={styles.more}>
+                    <Link to={`/research/${id}`} className={styles.more}>
                         <Space align='center'>
                             <div>Read more</div>
                             <Flex align='center'>

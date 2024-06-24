@@ -36,6 +36,13 @@ const router = createBrowserRouter([
                 },
             },
             {
+                path: 'research/:researchId',
+                lazy: async () => {
+                    const { ResearchDetailPage } = await import('@/pages/ResearchDetailPage');
+                    return { Component: ResearchDetailPage };
+                },
+            },
+            {
                 path: 'quest',
                 lazy: async () => {
                     const { QuestPage } = await import('@/pages/QuestPage');
