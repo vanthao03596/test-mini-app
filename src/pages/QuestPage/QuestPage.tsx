@@ -6,6 +6,8 @@ import { InfiniteScrollContent } from './components/InfiniteScrollContent';
 import { QuestCard } from './components/QuestCard';
 import styles from './QuestPage.module.scss';
 import { QuestsResponse } from './QuestPage.types';
+import { Flex } from '@/components/ui/Flex';
+import { TablerSearch } from '@/components/icon';
 
 const BASE_URL = '/latest-campaign';
 
@@ -65,7 +67,14 @@ const QuestPage = () => {
             {/* Search */}
             <div className={styles.search}>
                 <div className={styles.left}>
-                    <SearchBar onChange={handleSearchChange} />
+                    <SearchBar
+                        icon={
+                            <Flex align='center'>
+                                <TablerSearch className={styles.icon} />
+                            </Flex>
+                        }
+                        onChange={handleSearchChange}
+                    />
                 </div>
                 <div className={styles.right}>
                     <Button size='small' color='primary' onClick={doSearch}>

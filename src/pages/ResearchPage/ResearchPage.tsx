@@ -7,6 +7,8 @@ import styles from './ResearchPage.module.scss';
 import { ResearchResponse, TopicsResponse } from './ResearchPage.types';
 import { InfiniteScrollContent } from './components/InfiniteScrollContent';
 import { ResearchCard } from './components/ResearchCard';
+import { TablerSearch } from '@/components/icon';
+import { Flex } from '@/components/ui/Flex';
 
 const BASE_URL = '/latest-research';
 
@@ -99,7 +101,14 @@ const ResearchPage = () => {
             {/* Search */}
             <div className={styles.search}>
                 <div className={styles.left}>
-                    <SearchBar onChange={handleSearchChange} />
+                    <SearchBar
+                        onChange={handleSearchChange}
+                        icon={
+                            <Flex align='center'>
+                                <TablerSearch className={styles.icon} />
+                            </Flex>
+                        }
+                    />
                 </div>
                 <div className={styles.right}>
                     <Button size='small' color='primary' onClick={doSearch}>

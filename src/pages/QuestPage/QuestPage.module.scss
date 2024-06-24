@@ -19,6 +19,10 @@
 
         .left {
             flex: auto;
+
+            .icon {
+                color: var(--adm-color-primary);
+            }
         }
 
         .right {
@@ -30,7 +34,7 @@
 
     .list {
         margin-top: 1rem;
-        
+
         & > * + * {
             margin-top: 1rem;
         }
