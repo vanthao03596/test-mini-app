@@ -27,7 +27,7 @@ body {
     --adm-color-background: #031f15;
     --adm-color-border: #026547;
 
-    touch-action: none;
+    touch-action: pan-x pan-y;
 }
 
 .textGradient {
