@@ -1,0 +1,38 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .pageTitle {
+        margin-bottom: 2rem;
+    }
+
+    .list {
+        border-radius: 1rem;
+        overflow: hidden;
+        background-color: var(--adm-color-background);
+        border: 1px solid var(--adm-color-border);
+        padding-right: var(--padding-right);
+
+        .item {
+            .name {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                max-width: 8rem;
+            }
+
+            .address {
+                color: var(--adm-color-weak);
+                font-size: 0.875rem;
+            }
+
+            .vip {
+                font-size: 0.875rem;
+                color: var(--adm-color-primary);
+
+                .icon {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}

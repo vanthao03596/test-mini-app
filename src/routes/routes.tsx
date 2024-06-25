@@ -63,6 +63,13 @@ const router = createBrowserRouter([
                     return { Component: BoosterPage };
                 },
             },
+            {
+                path: 'reference',
+                lazy: async () => {
+                    const { ReferencePage } = await import('@/pages/ReferencePage');
+                    return { Component: ReferencePage };
+                },
+            },
         ],
     },
     { path: '/login', element: <LoginPage /> },
