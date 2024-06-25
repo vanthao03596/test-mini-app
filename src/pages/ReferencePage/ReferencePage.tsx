@@ -27,7 +27,7 @@ const ListItem = (props: ListItemProps) => {
                 {/* Right */}
                 <Flex align='flex-end' justify='space-between' direction='column'>
                     <div className={styles.amount}>Level {gas_rate_lvl}</div>
-                    {is_vip && (
+                    {!!is_vip && (
                         <Space align='center' className={styles.vip}>
                             <div>VIP</div>
                             <Flex align='center'>
