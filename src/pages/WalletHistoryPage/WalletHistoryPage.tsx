@@ -1,7 +1,10 @@
 import { TablerCheck } from '@/components/icon';
 
+import { CustomList } from '@/components/ui/CustomList';
+import { CustomPagination } from '@/components/ui/CustomPagination';
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
+import { DATE_FORMAT_TYPE } from '@/constants/public';
 import usePageSize from '@/hooks/usePageSize';
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
@@ -10,8 +13,6 @@ import dayjs from 'dayjs';
 import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
-import { CustomPagination } from '@/components/ui/CustomPagination';
-import { DATE_FORMAT_TYPE } from '@/constants/public';
 
 type TransactionsData = {
     id: number;
@@ -96,7 +97,7 @@ const WalletHistoryPage = () => {
 
             {/* List  */}
             {dataTransactions?.data && dataTransactions.data.length > 0 && (
-                <List className={styles.list}>
+                <CustomList className={styles.list}>
                     {dataTransactions.data.map((item, index) => (
                         <List.Item key={index} className={styles.item}>
                             <Flex justify='space-between' gap={64}>
@@ -118,7 +119,7 @@ const WalletHistoryPage = () => {
                             </Flex>
                         </List.Item>
                     ))}
-                </List>
+                </CustomList>
             )}
 
             {/* Pagination */}

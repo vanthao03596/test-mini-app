@@ -48,6 +48,7 @@
 
         .item {
             font-size: 0.9375rem;
+            padding-left: var(--padding-left);
 
             &:first-child {
                 margin-top: 1px;

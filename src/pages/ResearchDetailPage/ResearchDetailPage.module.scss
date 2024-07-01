@@ -1,6 +1,11 @@
 .container {
     padding: var(--custom-page-padding);
 
+    .back {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
     .title {
         font-size: 2rem;
         margin-bottom: 1rem;

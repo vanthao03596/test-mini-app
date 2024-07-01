@@ -15,7 +15,7 @@ const HomePage = () => {
             <Title text='Latest Research' fontSize={24} />
             <HomeResearch />
             <div>
-                <Link to='/earn'>
+                <Link to='/earn/mint'>
                     <Button color='primary' fill='solid' block>
                         <Space align='center'>
                             <Flex align='center'>

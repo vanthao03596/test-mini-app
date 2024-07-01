@@ -1,23 +1,19 @@
 import { Button } from 'antd-mobile';
-import styles from './EarnPage.module.scss';
 import { Link } from 'react-router-dom';
+import styles from './CryptoPage.module.scss';
 
 const links = [
     {
-        text: 'Mint GXP',
-        link: '/earn/mint',
+        text: 'Trending',
+        link: '/trending',
     },
     {
-        text: 'Quest',
-        link: '/earn/quest',
-    },
-    {
-        text: 'Leader Board',
-        link: '/earn/leader',
+        text: 'Research',
+        link: '/research',
     },
 ];
 
-const EarnPage = () => {
+const CryptoPage = () => {
     return (
         <div className={styles.container}>
             {links.map((item, index) => (
@@ -33,4 +29,4 @@ const EarnPage = () => {
     );
 };
 
-export default EarnPage;
+export default CryptoPage;

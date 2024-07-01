@@ -20,7 +20,7 @@ const ModalContent = ({ level }: Pick<MiningSpeedProps, 'level'>) => {
     return (
         <div className={styles.modal}>
             <div className={styles.title}>Mining Rules</div>
-            <List className={styles.list}>
+            <List mode='card' className={styles.list}>
                 {baseMiningSpeed.map((item) => (
                     <List.Item
                         className={clsx({

@@ -2,6 +2,13 @@ import { RouteObject } from 'react-router-dom';
 
 const cryptoRouter: RouteObject[] = [
     {
+        path: 'crypto',
+        lazy: async () => {
+            const { CryptoPage } = await import('@/pages/CryptoPage');
+            return { Component: CryptoPage };
+        },
+    },
+    {
         path: 'research',
         lazy: async () => {
             const { ResearchPage } = await import('@/pages/ResearchPage');

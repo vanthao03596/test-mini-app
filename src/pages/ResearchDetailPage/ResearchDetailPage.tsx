@@ -1,11 +1,12 @@
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
 import DOMPurify from 'dompurify';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from './ResearchDetailPage.module.scss';
 import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
-import { Button, Skeleton } from 'antd-mobile';
+import { Button, Skeleton, Space } from 'antd-mobile';
+import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
 
 type ResearchDetailResponse = {
     research: {
@@ -31,6 +32,7 @@ type ResearchDetailResponse = {
 };
 
 const ResearchDetailPage = () => {
+    const navigate = useNavigate();
     const { researchId } = useParams();
 
     const getDetail = async () => {
@@ -54,8 +56,20 @@ const ResearchDetailPage = () => {
         );
     }
 
+    const handleBack = () => {
+        navigate(-1);
+    };
+
     return (
         <div className={styles.container}>
+            {/* Back */}
+            <Space align='center' className={styles.back} onClick={handleBack}>
+                <Flex align='center'>
+                    <MaterialSymbolsKeyboardBackspaceRounded fontSize={24} />
+                </Flex>
+                <div>Back</div>
+            </Space>
+
             {/* Can view */}
             {detail && (!detail.is_fee || (detail.is_fee && detail.is_bought)) && (
                 <CustomCard>
