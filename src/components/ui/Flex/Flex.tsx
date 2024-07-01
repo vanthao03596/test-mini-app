@@ -1,13 +1,27 @@
 import React from 'react';
+import styled from '@emotion/styled';
 
-type FlexProps = React.HTMLAttributes<HTMLDivElement> & {
-    children: React.ReactNode;
-    direction?: React.CSSProperties['flexDirection'];
-    wrap?: React.CSSProperties['flexWrap'];
-    justify?: React.CSSProperties['justifyContent'];
-    align?: React.CSSProperties['alignItems'];
-    gap?: number;
+type CustomAttributes = {
+    direction: React.CSSProperties['flexDirection'];
+    wrap: React.CSSProperties['flexWrap'];
+    justify: React.CSSProperties['justifyContent'];
+    align: React.CSSProperties['alignItems'];
+    gap: number;
 };
+
+type FlexProps = React.ComponentProps<'div'> &
+    Partial<CustomAttributes> & {
+        children: React.ReactNode;
+    };
+
+const StyledFlex = styled('div')<Partial<CustomAttributes>>((props) => ({
+    display: 'flex',
+    flexDirection: props.direction,
+    flexWrap: props.wrap,
+    justifyContent: props.justify,
+    alignItems: props.align,
+    gap: props.gap,
+}));
 
 const Flex = (props: FlexProps) => {
     const {
@@ -20,20 +34,12 @@ const Flex = (props: FlexProps) => {
         ...rest
     } = props;
 
+    const flexProps = { direction, wrap, justify, align, gap };
+
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: direction,
-                flexWrap: wrap,
-                justifyContent: justify,
-                alignItems: align,
-                gap: gap,
-            }}
-            {...rest}
-        >
+        <StyledFlex {...flexProps} {...rest}>
             {children}
-        </div>
+        </StyledFlex>
     );
 };
 
