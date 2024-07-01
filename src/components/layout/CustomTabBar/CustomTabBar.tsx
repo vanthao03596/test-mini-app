@@ -1,4 +1,4 @@
-import { TablerFileText, TablerHome, TablerMoneybag, TablerUser, TablerWallet } from '@/components/icon';
+import { TablerCoinBitcoin, TablerHome, TablerMoneybag, TablerUser, TablerWallet } from '@/components/icon';
 import { TabBar } from 'antd-mobile';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './CustomTabBar.module.scss';
@@ -19,19 +19,19 @@ const CustomTabBar = () => {
             icon: <TablerHome />,
         },
         {
+            key: '/earn',
+            title: 'Earn',
+            icon: <TablerMoneybag />,
+        },
+        {
             key: '/wallet',
             title: 'Wallet',
             icon: <TablerWallet />,
         },
         {
-            key: '/research',
-            title: 'Research',
-            icon: <TablerFileText />,
-        },
-        {
-            key: '/quest',
-            title: 'Quest',
-            icon: <TablerMoneybag />,
+            key: '/crypto',
+            title: 'Crypto',
+            icon: <TablerCoinBitcoin />,
         },
         {
             key: '/user',

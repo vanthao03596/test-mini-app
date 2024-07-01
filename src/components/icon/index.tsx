@@ -48,17 +48,6 @@ export function TablerUser(props: SVGProps<SVGSVGElement>) {
     );
 }
 
-export function TablerFileText(props: SVGProps<SVGSVGElement>) {
-    return (
-        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
-            <g fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'>
-                <path d='M14 3v4a1 1 0 0 0 1 1h4'></path>
-                <path d='M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2M9 9h1m-1 4h6m-6 4h6'></path>
-            </g>
-        </svg>
-    );
-}
-
 export function TablerArrowBarUp(props: SVGProps<SVGSVGElement>) {
     return (
         <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
@@ -317,6 +306,17 @@ export function TablerCrown(props: SVGProps<SVGSVGElement>) {
                 strokeWidth='2'
                 d='m12 6l4 6l5-4l-2 10H5L3 8l5 4z'
             ></path>
+        </svg>
+    );
+}
+
+export function TablerCoinBitcoin(props: SVGProps<SVGSVGElement>) {
+    return (
+        <svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+            <g fill='none' stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2'>
+                <path d='M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0'></path>
+                <path d='M9 8h4.09c1.055 0 1.91.895 1.91 2s-.855 2-1.91 2c1.055 0 1.91.895 1.91 2s-.855 2-1.91 2H9m1-4h4m-4-5v10v-9m3-1v1m0 8v1'></path>
+            </g>
         </svg>
     );
 }

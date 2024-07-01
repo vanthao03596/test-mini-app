@@ -3,10 +3,10 @@ import { truncateEthAddress } from '@/utils/truncateEthAddress';
 import { useQuery } from '@tanstack/react-query';
 import { UserInfo } from './components/UserInfo';
 import { UserMining } from './components/UserMining';
-import styles from './HomePage.module.scss';
-import { LastClaimResponse, UserResponse } from './HomePage.types';
+import styles from './EarnPage.module.scss';
+import { LastClaimResponse, UserResponse } from './EarnPage.types';
 
-const HomePage = () => {
+const EarnPage = () => {
     const getLastClaim = async () => {
         const res = await axiosAuth.get<LastClaimResponse>('/last-claim-reward');
         return res.data;
@@ -53,4 +53,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default EarnPage;
