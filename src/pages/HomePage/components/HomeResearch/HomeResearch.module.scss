@@ -5,16 +5,7 @@
 
     .list {
         .item {
-            .title {
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-            }
-
             .description {
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
                 color: var(--adm-color-weak);
                 font-size: 0.875rem;
             }

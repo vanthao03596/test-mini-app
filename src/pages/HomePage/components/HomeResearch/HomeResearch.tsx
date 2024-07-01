@@ -4,7 +4,7 @@ import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 import { ResearchResponse } from '@/pages/ResearchPage/ResearchPage.types';
 import { useQuery } from '@tanstack/react-query';
-import { Image, List } from 'antd-mobile';
+import { Ellipsis, Image, List } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './HomeResearch.module.scss';
 
@@ -28,7 +28,7 @@ const HomeResearch = () => {
                         prefix={
                             <Image
                                 src={item.img_path}
-                                style={{ borderRadius: 20 }}
+                                style={{ borderRadius: '50%' }}
                                 fit='cover'
                                 width={40}
                                 height={40}
@@ -40,8 +40,8 @@ const HomeResearch = () => {
                             <Flex justify='space-between'>
                                 {/* Left */}
                                 <Flex direction='column'>
-                                    <div className={styles.title}>{item.title}</div>
-                                    <div className={styles.description}>{item.user.name}</div>
+                                    <Ellipsis content={item.title} />
+                                    <Ellipsis content={item.user.name || ''} className={styles.description} />
                                 </Flex>
                                 {/* Right */}
                                 <Flex align='center' className={styles.iconWrapper}>
