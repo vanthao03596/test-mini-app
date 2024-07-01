@@ -1,9 +1,11 @@
-import { Button } from 'antd-mobile';
+import { Button, Space } from 'antd-mobile';
 import { HomeBanner } from './components/HomeBanner';
 import { HomeResearch } from './components/HomeResearch';
 import styles from './HomePage.module.scss';
 import { Link } from 'react-router-dom';
 import { Title } from '@/components/ui/Title';
+import { HugeiconsMining02 } from '@/components/icon';
+import { Flex } from '@/components/ui/Flex';
 
 const HomePage = () => {
     return (
@@ -15,7 +17,12 @@ const HomePage = () => {
             <div>
                 <Link to='/earn'>
                     <Button color='primary' fill='solid' block>
-                        Mint GXP
+                        <Space align='center'>
+                            <Flex align='center'>
+                                <HugeiconsMining02 />
+                            </Flex>
+                            <div>Mint GXP</div>
+                        </Space>
                     </Button>
                 </Link>
             </div>

@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Avatar, List, Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
+import { CustomList } from '@/components/ui/CustomList';
 
 type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt';
 export type WalletBalanceResponse = Record<WalletUnit, number>;
@@ -96,7 +97,7 @@ const WalletPage = () => {
                 <Title text='Balance' fontSize={24} className={styles.title} />
                 
                 {/* List */}
-                <List className={styles.list}>
+                <CustomList className={styles.list}>
                     {balances.map((item, index) => (
                         <List.Item key={index} className={styles.item}>
                             <Link to={item.link}>
@@ -118,7 +119,7 @@ const WalletPage = () => {
                             </Link>
                         </List.Item>
                     ))}
-                </List>
+                </CustomList>
             </div>
         </div>
     );

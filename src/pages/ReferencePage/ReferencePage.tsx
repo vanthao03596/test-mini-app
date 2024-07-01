@@ -6,6 +6,7 @@ import { Flex } from '@/components/ui/Flex';
 import { truncateEthAddress } from '@/utils/truncateEthAddress';
 import { TablerCrown } from '@/components/icon';
 import { User } from '@/types/public.types';
+import { CustomList } from '@/components/ui/CustomList';
 
 type ListItemProps = User;
 
@@ -54,11 +55,11 @@ const ReferencePage = () => {
                 {/* Tab F1 */}
                 <Tabs.Tab title={`F1 ${listF1 ? `(${listF1.length})` : ''}`} key='f1'>
                     {listF1 && listF1.length > 0 && (
-                        <List className={styles.list}>
+                        <CustomList className={styles.list}>
                             {listF1?.map((item) => (
                                 <ListItem {...item} />
                             ))}
-                        </List>
+                        </CustomList>
                     )}
                 </Tabs.Tab>
 
