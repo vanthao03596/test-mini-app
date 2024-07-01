@@ -4,8 +4,8 @@ const homeRouter: RouteObject[] = [
     {
         index: true,
         lazy: async () => {
-            const { EarnPage } = await import('@/pages/EarnPage');
-            return { Component: EarnPage };
+            const { HomePage } = await import('@/pages/HomePage');
+            return { Component: HomePage };
         },
     },
 ];

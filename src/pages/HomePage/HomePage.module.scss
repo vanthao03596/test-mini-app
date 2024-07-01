@@ -1,0 +1,7 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    & > * + * {
+        margin-top: 1rem;
+    }
+}

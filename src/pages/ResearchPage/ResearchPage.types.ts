@@ -1,8 +1,8 @@
 import { CursorBased, User } from '@/types/public.types';
 
 enum Language {
-    En = 'en',
-    Vi = 'vi',
+    EN = 'en',
+    VI = 'vi',
 }
 
 type Pivot = {
