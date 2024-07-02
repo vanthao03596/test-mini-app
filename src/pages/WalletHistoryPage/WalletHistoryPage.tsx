@@ -8,11 +8,12 @@ import { DATE_FORMAT_TYPE } from '@/constants/public';
 import usePageSize from '@/hooks/usePageSize';
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
-import { List, Space } from 'antd-mobile';
+import { Ellipsis, List } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 
 type TransactionsData = {
     id: number;
@@ -94,24 +95,19 @@ const WalletHistoryPage = () => {
             {dataTransactions?.data && dataTransactions.data.length > 0 && (
                 <CustomList className={styles.list}>
                     {dataTransactions.data.map((item, index) => (
-                        <List.Item key={index} className={styles.item}>
-                            <Flex justify='space-between' gap={64}>
-                                {/* Left */}
-                                <Space align='center'>
-                                    <TablerCheck className={styles.icon} />
-                                    <Flex direction='column'>
-                                        <div className={styles.type}>{item.transactionable_type}</div>
-                                        <div className={styles.date}>
-                                            {dayjs(item.created_at).format(DATE_FORMAT_TYPE)}
-                                        </div>
-                                    </Flex>
-                                </Space>
-                                {/* Right */}
+                        <List.Item
+                            key={index}
+                            className={styles.item}
+                            prefix={<TablerCheck className={styles.icon} />}
+                            description={dayjs(item.created_at).format(DATE_FORMAT_TYPE)}
+                            extra={
                                 <Flex direction='column' align='flex-end'>
                                     <div className={styles.amount}>+{item.amount}</div>
                                     <div className={styles.unit}>{item.wallet.type}</div>
                                 </Flex>
-                            </Flex>
+                            }
+                        >
+                            <Ellipsis content={capitalizeFirstLetter(item.transactionable_type)}></Ellipsis>
                         </List.Item>
                     ))}
                 </CustomList>

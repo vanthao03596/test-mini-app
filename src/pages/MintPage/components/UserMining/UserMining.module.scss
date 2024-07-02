@@ -1,5 +1,11 @@
 .container {
-    margin-top: 1rem;
+    .image {
+        img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
 
     .mine {
         position: relative;
@@ -13,10 +19,6 @@
             }
 
             .time {
-                margin-top: 1rem;
-            }
-
-            .image {
                 margin-top: 1rem;
             }
 

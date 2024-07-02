@@ -31,7 +31,7 @@ const StyledTitle = styled('div')<StyledTitleProps>((props) => ({
     }),
     ...(props.type === 'gold' && {
         color: 'var(--adm-color-yellow)',
-        fontSize: 36,
+        fontSize: 24,
     }),
 }));
 

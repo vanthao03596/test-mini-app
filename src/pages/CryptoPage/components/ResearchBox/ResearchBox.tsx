@@ -1,19 +1,24 @@
-import { TablerChevronRight } from '@/components/icon';
-import { CustomList } from '@/components/ui/CustomList';
+import { Title } from '@/components/ui/Title';
 import useResearch from '@/hooks/useResearch';
-import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
-import { Avatar, Ellipsis, List } from 'antd-mobile';
-import dayjs from 'dayjs';
+import styles from './ResearchBox.module.scss';
+import { CustomList } from '@/components/ui/CustomList';
 import { Link } from 'react-router-dom';
-import styles from './HomeResearch.module.scss';
+import { Avatar, Ellipsis, List } from 'antd-mobile';
+import { TablerChevronRight } from '@/components/icon';
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
+import dayjs from 'dayjs';
 
-const HomeResearch = () => {
-    const { data: researchData } = useResearch();
+const ResearchBox = () => {
+    const { data } = useResearch();
 
     return (
         <div className={styles.container}>
+            {/* Title */}
+            <Title text='Research' type='subtitle' />
+
+            {/* List */}
             <CustomList>
-                {researchData?.data.map((item) => (
+                {data?.data.map((item) => (
                     <Link to={`/research/${item.id}`} key={item.id}>
                         <List.Item
                             prefix={<Avatar src={item.img_path} />}
@@ -25,8 +30,13 @@ const HomeResearch = () => {
                     </Link>
                 ))}
             </CustomList>
+
+            {/* Footer */}
+            <div className={styles.more}>
+                <Link to='/research'>View more research</Link>
+            </div>
         </div>
     );
 };
 
-export default HomeResearch;
+export default ResearchBox;

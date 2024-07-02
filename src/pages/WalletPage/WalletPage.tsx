@@ -1,13 +1,12 @@
-import IMAGES from '@/assets/images';
 import { TablerArrowBarToDown, TablerArrowBarUp, TablerChevronRight, TablerHistory } from '@/components/icon';
+import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
-import { Avatar, List, Space } from 'antd-mobile';
+import { Avatar, Ellipsis, List, Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
-import { CustomList } from '@/components/ui/CustomList';
 
 type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt';
 export type WalletBalanceResponse = Record<WalletUnit, number>;
@@ -43,28 +42,28 @@ const WalletPage = () => {
 
     const balances = [
         {
-            image: IMAGES.usdt,
+            image: '/gemx-crypto.png',
             name: 'GXP',
             description: 'GEMX POINT',
             amount: dataBalances?.gxp,
             link: '/wallet/history?unit=gxp',
         },
         {
-            image: IMAGES.usdt,
+            image: '/gemx-crypto.png',
             name: 'GPAY',
             description: 'GEMX PAY',
             amount: dataBalances?.gp,
             link: '/wallet/history?unit=gp',
         },
         {
-            image: IMAGES.usdt,
+            image: '/gemx-crypto.png',
             name: 'GEMX',
             description: 'GEMX TOKEN',
             amount: dataBalances?.gemx,
             link: '/wallet/history?unit=gemx',
         },
         {
-            image: IMAGES.usdt,
+            image: '/gemx-crypto.png',
             name: 'USDT',
             description: 'USDT',
             amount: dataBalances?.usdt,
@@ -97,27 +96,25 @@ const WalletPage = () => {
                 <Title text='Balance' type='subtitle' />
 
                 {/* List */}
-                <CustomList className={styles.list}>
+                <CustomList>
                     {balances.map((item, index) => (
-                        <List.Item key={index} className={styles.item}>
-                            <Link to={item.link}>
-                                <Flex justify='space-between'>
-                                    {/* Left */}
+                        <Link key={index} to={item.link}>
+                            <List.Item
+                                className={styles.item}
+                                prefix={<Avatar src={item.image} className={styles.image} />}
+                                description={item.description}
+                                extra={
                                     <Space align='center'>
-                                        <Avatar src={item.image} className={styles.image} />
-                                        <Flex direction='column'>
-                                            <div className={styles.name}>{item.name}</div>
-                                            <div className={styles.description}>{item.description}</div>
+                                        <div className={styles.amount}>{item.amount}</div>
+                                        <Flex align='center'>
+                                            <TablerChevronRight />
                                         </Flex>
                                     </Space>
-                                    {/* Right */}
-                                    <Flex align='center'>
-                                        <div className={styles.amount}>{item.amount}</div>
-                                        <TablerChevronRight className={styles.icon} />
-                                    </Flex>
-                                </Flex>
-                            </Link>
-                        </List.Item>
+                                }
+                            >
+                                <Ellipsis content={item.name} />
+                            </List.Item>
+                        </Link>
                     ))}
                 </CustomList>
             </div>

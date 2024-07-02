@@ -1,11 +1,11 @@
-import { TablerChevronRight } from '@/components/icon';
-import { CustomList } from '@/components/ui/CustomList';
-import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
 import useTrending from '@/hooks/useTrending';
-import { Avatar, Ellipsis, List, Space, Tag } from 'antd-mobile';
+import styles from './TrendingBox.module.scss';
+import { CustomList } from '@/components/ui/CustomList';
 import { Link } from 'react-router-dom';
-import styles from './TrendingPage.module.scss';
+import { Avatar, Ellipsis, List, Space, Tag } from 'antd-mobile';
+import { Flex } from '@/components/ui/Flex';
+import { TablerChevronRight } from '@/components/icon';
 
 const formatUSD = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -18,14 +18,14 @@ const formatUSD = new Intl.NumberFormat('en-US', {
     // maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
-const TrendingPage = () => {
+const TrendingBox = () => {
     const { data } = useTrending();
 
     return (
         <div className={styles.container}>
-            <Title text='trending' />
+            <Title text='Trending' type='subtitle' />
             <CustomList>
-                {data?.trending.slice(0, 50).map((item) => (
+                {data?.trending.slice(0, 5).map((item) => (
                     <Link key={item.id} to={`https://gemx.io/coin/${item.coin.slug}`} target='_blank'>
                         <List.Item
                             prefix={<Avatar src={item.coin.logo} />}
@@ -51,14 +51,11 @@ const TrendingPage = () => {
                 ))}
             </CustomList>
 
-            {/* Read more */}
             <div className={styles.more}>
-                <Link to={'https://gemx.io/trending'} target='_blank'>
-                    View more
-                </Link>
+                <Link to='/trending'>View more trending</Link>
             </div>
         </div>
     );
 };
 
-export default TrendingPage;
+export default TrendingBox;

@@ -1,16 +1,15 @@
+import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
-
-import { CustomCard } from '@/components/ui/CustomCard';
+import secondsToHms from '@/utils/secondsToHms';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Avatar, Button } from 'antd-mobile';
+import { Button } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useCountdown } from 'usehooks-ts';
 import { MiningBooster } from '../MiningBooster';
 import MiningSpeed from '../MiningSpeed/MiningSpeed';
 import styles from './UserMining.module.scss';
-import secondsToHms from '@/utils/secondsToHms';
 
 type UserMiningProps = {
     gemInSecond: number;
@@ -71,9 +70,13 @@ const UserMining = (props: UserMiningProps) => {
 
     return (
         <div className={styles.container}>
-            {/* Mine */}
+            {/* Image */}
+            <Flex justify='center' className={styles.image}>
+                <img src='/gemx-crypto.png' />
+            </Flex>
+
+            {/* Card */}
             <div className={styles.mine}>
-                {/* Card */}
                 <CustomCard className={styles.card}>
                     <Flex align='center' direction='column'>
                         {/* Amount */}
@@ -84,11 +87,6 @@ const UserMining = (props: UserMiningProps) => {
                         <div className={styles.text}>
                             {isCountDown ? 'Time until the next rewards' : 'Reward is ready'}
                         </div>
-                    </Flex>
-
-                    {/* Image */}
-                    <Flex justify='center' className={styles.image}>
-                        <Avatar src='/gemx-crypto.png' />
                     </Flex>
 
                     {/* Button */}

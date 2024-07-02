@@ -26,23 +26,8 @@
     }
 
     .balances {
-        .list {
-            .item {
-                .description {
-                    color: var(--adm-color-weak);
-                    font-size: 0.875rem;
-                }
-
-                .amount {
-                    color: var(--adm-color-yellow);
-                }
-
-                .icon {
-                    color: var(--adm-color-weak);
-                    font-size: 1.25rem;
-                    margin-left: 0.25rem;
-                }
-            }
+        .amount {
+            color: var(--adm-color-yellow);
         }
     }
 }
