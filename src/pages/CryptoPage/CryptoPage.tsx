@@ -21,23 +21,21 @@ const links = [
 const CryptoPage = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.container}>
-                <Title text='Crypto' />
+            <Title text='Crypto' />
 
-                <CustomList>
-                    {links.map((item, index) => (
-                        <Link to={item.link} key={index}>
-                            <List.Item
-                                prefix={<Avatar src={'/gemx-crypto.png'} />}
-                                description={item.description}
-                                extra={<TablerChevronRight />}
-                            >
-                                <Ellipsis content={item.text} />
-                            </List.Item>
-                        </Link>
-                    ))}
-                </CustomList>
-            </div>
+            <CustomList>
+                {links.map((item, index) => (
+                    <Link to={item.link} key={index}>
+                        <List.Item
+                            prefix={<Avatar src={'/gemx-crypto.png'} />}
+                            description={item.description}
+                            extra={<TablerChevronRight />}
+                        >
+                            <Ellipsis content={item.text} />
+                        </List.Item>
+                    </Link>
+                ))}
+            </CustomList>
         </div>
     );
 };

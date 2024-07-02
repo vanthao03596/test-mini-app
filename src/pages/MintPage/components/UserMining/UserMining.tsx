@@ -3,7 +3,7 @@ import axiosAuth from '@/lib/axios';
 
 import { CustomCard } from '@/components/ui/CustomCard';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Button } from 'antd-mobile';
+import { Avatar, Button } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { useEffect } from 'react';
 import { useCountdown } from 'usehooks-ts';
@@ -86,8 +86,13 @@ const UserMining = (props: UserMiningProps) => {
                         </div>
                     </Flex>
 
+                    {/* Image */}
+                    <Flex justify='center' className={styles.image}>
+                        <Avatar src='/gemx-crypto.png' />
+                    </Flex>
+
+                    {/* Button */}
                     <Flex justify='center'>
-                        {/* Button */}
                         <Button
                             color='primary'
                             fill='solid'

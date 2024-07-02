@@ -7,13 +7,16 @@
         .card {
             color: var(--adm-color-primary);
 
-
             .amount {
                 font-size: 2rem;
                 font-weight: 500;
             }
 
             .time {
+                margin-top: 1rem;
+            }
+
+            .image {
                 margin-top: 1rem;
             }
 
