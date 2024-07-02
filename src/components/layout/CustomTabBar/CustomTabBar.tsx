@@ -24,14 +24,14 @@ const CustomTabBar = () => {
             icon: <TablerMoneybag />,
         },
         {
-            key: '/wallet',
-            title: 'Wallet',
-            icon: <TablerWallet />,
-        },
-        {
             key: '/crypto',
             title: 'Crypto',
             icon: <TablerCoinBitcoin />,
+        },
+        {
+            key: '/wallet',
+            title: 'Wallet',
+            icon: <TablerWallet />,
         },
         {
             key: '/user',

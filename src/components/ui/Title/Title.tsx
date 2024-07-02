@@ -1,10 +1,10 @@
 import clsx from 'clsx';
-import React from 'react';
 import styles from './Title.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
+import { DivProps } from '@/types/html.types';
 
-type TitleProps = React.HTMLAttributes<HTMLDivElement> & {
+type TitleProps = DivProps & {
     text: string;
     hasBack?: boolean;
     variant?: 'gradient' | 'primary' | 'gold' | 'white';
@@ -46,7 +46,7 @@ const Title = (props: TitleProps) => {
 
             {hasBack && (
                 <div className={styles.icon} onClick={handleBack}>
-                    <MaterialSymbolsKeyboardBackspaceRounded fontSize={32} />
+                    <MaterialSymbolsKeyboardBackspaceRounded fontSize={24} />
                 </div>
             )}
         </div>

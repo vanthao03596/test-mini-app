@@ -1,10 +1,11 @@
 import { TablerChevronRight } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
-import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 import { ResearchResponse } from '@/pages/ResearchPage/ResearchPage.types';
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 import { useQuery } from '@tanstack/react-query';
-import { Ellipsis, Image, List } from 'antd-mobile';
+import { Avatar, Ellipsis, List } from 'antd-mobile';
+import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import styles from './HomeResearch.module.scss';
 
@@ -21,35 +22,17 @@ const HomeResearch = () => {
 
     return (
         <div className={styles.container}>
-            <CustomList className={styles.list}>
+            <CustomList>
                 {data?.data.map((item) => (
-                    <List.Item
-                        key={item.id}
-                        prefix={
-                            <Image
-                                src={item.img_path}
-                                style={{ borderRadius: '50%' }}
-                                fit='cover'
-                                width={40}
-                                height={40}
-                            />
-                        }
-                        className={styles.item}
-                    >
-                        <Link to={`/research/${item.id}`}>
-                            <Flex justify='space-between'>
-                                {/* Left */}
-                                <Flex direction='column'>
-                                    <Ellipsis content={item.title} />
-                                    <Ellipsis content={item.user.name || ''} className={styles.description} />
-                                </Flex>
-                                {/* Right */}
-                                <Flex align='center' className={styles.iconWrapper}>
-                                    <TablerChevronRight className={styles.icon} />
-                                </Flex>
-                            </Flex>
-                        </Link>
-                    </List.Item>
+                    <Link to={`/research/${item.id}`} key={item.id}>
+                        <List.Item
+                            prefix={<Avatar src={item.img_path} />}
+                            extra={<TablerChevronRight />}
+                            description={capitalizeFirstLetter(dayjs.utc(item.created_at).fromNow())}
+                        >
+                            <Ellipsis content={item.title} />
+                        </List.Item>
+                    </Link>
                 ))}
             </CustomList>
         </div>

@@ -2,23 +2,4 @@
     & > * + * {
         margin-top: 1rem;
     }
-
-    .list {
-        .item {
-            .description {
-                color: var(--adm-color-weak);
-                font-size: 0.875rem;
-            }
-
-            .iconWrapper {
-                flex-shrink: 0;
-
-                .icon {
-                    color: var(--adm-color-weak);
-                    font-size: 1.25rem;
-                    margin-left: 0.25rem;
-                }
-            }
-        }
-    }
 }

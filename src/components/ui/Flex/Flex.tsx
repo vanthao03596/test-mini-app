@@ -1,5 +1,6 @@
-import React from 'react';
+import { DivProps } from '@/types/html.types';
 import styled from '@emotion/styled';
+import React from 'react';
 
 type CustomAttributes = {
     direction: React.CSSProperties['flexDirection'];
@@ -9,7 +10,7 @@ type CustomAttributes = {
     gap: number;
 };
 
-type FlexProps = React.ComponentProps<'div'> &
+type FlexProps = DivProps &
     Partial<CustomAttributes> & {
         children: React.ReactNode;
     };

@@ -1,16 +1,7 @@
 .container {
     padding: var(--custom-page-padding);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
-    & > * + * {
-        margin-top: 1rem;
-    }
-
-    .btn {
-        min-width: 12rem;
+    .pageTitle {
+        margin-bottom: 2rem;
     }
 }

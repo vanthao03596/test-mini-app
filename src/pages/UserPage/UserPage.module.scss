@@ -1,6 +1,10 @@
 .container {
     padding: var(--custom-page-padding);
 
+    .pageTitle {
+        margin-bottom: 2rem;
+    }
+
     .speed {
         padding: 0 1rem;
         margin: 1.5rem 0;
