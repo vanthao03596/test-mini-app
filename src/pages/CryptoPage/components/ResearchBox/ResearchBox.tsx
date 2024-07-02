@@ -1,12 +1,12 @@
-import { Title } from '@/components/ui/Title';
-import useResearch from '@/hooks/useResearch';
-import styles from './ResearchBox.module.scss';
-import { CustomList } from '@/components/ui/CustomList';
-import { Link } from 'react-router-dom';
-import { Avatar, Ellipsis, List } from 'antd-mobile';
 import { TablerChevronRight } from '@/components/icon';
+import { CustomList } from '@/components/ui/CustomList';
+import { Flex } from '@/components/ui/Flex';
+import useResearch from '@/hooks/useResearch';
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
+import { Avatar, Ellipsis, List } from 'antd-mobile';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
+import styles from './ResearchBox.module.scss';
 
 const ResearchBox = () => {
     const { data } = useResearch();
@@ -14,7 +14,12 @@ const ResearchBox = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Research' type='subtitle' />
+            <Flex justify='space-between' className={styles.title}>
+                <div className={styles.text}>Research</div>
+                <div className={styles.action}>
+                    <Link to='/research'>View more</Link>
+                </div>
+            </Flex>
 
             {/* List */}
             <CustomList>
@@ -30,11 +35,6 @@ const ResearchBox = () => {
                     </Link>
                 ))}
             </CustomList>
-
-            {/* Footer */}
-            <div className={styles.more}>
-                <Link to='/research'>View more research</Link>
-            </div>
         </div>
     );
 };
