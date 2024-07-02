@@ -8,7 +8,7 @@ import { Title } from '@/components/ui/Title';
 const UserPage = () => {
     return (
         <div className={styles.container}>
-            <Title text='User' variant='white' className={styles.pageTitle} />
+            <Title text='User' />
             <NetworkInfo />
             <Flex justify='center' align='center' className={styles.speed}>
                 <IconamoonLightning2Fill className={styles.icon} />

@@ -9,6 +9,13 @@ const cryptoRouter: RouteObject[] = [
         },
     },
     {
+        path: 'trending',
+        lazy: async () => {
+            const { TrendingPage } = await import('@/pages/TrendingPage');
+            return { Component: TrendingPage };
+        },
+    },
+    {
         path: 'research',
         lazy: async () => {
             const { ResearchPage } = await import('@/pages/ResearchPage');

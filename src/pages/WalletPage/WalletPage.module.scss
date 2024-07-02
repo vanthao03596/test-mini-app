@@ -1,15 +1,12 @@
 .container {
     padding: var(--custom-page-padding);
 
-    .pageTitle {
-        margin-bottom: 2rem;
-    }
-
     .actions {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
         align-items: center;
+        margin-bottom: 1rem;
 
         .icon {
             border: 2px solid var(--adm-color-primary);
@@ -29,10 +26,6 @@
     }
 
     .balances {
-        .title {
-            margin: 2rem 0 1rem;
-        }
-
         .list {
             .item {
                 .description {

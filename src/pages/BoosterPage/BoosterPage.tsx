@@ -33,10 +33,10 @@ const BoosterPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Booster' variant='white' hasBack className={styles.pageTitle} />
+            <Title text='Booster' hasBack />
 
             {/* Amount */}
-            <Title fontSize={32} variant='gold' text={'0'} className={styles.pageAmount} />
+            <Title type='gold' text='0' />
 
             {/* Info */}
             <div className={styles.grid}>

@@ -85,7 +85,7 @@ const ResearchPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Research' variant='white' className={styles.pageTitle} />
+            <Title text='Research' />
 
             {/* Topics */}
             <CapsuleTabs defaultActiveKey={'all'} className={styles.tabs} onChange={handleTabChange}>

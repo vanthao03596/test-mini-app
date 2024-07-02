@@ -1,20 +1,6 @@
 .container {
     padding: var(--custom-page-padding);
 
-    .title {
-        margin-bottom: 0.5rem;
-    }
-
-    .balance {
-        .amountText {
-            margin-bottom: 2rem;
-        }
-
-        .historyText {
-            margin-bottom: 1rem;
-        }
-    }
-
     .list {
         .item {
             .icon {

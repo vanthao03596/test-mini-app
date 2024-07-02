@@ -75,7 +75,7 @@ const WalletPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Wallet' variant='white' className={styles.pageTitle} />
+            <Title text='Wallet' />
 
             {/* Actions */}
             <div className={styles.actions}>
@@ -94,8 +94,8 @@ const WalletPage = () => {
             {/* Balances */}
             <div className={styles.balances}>
                 {/* Title */}
-                <Title text='Balance' fontSize={24} className={styles.title} />
-                
+                <Title text='Balance' type='subtitle' />
+
                 {/* List */}
                 <CustomList className={styles.list}>
                     {balances.map((item, index) => (

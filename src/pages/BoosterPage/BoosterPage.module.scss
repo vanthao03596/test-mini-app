@@ -1,14 +1,6 @@
 .container {
     padding: var(--custom-page-padding);
 
-    .pageTitle {
-        margin-bottom: 0.5rem;
-    }
-
-    .pageAmount {
-        margin-bottom: 2rem;
-    }
-
     .grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);

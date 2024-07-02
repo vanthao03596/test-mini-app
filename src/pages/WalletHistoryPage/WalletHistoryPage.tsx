@@ -78,20 +78,15 @@ const WalletHistoryPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text={unit ? unit + ' balance' : 'history'} variant='white' className={styles.title} hasBack />
+            <Title text={unit ? unit + ' balance' : 'history'} hasBack />
 
             {/* Balance */}
             {unit && (
-                <Flex justify='center' align='center' direction='column' className={styles.balance}>
+                <Flex justify='center' align='center' direction='column'>
                     {dataBalances && (
-                        <Title
-                            fontSize={32}
-                            variant='gold'
-                            text={dataBalances[unit as keyof WalletBalanceResponse] + ''}
-                            className={styles.amountText}
-                        />
+                        <Title type='gold' text={dataBalances[unit as keyof WalletBalanceResponse] + ''} />
                     )}
-                    <Title text='History' fontSize={24} className={styles.historyText}></Title>
+                    <Title text='History' type='subtitle'></Title>
                 </Flex>
             )}
 

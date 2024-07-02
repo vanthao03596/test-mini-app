@@ -19,7 +19,7 @@ const HomePage = () => {
             <HomeBanner />
 
             {/* Research */}
-            <Title text='Latest Research' fontSize={24} />
+            <Title text='Latest Research' type='subtitle' />
             <HomeResearch />
 
             {/* Mint */}

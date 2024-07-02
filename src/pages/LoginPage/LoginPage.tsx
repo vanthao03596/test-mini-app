@@ -48,7 +48,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles.container}>
-            <Title text='Let&prime;s start' className={styles.pageTitle} />
+            <Title text='Let&prime;s start' type='subtitle' />
 
             <Form
                 layout='vertical'

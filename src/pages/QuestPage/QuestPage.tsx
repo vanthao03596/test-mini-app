@@ -62,7 +62,7 @@ const QuestPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Quest' variant='white' className={styles.pageTitle} />
+            <Title text='Quest' />
 
             {/* Search */}
             <div className={styles.search}>

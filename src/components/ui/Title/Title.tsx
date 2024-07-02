@@ -1,26 +1,42 @@
-import clsx from 'clsx';
-import styles from './Title.module.scss';
-import { useNavigate } from 'react-router-dom';
 import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
 import { DivProps } from '@/types/html.types';
+import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom';
+import styles from './Title.module.scss';
 
 type TitleProps = DivProps & {
     text: string;
     hasBack?: boolean;
-    variant?: 'gradient' | 'primary' | 'gold' | 'white';
-    fontSize?: number;
+    type?: 'title' | 'subtitle' | 'gold';
 };
 
+type StyledTitleProps = {
+    type: TitleProps['type'];
+};
+
+const StyledTitle = styled('div')<StyledTitleProps>((props) => ({
+    position: 'relative',
+    fontWeight: 500,
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    marginBottom: '1rem',
+
+    ...(props.type === 'title' && {
+        color: 'white',
+        fontSize: 32,
+    }),
+    ...(props.type === 'subtitle' && {
+        color: 'var(--adm-color-primary)',
+        fontSize: 24,
+    }),
+    ...(props.type === 'gold' && {
+        color: 'var(--adm-color-yellow)',
+        fontSize: 36,
+    }),
+}));
+
 const Title = (props: TitleProps) => {
-    const {
-        text,
-        hasBack = false,
-        variant = 'primary',
-        fontSize = 32,
-        className: customClassName,
-        style: customStyle,
-        ...rest
-    } = props;
+    const { text, hasBack = false, type = 'title', ...rest } = props;
     const navigate = useNavigate();
 
     const handleBack = () => {
@@ -28,28 +44,14 @@ const Title = (props: TitleProps) => {
     };
 
     return (
-        <div
-            className={clsx(customClassName, {
-                [styles.title]: true,
-                [styles.primary]: variant === 'primary',
-                [styles.gold]: variant === 'gold',
-                [styles.white]: variant === 'white',
-                textGradient: variant === 'gradient',
-            })}
-            style={{
-                fontSize: fontSize,
-                ...customStyle,
-            }}
-            {...rest}
-        >
+        <StyledTitle type={type} {...rest}>
             {text}
-
             {hasBack && (
                 <div className={styles.icon} onClick={handleBack}>
                     <MaterialSymbolsKeyboardBackspaceRounded fontSize={24} />
                 </div>
             )}
-        </div>
+        </StyledTitle>
     );
 };
 
