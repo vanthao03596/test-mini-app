@@ -26,7 +26,7 @@ const links = [
 const EarnPage = () => {
     return (
         <div className={styles.container}>
-            <Title text='Earn' hasBack />
+            <Title text='Earn' />
 
             <CustomList>
                 {links.map((item, index) => (

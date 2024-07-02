@@ -22,7 +22,7 @@ const CryptoPage = () => {
     return (
         <div className={styles.container}>
             <div className={styles.container}>
-                <Title text='Crypto' hasBack  />
+                <Title text='Crypto' />
 
                 <CustomList>
                     {links.map((item, index) => (
