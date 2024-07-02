@@ -26,10 +26,12 @@ const HomePage = () => {
             <div>
                 <Link to='/earn/mint'>
                     <Button color='primary' fill='solid' block>
-                        <Space align='center'>
-                            <Image src='/gemx-crypto.png' width={26} height={20} />
-                            <div>Mint GXP</div>
-                        </Space>
+                        <Flex justify='center' align='center'>
+                            <Space>
+                                <Image src='/gemx-crypto.png' width={26} />
+                                <div>Mint GXP</div>
+                            </Space>
+                        </Flex>
                     </Button>
                 </Link>
             </div>

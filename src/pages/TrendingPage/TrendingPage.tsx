@@ -2,9 +2,11 @@ import { CustomList } from '@/components/ui/CustomList';
 import { Title } from '@/components/ui/Title';
 import axiosAuth from '@/lib/axios';
 import { useQuery } from '@tanstack/react-query';
-import { Avatar, Ellipsis, List, Tag } from 'antd-mobile';
+import { Avatar, Ellipsis, List, Space, Tag } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './TrendingPage.module.scss';
+import { TablerChevronRight } from '@/components/icon';
+import { Flex } from '@/components/ui/Flex';
 
 type Coin = {
     coin: {
@@ -71,13 +73,18 @@ const TrendingPage = () => {
                             prefix={<Avatar src={item.coin.logo} />}
                             description={formatUSD.format(Number(item.coin.price))}
                             extra={
-                                <Tag
-                                    color={Number(item.coin.percent_change_24h) > 0 ? 'success' : 'danger'}
-                                    fill='outline'
-                                >
-                                    {Number(item.coin.percent_change_24h) > 0 && '+'}
-                                    {Number(item.coin.percent_change_24h).toFixed(2)}
-                                </Tag>
+                                <Space align='center'>
+                                    <Tag
+                                        color={Number(item.coin.percent_change_24h) > 0 ? 'success' : 'danger'}
+                                        fill='outline'
+                                    >
+                                        {Number(item.coin.percent_change_24h) > 0 && '+'}
+                                        {Number(item.coin.percent_change_24h).toFixed(2)}
+                                    </Tag>
+                                    <Flex align='center'>
+                                        <TablerChevronRight />
+                                    </Flex>
+                                </Space>
                             }
                         >
                             <Ellipsis content={item.coin.name} />
