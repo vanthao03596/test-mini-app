@@ -17,6 +17,11 @@ const links = [
         description: 'Do the quest and get more GXP',
     },
     {
+        text: 'Social Task',
+        link: '/earn/social-task',
+        description: 'Do the task and get more GXP',
+    },
+    {
         text: 'Leaderboard',
         link: '/earn/leader',
         description: 'View leaderboard',

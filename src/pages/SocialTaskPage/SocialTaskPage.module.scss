@@ -1,0 +1,23 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .item {
+        .icon {
+            margin-right: 0.5rem;
+        }
+    }
+
+    .modal {
+        margin-top: 0.5rem;
+
+        .layout {
+            & > * + * {
+                margin-top: 0.5rem;
+            }
+
+            .icon {
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}

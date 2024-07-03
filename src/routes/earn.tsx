@@ -23,6 +23,13 @@ const earnRouter: RouteObject[] = [
         },
     },
     {
+        path: '/earn/social-task',
+        lazy: async () => {
+            const { SocialTaskPage } = await import('@/pages/SocialTaskPage');
+            return { Component: SocialTaskPage };
+        },
+    },
+    {
         path: 'booster',
         lazy: async () => {
             const { BoosterPage } = await import('@/pages/BoosterPage');

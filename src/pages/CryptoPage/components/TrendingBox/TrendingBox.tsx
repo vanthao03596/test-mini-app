@@ -5,17 +5,7 @@ import useTrending from '@/hooks/useTrending';
 import { Avatar, Ellipsis, List, Space, Tag } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './TrendingBox.module.scss';
-
-const formatUSD = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 2,
-
-    // https://stackoverflow.com/questions/149055/how-to-format-numbers-as-currency-strings
-    // These options are needed to round to whole numbers if that's what you want.
-    // minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-    // maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-});
+import { formatUSD } from '@/utils/formatCurrency';
 
 const TrendingBox = () => {
     const { data } = useTrending();
@@ -36,7 +26,7 @@ const TrendingBox = () => {
                     <Link key={item.id} to={`https://gemx.io/coin/${item.coin.slug}`} target='_blank'>
                         <List.Item
                             prefix={<Avatar src={item.coin.logo} />}
-                            description={formatUSD.format(Number(item.coin.price))}
+                            description={formatUSD(Number(item.coin.price))}
                             extra={
                                 <Space align='center'>
                                     <Tag
