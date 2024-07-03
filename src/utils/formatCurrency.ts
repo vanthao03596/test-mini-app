@@ -1,4 +1,4 @@
-export const formatUSD = (amount: number, fractionalDigits: number = 0) => {
+export const formatUSD = (amount: number, fractionalDigits: number = 2) => {
     const formatUSD = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',

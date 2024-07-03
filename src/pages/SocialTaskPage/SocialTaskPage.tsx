@@ -6,6 +6,8 @@ import { Avatar, Button, Ellipsis, Image, List, Modal } from 'antd-mobile';
 import { useState } from 'react';
 import styles from './SocialTaskPage.module.scss';
 import { formatAmount } from '@/utils/formatCurrency';
+import axiosAuth from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
 
 type Task = {
     id: number;
@@ -96,7 +98,7 @@ const tasks: Task[] = [
 ];
 
 const TaskItem = (props: Task) => {
-    const { logo, name, reward } = props;
+    const { logo, name, reward, link } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [canCheck, setCanCheck] = useState<boolean>(false);
 
@@ -110,8 +112,13 @@ const TaskItem = (props: Task) => {
     };
 
     const handleClick = () => {
-        if (!canCheck) setCanCheck(true);
-        window.open('', '_blank');
+        if (!canCheck) {
+            // Change state to "Check"
+            setCanCheck(true);
+            window.open(link, '_blank');
+        } else {
+            // Submit
+        }
     };
 
     const modalContent = (
@@ -161,6 +168,18 @@ const TaskItem = (props: Task) => {
 };
 
 const SocialTaskPage = () => {
+    const getSocialTask = async () => {
+        const res = await axiosAuth.get('/social-task');
+        return res.data;
+    };
+
+    const { data } = useQuery({
+        queryKey: ['get-social-task'],
+        queryFn: getSocialTask,
+    });
+
+    console.log('data', data);
+
     return (
         <div className={styles.container}>
             <Title text='Social task' />
