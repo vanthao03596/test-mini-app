@@ -79,7 +79,7 @@ const WalletHistoryPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text={unit ? unit + ' balance' : 'history'} hasBack />
+            <Title text={unit ? unit + ' balance' : 'history'} />
 
             {/* Balance */}
             {unit && (

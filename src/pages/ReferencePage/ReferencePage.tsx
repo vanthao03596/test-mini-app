@@ -44,7 +44,7 @@ const ReferencePage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='List' hasBack />
+            <Title text='List' />
 
             {/* List */}
             <Tabs defaultActiveKey='f1'>

@@ -33,7 +33,7 @@ const BoosterPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text='Booster' hasBack />
+            <Title text='Booster' />
 
             {/* Amount */}
             <Title type='gold' text='0' />

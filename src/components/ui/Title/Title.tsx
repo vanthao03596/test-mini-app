@@ -46,7 +46,7 @@ const Title = (props: TitleProps) => {
     return (
         <StyledTitle type={type} {...rest}>
             {text}
-            {hasBack && (
+            {(hasBack || type === 'title') && (
                 <div className={styles.icon} onClick={handleBack}>
                     <MaterialSymbolsKeyboardBackspaceRounded fontSize={24} />
                 </div>

@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Avatar, Ellipsis, List, Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
+import IMAGES from '@/assets/images';
 
 type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt';
 export type WalletBalanceResponse = Record<WalletUnit, number>;
@@ -63,7 +64,7 @@ const WalletPage = () => {
             link: '/wallet/history?unit=gemx',
         },
         {
-            image: '/gemx-crypto.png',
+            image: IMAGES.usdt,
             name: 'USDT',
             description: 'USDT',
             amount: dataBalances?.usdt,
