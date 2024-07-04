@@ -1,0 +1,24 @@
+.item {
+    .icon {
+        margin-right: 0.5rem;
+    }
+}
+
+.modal {
+    margin-top: 0.5rem;
+
+    .layout {
+        & > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .name {
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .icon {
+            margin-left: 0.5rem;
+        }
+    }
+}
