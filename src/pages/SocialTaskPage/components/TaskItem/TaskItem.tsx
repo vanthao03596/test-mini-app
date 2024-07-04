@@ -1,20 +1,20 @@
+import IMAGES from '@/assets/images';
+import { TablerChevronRight } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
 import { formatAmount } from '@/utils/formatCurrency';
 import { Avatar, Button, Ellipsis, Image, List, Modal } from 'antd-mobile';
 import { useEffect, useState } from 'react';
+import { useCountdown } from 'usehooks-ts';
 import { SocialTask } from '../../SocialTaskPage';
 import styles from './TaskItem.module.scss';
-import { TablerChevronRight } from '@/components/icon';
-import IMAGES from '@/assets/images';
-import { useCountdown } from 'usehooks-ts';
 
-const COUNTDOWN_TIME = 30;
+const COUNTDOWN_TIME = 10;
 
 const TaskItem = (props: SocialTask) => {
     const { social, name, reward, link } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
-    const [count, { startCountdown }] = useCountdown({
+    const [count, { startCountdown, resetCountdown }] = useCountdown({
         countStart: COUNTDOWN_TIME,
     });
 
@@ -24,6 +24,7 @@ const TaskItem = (props: SocialTask) => {
     const handleCloseModal = () => {
         setIsModalOpen(false);
         setIsPending(false);
+        resetCountdown();
     };
 
     const handleOpenModal = () => {
@@ -62,7 +63,7 @@ const TaskItem = (props: SocialTask) => {
 
                 {/* Amount */}
                 <Flex align='center'>
-                    <div>+{formatAmount(reward)}</div>
+                    <div>+{formatAmount(reward)} GXP</div>
                     <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.icon} />
                 </Flex>
 
@@ -89,7 +90,7 @@ const TaskItem = (props: SocialTask) => {
                 description={
                     <Flex align='center'>
                         <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.icon} />
-                        <div>+{formatAmount(reward)}</div>
+                        <div>+{formatAmount(reward)} GXP</div>
                     </Flex>
                 }
                 clickable={false}
@@ -99,13 +100,7 @@ const TaskItem = (props: SocialTask) => {
                 <Ellipsis content={name} />
             </List.Item>
 
-            <Modal
-                visible={isModalOpen}
-                content={modalContent}
-                closeOnMaskClick
-                showCloseButton
-                onClose={handleCloseModal}
-            />
+            <Modal visible={isModalOpen} content={modalContent} showCloseButton onClose={handleCloseModal} />
         </>
     );
 };
