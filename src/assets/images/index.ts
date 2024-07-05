@@ -11,7 +11,7 @@ const IMAGES = {
     logoWithText: logoWithText,
     social: {
         facebook: facebook,
-        x: twitter,
+        twitter: twitter,
         telegram: telegram,
         website: website,
         tiktok: tiktok,

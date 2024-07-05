@@ -10,12 +10,25 @@ export type SocialTask = {
     link: string;
     name: string;
     reward: number;
-    social: string;
+    social: 'facebook' | 'twitter' | 'tiktok' | 'website' | 'telegram';
+    template_id:
+        | 'ViewPageFacebook'
+        | 'LikeATweet'
+        | 'RetweetTwitter'
+        | 'FollowTiktok'
+        | 'VisitWebsite'
+        | 'JoinTelegram'
+        | 'QuoteTweetAndHashTag'
+        | 'FollowTwitter';
 };
 
 type SocialTaskResponse = {
     tasks: SocialTask[];
     [key: string]: any;
+};
+
+type TaskCompleteResponse = {
+    completed_task_id: number[];
 };
 
 const SocialTaskPage = () => {
@@ -24,19 +37,32 @@ const SocialTaskPage = () => {
         return res.data;
     };
 
-    const { data } = useQuery({
+    const getCompleteTask = async () => {
+        const res = await axiosAuth.get<TaskCompleteResponse>('/completed-task');
+        return res.data;
+    };
+
+    const { data: taskData, isLoading: isTaskLoading } = useQuery({
         queryKey: ['get-social-task'],
         queryFn: getSocialTask,
     });
+
+    const { data: taskCompleteData, isLoading: isCompleteTaskLoading } = useQuery({
+        queryKey: ['get-complete-social-task'],
+        queryFn: getCompleteTask,
+    });
+
+    if (isTaskLoading || isCompleteTaskLoading) return null;
 
     return (
         <div className={styles.container}>
             <Title text='Social task' />
 
             <CustomList>
-                {data?.tasks.map((item) => (
-                    <TaskItem key={item.id} {...item} />
-                ))}
+                {taskData?.tasks.map((item) => {
+                    const complete = taskCompleteData?.completed_task_id.includes(item.id);
+                    return <TaskItem key={item.id} complete={complete} {...item} />;
+                })}
             </CustomList>
         </div>
     );

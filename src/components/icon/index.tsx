@@ -320,3 +320,4 @@ export function TablerCoinBitcoin(props: SVGProps<SVGSVGElement>) {
         </svg>
     );
 }
+
