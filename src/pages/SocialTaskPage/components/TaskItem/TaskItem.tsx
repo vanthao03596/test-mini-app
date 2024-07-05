@@ -40,7 +40,9 @@ const TaskItem = (props: TaskItemProps) => {
     };
 
     const handleOpenModal = () => {
-        setIsModalOpen(true);
+        if (!complete) {
+            setIsModalOpen(true);
+        }
     };
 
     const handleClick = () => {
@@ -151,14 +153,13 @@ const TaskItem = (props: TaskItemProps) => {
         <>
             <List.Item
                 prefix={<Avatar src={logo} />}
-                extra={complete ? <TablerCheck /> : <TablerChevronRight />}
+                extra={complete ? <TablerCheck className={styles.iconSuccess} /> : <TablerChevronRight />}
                 description={
                     <Flex align='center'>
-                        <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.icon} />
+                        <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.iconLogo} />
                         <div>+{formatAmount(reward)} GXP</div>
                     </Flex>
                 }
-                disabled={complete}
                 clickable={false}
                 className={styles.item}
                 onClick={handleOpenModal}

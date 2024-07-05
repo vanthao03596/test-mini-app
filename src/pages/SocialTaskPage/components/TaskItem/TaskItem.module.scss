@@ -1,6 +1,10 @@
 .item {
-    .icon {
+    .iconLogo {
         margin-right: 0.5rem;
+    }
+
+    .iconSuccess {
+        color: var(--adm-color-primary);
     }
 }
 
