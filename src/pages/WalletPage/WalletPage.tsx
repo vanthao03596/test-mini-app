@@ -15,8 +15,8 @@ export type WalletBalanceResponse = Record<WalletUnit, number>;
 const actions = [
     {
         icon: <TablerArrowBarUp className={styles.svg} />,
-        text: 'Send',
-        link: '/wallet/send',
+        text: 'Withdraw',
+        link: '/wallet/withdraw',
     },
     {
         icon: <TablerArrowBarToDown className={styles.svg} />,

@@ -15,6 +15,13 @@ const walletRouter: RouteObject[] = [
             return { Component: WalletHistoryPage };
         },
     },
+    {
+        path: 'wallet/withdraw',
+        lazy: async () => {
+            const { WithdrawPage } = await import('@/pages/WithdrawPage');
+            return { Component: WithdrawPage };
+        },
+    },
 ];
 
 export default walletRouter;

@@ -1,0 +1,34 @@
+.container {
+    margin-bottom: 1rem;
+
+    .list {
+        padding-bottom: 0.75rem;
+        border-radius: 0.5rem;
+
+        .listItem {
+            .icon {
+                font-size: 1rem;
+
+                &.active {
+                    color: var(--adm-color-primary);
+                }
+            }
+        }
+
+        .grid {
+            .gridItem {
+                text-align: center;
+
+                .title {
+                    font-size: 0.875rem;
+                }
+
+                .description {
+                    color: var(--adm-color-primary);
+                    font-size: 1.25rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

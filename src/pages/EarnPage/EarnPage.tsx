@@ -23,7 +23,7 @@ const links = [
     },
     {
         text: 'Leaderboard',
-        link: '/earn/leader',
+        link: '/earn/leaderboard',
         description: 'View leaderboard',
     },
 ];

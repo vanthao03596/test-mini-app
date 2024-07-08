@@ -30,6 +30,13 @@ const earnRouter: RouteObject[] = [
         },
     },
     {
+        path: '/earn/leaderboard',
+        lazy: async () => {
+            const { LeaderboardPage } = await import('@/pages/LeaderboardPage');
+            return { Component: LeaderboardPage };
+        },
+    },
+    {
         path: 'booster',
         lazy: async () => {
             const { BoosterPage } = await import('@/pages/BoosterPage');
