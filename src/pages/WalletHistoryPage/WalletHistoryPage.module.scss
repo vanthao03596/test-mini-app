@@ -10,8 +10,15 @@
             }
 
             .amount {
-                color: var(--custom-color-primary-dark);
                 font-weight: 500;
+
+                &.add {
+                    color: var(--adm-color-success);
+                }
+
+                &.sub {
+                    color: var(--adm-color-danger);
+                }
             }
 
             .unit {

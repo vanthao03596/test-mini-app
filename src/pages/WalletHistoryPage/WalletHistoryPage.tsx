@@ -14,6 +14,7 @@ import { useSearchParams } from 'react-router-dom';
 import { WalletBalanceResponse } from '../WalletPage/WalletPage';
 import styles from './WalletHistoryPage.module.scss';
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
+import clsx from 'clsx';
 
 type TransactionsData = {
     id: number;
@@ -102,7 +103,15 @@ const WalletHistoryPage = () => {
                             description={dayjs(item.created_at).format(DATE_FORMAT_TYPE)}
                             extra={
                                 <Flex direction='column' align='flex-end'>
-                                    <div className={styles.amount}>+{item.amount}</div>
+                                    <div
+                                        className={clsx(
+                                            styles.amount,
+                                            Number(item.amount) > 0 ? styles.add : styles.sub
+                                        )}
+                                    >
+                                        {Number(item.amount) > 0 && '+'}
+                                        {item.amount}
+                                    </div>
                                     <div className={styles.unit}>{item.wallet.type}</div>
                                 </Flex>
                             }
