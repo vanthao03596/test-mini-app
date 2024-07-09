@@ -9,13 +9,6 @@ const earnRouter: RouteObject[] = [
         },
     },
     {
-        path: 'earn/mint',
-        lazy: async () => {
-            const { MintPage } = await import('@/pages/MintPage');
-            return { Component: MintPage };
-        },
-    },
-    {
         path: '/earn/quest',
         lazy: async () => {
             const { QuestPage } = await import('@/pages/QuestPage');

@@ -7,11 +7,6 @@ import styles from './EarnPage.module.scss';
 
 const links = [
     {
-        text: 'Mining',
-        link: '/earn/mint',
-        description: 'Earn GXP by mining',
-    },
-    {
         text: 'Quest',
         link: '/earn/quest',
         description: 'Do the quest and get more GXP',
