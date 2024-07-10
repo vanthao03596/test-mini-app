@@ -19,7 +19,7 @@ const links = [
     {
         text: 'Leaderboard',
         link: '/earn/leaderboard',
-        description: 'View leaderboard',
+        description: 'View leaderboard this month',
     },
 ];
 

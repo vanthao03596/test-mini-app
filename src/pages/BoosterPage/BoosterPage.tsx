@@ -20,14 +20,6 @@ const BoosterPage = () => {
             text: 'F2 Reference',
             amount: 0,
         },
-        {
-            text: 'Burn GP',
-            amount: 0,
-        },
-        {
-            text: 'Burn GP F1, F2',
-            amount: 0,
-        },
     ];
 
     return (

@@ -126,7 +126,7 @@ const TaskItem = (props: TaskItemProps) => {
                 {canCheck && hasUsername && (
                     <Input
                         value={username}
-                        placeholder='@ENTER_YOUR_USERNAME'
+                        placeholder='ENTER_YOUR_USERNAME'
                         clearable
                         onChange={handleChangeUsername}
                         className={styles.input}
