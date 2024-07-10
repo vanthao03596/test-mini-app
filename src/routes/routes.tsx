@@ -1,5 +1,5 @@
 import { LoginPage } from '@/pages/LoginPage';
-import { createHashRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ProtectedRoutes } from './ProtectedRoute';
 import cryptoRouter from './crypto';
 import earnRouter from './earn';
@@ -7,7 +7,7 @@ import homeRouter from './home';
 import userRouter from './user';
 import walletRouter from './wallet';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
     {
         path: '/',
         element: <ProtectedRoutes />,
