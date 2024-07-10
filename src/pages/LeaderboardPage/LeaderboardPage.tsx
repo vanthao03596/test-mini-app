@@ -44,6 +44,7 @@ const LeaderboardPage = () => {
     return (
         <div className={styles.container}>
             <Title text='Leaderboard' />
+            <Title text='This month' type='subtitle' />
 
             <CustomList className={styles.list}>
                 {data?.leader_boards.map((item, index) => (
