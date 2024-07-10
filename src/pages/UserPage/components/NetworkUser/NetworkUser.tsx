@@ -1,11 +1,11 @@
 import { TablerCrown, TablerCrownOff } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
+import { Flex } from '@/components/ui/Flex';
 import useUser from '@/hooks/useUser';
 import { truncateEthAddress } from '@/utils/truncateEthAddress';
-import { Avatar, Ellipsis, Grid, List, Popover, Space } from 'antd-mobile';
+import { Avatar, Ellipsis, Grid, List, Space } from 'antd-mobile';
 import clsx from 'clsx';
 import styles from './NetworkUser.module.scss';
-import { Flex } from '@/components/ui/Flex';
 
 const NetworkUser = () => {
     const account = useUser();
@@ -19,18 +19,11 @@ const NetworkUser = () => {
                     description={`Level ${account?.user.gas_rate_lvl}`}
                     extra={
                         <Flex align='center'>
-                            <Popover
-                                mode='dark'
-                                content={account?.user.is_vip ? 'VIP' : 'NOT VIP'}
-                                trigger='click'
-                                placement='top'
-                            >
-                                {account?.user.is_vip ? (
-                                    <TablerCrown className={clsx(styles.icon, styles.active)} />
-                                ) : (
-                                    <TablerCrownOff className={clsx(styles.icon, styles.inactive)} />
-                                )}
-                            </Popover>
+                            {account?.user.is_vip ? (
+                                <TablerCrown className={clsx(styles.icon, styles.active)} />
+                            ) : (
+                                <TablerCrownOff className={clsx(styles.icon, styles.inactive)} />
+                            )}
                         </Flex>
                     }
                     className={styles.listItem}
