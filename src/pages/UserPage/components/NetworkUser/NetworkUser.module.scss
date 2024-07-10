@@ -6,12 +6,8 @@
         border-radius: 0.5rem;
 
         .listItem {
-            .icon {
-                font-size: 1rem;
-
-                &.active {
-                    color: var(--adm-color-primary);
-                }
+            .vip {
+                color: var(--adm-color-primary);
             }
         }
 

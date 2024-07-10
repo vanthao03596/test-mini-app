@@ -1,10 +1,8 @@
-import { TablerCrown, TablerCrownOff } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
 import useUser from '@/hooks/useUser';
 import { truncateEthAddress } from '@/utils/truncateEthAddress';
 import { Avatar, Ellipsis, Grid, List, Space } from 'antd-mobile';
-import clsx from 'clsx';
 import styles from './NetworkUser.module.scss';
 
 const NetworkUser = () => {
@@ -19,11 +17,7 @@ const NetworkUser = () => {
                     description={`Level ${account?.user.gas_rate_lvl}`}
                     extra={
                         <Flex align='center'>
-                            {account?.user.is_vip ? (
-                                <TablerCrown className={clsx(styles.icon, styles.active)} />
-                            ) : (
-                                <TablerCrownOff className={clsx(styles.icon, styles.inactive)} />
-                            )}
+                            {account?.user.is_vip ? <div className={styles.vip}>VIP</div> : 'NOT VIP'}
                         </Flex>
                     }
                     className={styles.listItem}
