@@ -1,24 +1,38 @@
 import { Title } from '@/components/ui/Title';
 import styles from './BoosterPage.module.scss';
 import { CustomCard } from '@/components/ui/CustomCard';
+import axiosAuth from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
+
+type BoosterResponse = Record<'f1' | 'f2' | 'membership' | 'quest' | 'total', number>;
 
 const BoosterPage = () => {
+    const getBooster = async () => {
+        const res = await axiosAuth.get<BoosterResponse>('/booster-info');
+        return res.data;
+    };
+
+    const { data } = useQuery({
+        queryKey: ['get-booster'],
+        queryFn: getBooster,
+    });
+
     const boosters = [
         {
             text: 'Membership',
-            amount: 0,
+            amount: data?.membership,
         },
         {
             text: 'Quest',
-            amount: 0,
+            amount: data?.quest,
         },
         {
-            text: 'F0 Reference',
-            amount: 0,
+            text: 'F1 Reference',
+            amount: data?.f1,
         },
         {
             text: 'F2 Reference',
-            amount: 0,
+            amount: data?.f2,
         },
     ];
 
@@ -28,7 +42,7 @@ const BoosterPage = () => {
             <Title text='Booster' />
 
             {/* Amount */}
-            <Title type='gold' text='0' />
+            <Title type='gold' text={data ? String(data.total) : ''} />
 
             {/* Info */}
             <div className={styles.grid}>
