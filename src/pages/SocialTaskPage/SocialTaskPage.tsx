@@ -47,6 +47,8 @@ const SocialTaskPage = () => {
         queryFn: getSocialTask,
     });
 
+    console.log('taskData', taskData);
+
     const { data: taskCompleteData, isLoading: isCompleteTaskLoading } = useQuery({
         queryKey: ['get-complete-social-task'],
         queryFn: getCompleteTask,

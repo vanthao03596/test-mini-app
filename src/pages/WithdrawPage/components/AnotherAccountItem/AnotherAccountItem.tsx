@@ -104,7 +104,7 @@ const AnotherAccountItem = () => {
 
                         {/* Address */}
                         <Form.Item
-                            label='Wallet Address'
+                            label='BEP-20 Address'
                             name='address'
                             rules={[
                                 {

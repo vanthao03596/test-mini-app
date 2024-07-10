@@ -60,7 +60,7 @@ const LoginPage = () => {
                 }
             >
                 <Form.Item
-                    label='Wallet address'
+                    label='ETH Address'
                     name='address'
                     rules={[
                         {
