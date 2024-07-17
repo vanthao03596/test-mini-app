@@ -6,7 +6,7 @@ import stripTag from '@/utils/stripTag';
 import { Avatar, Space } from 'antd-mobile';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
-import { Research } from '../../ResearchPage.types';
+import { Research } from '../../../pages/ResearchPage/ResearchPage.types';
 import styles from './ResearchCard.module.scss';
 
 type ResearchCardProps = Research;

@@ -1,12 +1,14 @@
-import axiosAuth from '@/lib/axios';
-import { useQuery } from '@tanstack/react-query';
-import DOMPurify from 'dompurify';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import styles from './ResearchDetailPage.module.scss';
+import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
 import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
-import { Button, Skeleton, Space } from 'antd-mobile';
-import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
+import axiosAuth from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
+import { AutoCenter, Button, Skeleton, Space } from 'antd-mobile';
+import DOMPurify from 'dompurify';
+import { useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useCountdown, useIntersectionObserver } from 'usehooks-ts';
+import styles from './ResearchDetailPage.module.scss';
 
 type ResearchDetailResponse = {
     research: {
@@ -34,6 +36,14 @@ type ResearchDetailResponse = {
 const ResearchDetailPage = () => {
     const navigate = useNavigate();
     const { researchId } = useParams();
+    const { isIntersecting, ref } = useIntersectionObserver();
+    const [count, { startCountdown }] = useCountdown({
+        countStart: 3,
+    });
+
+    const handleBack = () => {
+        navigate(-1);
+    };
 
     const getDetail = async () => {
         const res = await axiosAuth.get<ResearchDetailResponse>(`/researchs/${researchId}`);
@@ -47,6 +57,14 @@ const ResearchDetailPage = () => {
 
     const detail = data?.research;
 
+    useEffect(() => {
+        if (isIntersecting) {
+            startCountdown();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isIntersecting]);
+
+    // Skeleton loading
     if (isLoading) {
         return (
             <div className={styles.container}>
@@ -55,10 +73,6 @@ const ResearchDetailPage = () => {
             </div>
         );
     }
-
-    const handleBack = () => {
-        navigate(-1);
-    };
 
     return (
         <div className={styles.container}>
@@ -110,6 +124,16 @@ const ResearchDetailPage = () => {
                     </CustomCard>
                 </CustomCard>
             )}
+
+            {/* Claim reward */}
+            <div ref={ref} className={styles.claim}>
+                <Button color='primary' fill='solid' block disabled={count !== 0}>
+                    {count !== 0 ? `Claim reward in ${count}s` : 'Claim GXP'}
+                </Button>
+            </div>
+
+            {/* View more */}
+            <AutoCenter className={styles.more}>View more and earn more</AutoCenter>
         </div>
     );
 };

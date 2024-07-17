@@ -6,7 +6,7 @@ import { useState } from 'react';
 import styles from './ResearchPage.module.scss';
 import { ResearchResponse, TopicsResponse } from './ResearchPage.types';
 import { InfiniteScrollContent } from './components/InfiniteScrollContent';
-import { ResearchCard } from './components/ResearchCard';
+import { ResearchCard } from '../../components/ui/ResearchCard';
 import { TablerSearch } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
 
