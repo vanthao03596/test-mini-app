@@ -4,13 +4,13 @@ import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AutoCenter, Button, Skeleton, Space, Toast } from 'antd-mobile';
+import { AxiosError } from 'axios';
 import DOMPurify from 'dompurify';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCountdown, useIntersectionObserver } from 'usehooks-ts';
 import styles from './ResearchDetailPage.module.scss';
 import { OtherResearch } from './components/OtherResearch';
-import { AxiosError } from 'axios';
 
 type ResearchDetail = {
     content: string;
@@ -45,7 +45,6 @@ const COUNTDOWN_TIME = 3;
 
 const ResearchDetailPage = () => {
     const navigate = useNavigate();
-    const [isMore, setIsMore] = useState<boolean>(false);
     const { researchId } = useParams();
     const { isIntersecting, ref } = useIntersectionObserver();
     const [count, { startCountdown, resetCountdown }] = useCountdown({
@@ -112,10 +111,6 @@ const ResearchDetailPage = () => {
         navigate(-1);
     };
 
-    const handleMore = () => {
-        setIsMore(true);
-    };
-
     useEffect(() => {
         if (isIntersecting) {
             startCountdown();
@@ -124,7 +119,6 @@ const ResearchDetailPage = () => {
     }, [isIntersecting]);
 
     useEffect(() => {
-        setIsMore(false);
         resetCountdown();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [researchId]);
@@ -208,14 +202,7 @@ const ResearchDetailPage = () => {
                 )}
             </div>
 
-            {/* View more */}
-            {!isMore ? (
-                <AutoCenter className={styles.more}>
-                    <div onClick={handleMore}>View more</div>
-                </AutoCenter>
-            ) : (
-                <OtherResearch currentId={data?.research.id} />
-            )}
+            <OtherResearch currentId={data?.research.id} />
         </div>
     );
 };
