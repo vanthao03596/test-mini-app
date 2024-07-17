@@ -2,49 +2,69 @@ import { MaterialSymbolsKeyboardBackspaceRounded } from '@/components/icon';
 import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
-import { useQuery } from '@tanstack/react-query';
-import { AutoCenter, Button, Skeleton, Space } from 'antd-mobile';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AutoCenter, Button, Skeleton, Space, Toast } from 'antd-mobile';
 import DOMPurify from 'dompurify';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCountdown, useIntersectionObserver } from 'usehooks-ts';
 import styles from './ResearchDetailPage.module.scss';
+import { OtherResearch } from './components/OtherResearch';
+import { AxiosError } from 'axios';
+
+type ResearchDetail = {
+    content: string;
+    content_short: string;
+    created_at: Date;
+    dislike_count: number;
+    fee: number | null;
+    id: number;
+    img_path: string;
+    is_bought: boolean;
+    is_featured: number;
+    is_fee: boolean;
+    language: string;
+    like_count: number;
+    review_count: number;
+    slug: string;
+    status: string;
+    title: string;
+    updated_at: Date;
+    user_id: number;
+};
 
 type ResearchDetailResponse = {
-    research: {
-        content: string;
-        content_short: string;
-        created_at: Date;
-        dislike_count: number;
-        fee: number | null;
-        id: number;
-        img_path: string;
-        is_bought: boolean;
-        is_featured: number;
-        is_fee: boolean;
-        language: string;
-        like_count: number;
-        review_count: number;
-        slug: string;
-        status: string;
-        title: string;
-        updated_at: Date;
-        user_id: number;
-    };
+    research: ResearchDetail;
 };
+
+type ResearchReadResponse = {
+    researchs: ResearchDetail[];
+};
+
+const COUNTDOWN_TIME = 3;
 
 const ResearchDetailPage = () => {
     const navigate = useNavigate();
+    const [isMore, setIsMore] = useState<boolean>(false);
     const { researchId } = useParams();
     const { isIntersecting, ref } = useIntersectionObserver();
-    const [count, { startCountdown }] = useCountdown({
-        countStart: 3,
+    const [count, { startCountdown, resetCountdown }] = useCountdown({
+        countStart: COUNTDOWN_TIME,
     });
+    const queryClient = useQueryClient();
 
-    const handleBack = () => {
-        navigate(-1);
+    // Get research read
+    const getResearchRead = async () => {
+        const res = await axiosAuth.get<ResearchReadResponse>(`/user/research-read`);
+        return res.data;
     };
 
+    const { data: researchReadData, isLoading: isResearchReadLoading } = useQuery({
+        queryKey: ['get-research-read'],
+        queryFn: getResearchRead,
+    });
+
+    // Get detail research
     const getDetail = async () => {
         const res = await axiosAuth.get<ResearchDetailResponse>(`/researchs/${researchId}`);
         return res.data;
@@ -55,7 +75,46 @@ const ResearchDetailPage = () => {
         queryFn: getDetail,
     });
 
+    // Claim reward
+    const claimReward = async () => {
+        const res = await axiosAuth.post<ResearchDetailResponse>(`/researchs/${researchId}/claim`);
+        return res.data;
+    };
+
+    const rewardMutation = useMutation({
+        mutationKey: ['claim-reward-research'],
+        mutationFn: claimReward,
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ['get-research-read'] });
+            Toast.show({
+                icon: 'success',
+                content: 'Claim success',
+            });
+        },
+        onError: (error) => {
+            if (error instanceof AxiosError) {
+                Toast.show({
+                    icon: 'fail',
+                    content: error.response?.data.message,
+                });
+            }
+        },
+    });
+
     const detail = data?.research;
+    const hasRead = researchReadData?.researchs.some((item) => item.id === Number(researchId));
+
+    const handleClaim = () => {
+        rewardMutation.mutate();
+    };
+
+    const handleBack = () => {
+        navigate(-1);
+    };
+
+    const handleMore = () => {
+        setIsMore(true);
+    };
 
     useEffect(() => {
         if (isIntersecting) {
@@ -64,8 +123,13 @@ const ResearchDetailPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isIntersecting]);
 
-    // Skeleton loading
-    if (isLoading) {
+    useEffect(() => {
+        setIsMore(false);
+        resetCountdown();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [researchId]);
+
+    if (isLoading || isResearchReadLoading) {
         return (
             <div className={styles.container}>
                 <Skeleton.Title animated />
@@ -98,7 +162,7 @@ const ResearchDetailPage = () => {
                 </CustomCard>
             )}
 
-            {/* Must bought to view */}
+            {/* Must buy to view */}
             {detail && detail.is_fee && !detail.is_bought && (
                 <CustomCard>
                     {/* Title */}
@@ -126,14 +190,32 @@ const ResearchDetailPage = () => {
             )}
 
             {/* Claim reward */}
+
             <div ref={ref} className={styles.claim}>
-                <Button color='primary' fill='solid' block disabled={count !== 0}>
-                    {count !== 0 ? `Claim reward in ${count}s` : 'Claim GXP'}
-                </Button>
+                {!hasRead ? (
+                    <Button
+                        color='primary'
+                        fill='solid'
+                        block
+                        disabled={count !== 0}
+                        loading={rewardMutation.isPending}
+                        onClick={handleClaim}
+                    >
+                        {count !== 0 ? `Claim reward in ${count}s` : 'Claim GXP'}
+                    </Button>
+                ) : (
+                    <AutoCenter>You had claimed reward in this research</AutoCenter>
+                )}
             </div>
 
             {/* View more */}
-            <AutoCenter className={styles.more}>View more and earn more</AutoCenter>
+            {!isMore ? (
+                <AutoCenter className={styles.more}>
+                    <div onClick={handleMore}>View more</div>
+                </AutoCenter>
+            ) : (
+                <OtherResearch currentId={data?.research.id} />
+            )}
         </div>
     );
 };
