@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
 import IMAGES from '@/assets/images';
 
-type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt';
+type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt' | 'gtap';
 export type WalletBalanceResponse = Record<WalletUnit, number>;
 
 const actions = [
@@ -49,12 +49,19 @@ const WalletPage = () => {
             amount: dataBalances?.gxp,
             link: '/wallet/history?unit=gxp',
         },
+        // {
+        //     image: '/gemx-crypto.png',
+        //     name: 'GPAY',
+        //     description: 'GEMX PAY',
+        //     amount: dataBalances?.gp,
+        //     link: '/wallet/history?unit=gp',
+        // },
         {
             image: '/gemx-crypto.png',
-            name: 'GPAY',
-            description: 'GEMX PAY',
-            amount: dataBalances?.gp,
-            link: '/wallet/history?unit=gp',
+            name: 'GTAP',
+            description: 'GEMX TAP',
+            amount: dataBalances?.gtap,
+            link: '/wallet/history?unit=gtap',
         },
         {
             image: '/gemx-crypto.png',

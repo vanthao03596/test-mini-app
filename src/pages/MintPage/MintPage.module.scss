@@ -1,3 +1,16 @@
 .container {
     padding: var(--custom-page-padding);
+
+    .gif {
+        margin: 1rem 0;
+
+        img {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--custom-border-radius-m);
+            overflow: hidden;
+            mix-blend-mode: plus-lighter;
+        }
+    }
 }

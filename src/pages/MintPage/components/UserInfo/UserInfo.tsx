@@ -28,7 +28,7 @@ const UserInfo = (props: UserInfoProps) => {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     return (
-        <div className={styles.container}>
+        <Flex align='center' justify='space-between' className={styles.container}>
             {/* Info */}
             <Flex align='center' className={styles.info}>
                 <Avatar src={image} className={styles.avatar} />
@@ -75,7 +75,7 @@ const UserInfo = (props: UserInfoProps) => {
                     />
                 </Space>
             </div>
-        </div>
+        </Flex>
     );
 };
 

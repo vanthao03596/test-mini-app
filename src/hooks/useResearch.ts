@@ -9,7 +9,7 @@ const useResearch = () => {
     };
 
     const researchQuery = useQuery({
-        queryKey: ['get-home-research'],
+        queryKey: ['get-latest-research'],
         queryFn: getResearch,
     });
 

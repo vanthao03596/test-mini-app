@@ -1,9 +1,14 @@
-import axiosAuth from '@/lib/axios';
-import styles from './OtherResearch.module.scss';
+import { TablerChevronRight } from '@/components/icon';
+import { CustomList } from '@/components/ui/CustomList';
 import { Title } from '@/components/ui/Title';
+import axiosAuth from '@/lib/axios';
 import { Research } from '@/pages/ResearchPage/ResearchPage.types';
+import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 import { useQuery } from '@tanstack/react-query';
-import { ResearchCard } from '@/components/ui/ResearchCard';
+import { Avatar, Ellipsis, List } from 'antd-mobile';
+import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
+import styles from './OtherResearch.module.scss';
 
 type OtherResearchProps = {
     currentId?: number;
@@ -22,16 +27,27 @@ const OtherResearch = (props: OtherResearchProps) => {
     };
 
     const { data } = useQuery({
-        queryKey: ['get-other-research'],
+        queryKey: ['get-other-research', currentId],
         queryFn: getOtherResearch,
     });
 
     return (
         <div className={styles.container}>
             <Title text='Other research' type='subtitle' />
-            {data?.researchs.map((item) => (
-                <ResearchCard key={item.id} {...item} />
-            ))}
+            <CustomList>
+                {data?.researchs.map((item) => (
+                    <Link to={`/research/${item.id}`} key={item.id}>
+                        <List.Item
+                            prefix={<Avatar src={item.img_path} />}
+                            extra={<TablerChevronRight />}
+                            description={<div className={styles.researchReward}>+{item.bonus} GPX</div>}
+                            title={`${capitalizeFirstLetter(dayjs.utc(item.created_at).fromNow())} / ${item.user.name}`}
+                        >
+                            <Ellipsis content={item.title} />
+                        </List.Item>
+                    </Link>
+                ))}
+            </CustomList>
         </div>
     );
 };

@@ -42,6 +42,7 @@ export type Research = {
     is_featured: number;
     user: ResearchUser;
     research_coin: ResearchCoin[];
+    bonus: number;
 };
 
 export type ResearchResponse = CursorBased & {

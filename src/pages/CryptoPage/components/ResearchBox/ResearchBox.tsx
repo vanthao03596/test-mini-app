@@ -10,6 +10,7 @@ import styles from './ResearchBox.module.scss';
 
 const ResearchBox = () => {
     const { data } = useResearch();
+    console.log('🚀 ~ data: ', data);
 
     return (
         <div className={styles.container}>
@@ -28,7 +29,8 @@ const ResearchBox = () => {
                         <List.Item
                             prefix={<Avatar src={item.img_path} />}
                             extra={<TablerChevronRight />}
-                            description={capitalizeFirstLetter(dayjs.utc(item.created_at).fromNow())}
+                            description={<div className={styles.researchReward}>+{item.bonus} GXP</div>}
+                            title={`${capitalizeFirstLetter(dayjs.utc(item.created_at).fromNow())} / ${item.user.name}`}
                         >
                             <Ellipsis content={item.title} />
                         </List.Item>

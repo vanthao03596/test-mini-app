@@ -6,6 +6,8 @@ import { UserInfo } from './components/UserInfo';
 import { UserMining } from './components/UserMining';
 import styles from './MintPage.module.scss';
 import { LastClaimResponse } from './MintPage.types';
+import { Flex } from '@/components/ui/Flex';
+import GIFS from '@/assets/gif';
 
 const MintPage = () => {
     const getLastClaim = async () => {
@@ -31,6 +33,11 @@ const MintPage = () => {
                         image={account.user.image_path || 'https://avatars.githubusercontent.com/u/84640980?v=4'}
                         gasPrice={account.user.gas_price}
                     />
+
+                    {/* Gif */}
+                    <Flex justify='center' className={styles.gif}>
+                        <img src={GIFS.gemx} />
+                    </Flex>
 
                     {/* Mining */}
                     <UserMining

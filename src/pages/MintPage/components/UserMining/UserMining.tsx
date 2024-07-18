@@ -10,7 +10,6 @@ import { useCountdown } from 'usehooks-ts';
 import { MiningBooster } from '../MiningBooster';
 import MiningSpeed from '../MiningSpeed/MiningSpeed';
 import styles from './UserMining.module.scss';
-import GIFS from '@/assets/gif';
 
 type UserMiningProps = {
     gemInSecond: number;
@@ -71,11 +70,6 @@ const UserMining = (props: UserMiningProps) => {
 
     return (
         <div className={styles.container}>
-            {/* Image */}
-            <Flex justify='center' className={styles.image}>
-                <img src={GIFS.gemx} />
-            </Flex>
-
             {/* Card */}
             <div className={styles.mine}>
                 <CustomCard className={styles.card}>

@@ -120,6 +120,7 @@ const ResearchDetailPage = () => {
 
     useEffect(() => {
         resetCountdown();
+        queryClient.invalidateQueries({ queryKey: ['get-other-read', researchId] });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [researchId]);
 
