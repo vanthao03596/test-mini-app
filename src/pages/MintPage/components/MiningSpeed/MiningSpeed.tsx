@@ -54,7 +54,7 @@ const MiningSpeed = (props: MiningSpeedProps) => {
                 }}
             >
                 <div className={styles.amount}>{(gemInSecond * 3600).toFixed(2)} GXP</div>
-                <div className={styles.text}>Mining mining speed</div>
+                <div className={styles.text}>Mining speed</div>
             </CustomCard>
 
             <Modal

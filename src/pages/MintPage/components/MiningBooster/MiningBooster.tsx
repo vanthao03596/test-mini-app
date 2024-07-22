@@ -14,7 +14,7 @@ const MiningBooster = ({ gasPower }: MiningBoosterProps) => {
         <CustomCard className={clsx(styles.card, styles.right)}>
             <Link to='/booster'>
                 <Flex className={styles.amount} align='center'>
-                    {gasPower}
+                    {gasPower}%
                     <TablerRocket className={styles.icon} />
                 </Flex>
                 <div className={styles.text}>Booster coefficient</div>

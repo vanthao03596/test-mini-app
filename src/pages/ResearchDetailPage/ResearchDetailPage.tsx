@@ -41,7 +41,7 @@ type ResearchReadResponse = {
     researchs: ResearchDetail[];
 };
 
-const COUNTDOWN_TIME = 3;
+const COUNTDOWN_TIME = 15;
 
 const ResearchDetailPage = () => {
     const navigate = useNavigate();
