@@ -104,7 +104,7 @@ const AnotherAccountItem = () => {
 
                         {/* Address */}
                         <Form.Item
-                            label='ETH Address'
+                            label='Withdraw Wallet Address'
                             name='address'
                             rules={[
                                 {

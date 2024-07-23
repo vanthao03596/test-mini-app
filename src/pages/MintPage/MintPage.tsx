@@ -31,7 +31,7 @@ const MintPage = () => {
                         username={account.user.name || truncateEthAddress(account.user.address)}
                         level={account.user.gas_rate_lvl}
                         image={account.user.image_path || 'https://avatars.githubusercontent.com/u/84640980?v=4'}
-                        gasPrice={account.user.gas_price}
+                        gemInSecond={account.user.mint_gxp_per_second}
                     />
 
                     {/* Gif */}
@@ -46,6 +46,7 @@ const MintPage = () => {
                         address={account.user.address}
                         gasPower={account.user.gas_power}
                         level={account.user.gas_rate_lvl}
+                        gasPrice={account.user.gas_price}
                     />
                 </>
             )}

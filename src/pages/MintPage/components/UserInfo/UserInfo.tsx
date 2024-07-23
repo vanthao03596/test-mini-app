@@ -8,7 +8,7 @@ type UserInfoProps = {
     username: string;
     level: number;
     image: string;
-    gasPrice: number;
+    gemInSecond: number;
 };
 
 const ModalContent = () => {
@@ -24,7 +24,7 @@ const ModalContent = () => {
 };
 
 const UserInfo = (props: UserInfoProps) => {
-    const { username, level, image, gasPrice } = props;
+    const { username, level, image, gemInSecond } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     return (
@@ -41,7 +41,7 @@ const UserInfo = (props: UserInfoProps) => {
             {/* Rewards */}
             <div className={styles.rewards}>
                 {/* Price */}
-                <div className={styles.price}>{gasPrice?.toFixed(2)}</div>
+                <div className={styles.price}>{(gemInSecond * 3600).toFixed(2)}</div>
 
                 {/* Tip */}
                 <Space align='center' className={styles.tip}>

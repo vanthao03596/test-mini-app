@@ -42,13 +42,13 @@ const BoosterPage = () => {
             <Title text='Booster' />
 
             {/* Amount */}
-            <Title type='gold' text={data ? String(data.total) : ''} />
+            <Title type='gold' text={data ? `${data.total}%` : ''} />
 
             {/* Info */}
             <div className={styles.grid}>
                 {boosters.map((item, index) => (
                     <CustomCard key={index} className={styles.item}>
-                        <div className={styles.amount}>{item.amount}</div>
+                        <div className={styles.amount}>{item.amount}%</div>
                         <div className={styles.text}>{item.text}</div>
                     </CustomCard>
                 ))}

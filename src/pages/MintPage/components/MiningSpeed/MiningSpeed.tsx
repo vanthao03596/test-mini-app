@@ -6,7 +6,7 @@ import { useState } from 'react';
 import styles from './MiningSpeed.module.scss';
 
 type MiningSpeedProps = {
-    gemInSecond: number;
+    gasPrice: number;
     level: number;
 };
 
@@ -41,7 +41,7 @@ const ModalContent = ({ level }: Pick<MiningSpeedProps, 'level'>) => {
 };
 
 const MiningSpeed = (props: MiningSpeedProps) => {
-    const { gemInSecond, level } = props;
+    const { level, gasPrice } = props;
 
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -53,7 +53,7 @@ const MiningSpeed = (props: MiningSpeedProps) => {
                     setIsModalOpen(true);
                 }}
             >
-                <div className={styles.amount}>{(gemInSecond * 3600).toFixed(2)} GXP</div>
+                <div className={styles.amount}>{gasPrice.toFixed(2)} GXP</div>
                 <div className={styles.text}>Mining speed</div>
             </CustomCard>
 

@@ -12,6 +12,7 @@ import MiningSpeed from '../MiningSpeed/MiningSpeed';
 import styles from './UserMining.module.scss';
 
 type UserMiningProps = {
+    gasPrice: number;
     gemInSecond: number;
     lastClaim: Date | null;
     address: string;
@@ -24,7 +25,7 @@ const HOURS_TO_CLAIM_TO_SECONDS = HOURS_TO_CLAIM * 60 * 60;
 const ONE_DAY_TO_SECONDS = 24 * 60 * 60;
 
 const UserMining = (props: UserMiningProps) => {
-    const { address, gasPower, gemInSecond, lastClaim, level } = props;
+    const { address, gasPower, gemInSecond, lastClaim, level, gasPrice } = props;
 
     const diffTime = dayjs.utc().diff(dayjs.utc(lastClaim), 'seconds');
     const isCountDown = diffTime < HOURS_TO_CLAIM_TO_SECONDS;
@@ -101,7 +102,7 @@ const UserMining = (props: UserMiningProps) => {
 
             {/* Description */}
             <Flex className={styles.description}>
-                <MiningSpeed gemInSecond={gemInSecond} level={level} />
+                <MiningSpeed gasPrice={gasPrice} level={level} />
                 <MiningBooster gasPower={gasPower} />
             </Flex>
         </div>
