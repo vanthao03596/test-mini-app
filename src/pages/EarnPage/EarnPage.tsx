@@ -7,14 +7,14 @@ import styles from './EarnPage.module.scss';
 
 const links = [
     {
-        text: 'Quest',
-        link: '/earn/quest',
-        description: 'Do the quest and get more GXP',
-    },
-    {
         text: 'Social Task',
         link: '/earn/social-task',
         description: 'Do the task and get more GXP',
+    },
+    {
+        text: 'Quest',
+        link: '/earn/quest',
+        description: 'Do the quest and get more GXP',
     },
     {
         text: 'Leaderboard',

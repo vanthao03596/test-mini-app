@@ -6,6 +6,20 @@
 
         .text {
             line-height: 1.5;
+
+            .username {
+                color: var(--adm-color-primary);
+                max-width: 20ch;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .icon {
+                margin-left: 0.5rem;
+                font-size: 1rem;
+                cursor: pointer;
+            }
         }
     }
 

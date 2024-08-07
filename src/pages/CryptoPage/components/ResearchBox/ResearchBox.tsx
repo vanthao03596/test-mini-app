@@ -10,7 +10,6 @@ import styles from './ResearchBox.module.scss';
 
 const ResearchBox = () => {
     const { data } = useResearch();
-    console.log('🚀 ~ data: ', data);
 
     return (
         <div className={styles.container}>

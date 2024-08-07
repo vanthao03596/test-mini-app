@@ -5,12 +5,14 @@ import styles from './UserPage.module.scss';
 import { NetworkShare } from './components/NetworkShare';
 import { Title } from '@/components/ui/Title';
 import { NetworkUser } from './components/NetworkUser';
+import { NetworkRef } from './components/NetworkRef';
 
 const UserPage = () => {
     return (
         <div className={styles.container}>
             <Title text='User' />
             <NetworkUser />
+            <NetworkRef />
             <NetworkInfo />
             <Flex justify='center' align='center' className={styles.speed}>
                 <IconamoonLightning2Fill className={styles.icon} />

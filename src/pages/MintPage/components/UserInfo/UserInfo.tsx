@@ -1,7 +1,8 @@
-import { TablerInfoCircle } from '@/components/icon';
+import { TablerCopy, TablerInfoCircle } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
-import { Avatar, Modal, Space } from 'antd-mobile';
+import { Avatar, Modal, Space, Toast } from 'antd-mobile';
 import { useState } from 'react';
+import { useCopyToClipboard } from 'usehooks-ts';
 import styles from './UserInfo.module.scss';
 
 type UserInfoProps = {
@@ -24,8 +25,26 @@ const ModalContent = () => {
 };
 
 const UserInfo = (props: UserInfoProps) => {
-    const { username, level, image, gemInSecond } = props;
+    const { level, image, gemInSecond } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [, copy] = useCopyToClipboard();
+
+    const telegramUsername = Telegram.WebApp.initDataUnsafe.user?.id;
+
+    const handleCopy = () => {
+        if (telegramUsername) {
+            copy(String(telegramUsername));
+            Toast.show({
+                icon: 'success',
+                content: 'Copy success',
+            });
+        } else {
+            Toast.show({
+                icon: 'fail',
+                content: 'Copy fail',
+            });
+        }
+    };
 
     return (
         <Flex align='center' justify='space-between' className={styles.container}>
@@ -33,7 +52,10 @@ const UserInfo = (props: UserInfoProps) => {
             <Flex align='center' className={styles.info}>
                 <Avatar src={image} className={styles.avatar} />
                 <div className={styles.text}>
-                    <div>{username}</div>
+                    <Flex align='center'>
+                        <div className={styles.username}>{telegramUsername || 'TELEGRAM ID'}</div>
+                        <TablerCopy className={styles.icon} onClick={handleCopy} />
+                    </Flex>
                     <div>Level {level}</div>
                 </div>
             </Flex>
