@@ -2,6 +2,7 @@ import IMAGES from '@/assets/images';
 import { TablerCheck, TablerChevronRight } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
+import { SocialTask } from '@/pages/SocialTaskPage/SocialTaskPage';
 import { formatAmount } from '@/utils/formatCurrency';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Avatar, Button, Ellipsis, Image, Input, List, Modal, Toast } from 'antd-mobile';
@@ -9,17 +10,17 @@ import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { useCountdown } from 'usehooks-ts';
 import styles from './TaskItem.module.scss';
-import { SocialTask } from '../../SocialTaskPage';
 
 const COUNTDOWN_TIME = 10;
 const listHasInput = ['LikeATweet', 'RetweetTwitter', 'FollowTiktok', 'QuoteTweetAndHashTag', 'FollowTwitter'];
 
 type TaskItemProps = SocialTask & {
     complete?: boolean;
+    isOngoing?: boolean;
 };
 
 const TaskItem = (props: TaskItemProps) => {
-    const { id, social, name, reward, link, template_id, complete } = props;
+    const { id, social, name, reward, link, template_id, complete, isOngoing } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
@@ -40,7 +41,7 @@ const TaskItem = (props: TaskItemProps) => {
     };
 
     const handleOpenModal = () => {
-        if (!complete) {
+        if (isOngoing && !complete) {
             setIsModalOpen(true);
         }
     };

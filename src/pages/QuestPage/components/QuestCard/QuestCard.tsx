@@ -7,11 +7,12 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import { Quest } from '../../QuestPage.types';
 import styles from './QuestCard.module.scss';
+import DOMPurify from 'dompurify';
 
 type QuestCardProps = Quest;
 
 const QuestCard = (props: QuestCardProps) => {
-    const { image, name, start_date, end_date, views, rewards, slug } = props;
+    const { image, name, start_date, end_date, views, rewards, slug, id, description } = props;
 
     return (
         <CustomCard className={styles.card}>
@@ -22,7 +23,15 @@ const QuestCard = (props: QuestCardProps) => {
 
             <div className={styles.main}>
                 {/* Title */}
-                <div className={styles.title}>{name}</div>
+                <Link to={`/earn/quest/${id}`} className={styles.title}>
+                    {name}
+                </Link>
+
+                {/* Description */}
+                <div
+                    className={styles.description}
+                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
+                ></div>
 
                 {/* Time */}
                 <Flex align='center'>
@@ -65,7 +74,7 @@ const QuestCard = (props: QuestCardProps) => {
                     </div>
                     <Link to={`https://gemx.io/campaign/${slug}`} target='blank' className={styles.more}>
                         <Space align='center'>
-                            <div>Read more</div>
+                            <Link to={`/earn/quest/${id}`}>Read more</Link>
                             <Flex align='center'>
                                 <TablerExternalLink />
                             </Flex>

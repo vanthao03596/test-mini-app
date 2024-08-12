@@ -1,0 +1,33 @@
+.item {
+    .iconLogo {
+        margin-right: 0.5rem;
+    }
+
+    .iconSuccess {
+        color: var(--adm-color-primary);
+    }
+}
+
+.modal {
+    margin-top: 0.5rem;
+
+    .layout {
+        & > * + * {
+            margin-top: 0.5rem;
+        }
+
+        .name {
+            font-weight: 500;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .icon {
+            margin-left: 0.5rem;
+        }
+
+        .input {
+            width: 256px;
+        }
+    }
+}
