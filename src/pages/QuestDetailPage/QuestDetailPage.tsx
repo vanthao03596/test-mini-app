@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import { SocialTask } from '../SocialTaskPage/SocialTaskPage';
 import { TaskItem } from './components/TaskItem';
 import styles from './QuestDetailPage.module.scss';
+import DOMPurify from 'dompurify';
 
 type QuestDetailResponse = {
     id: number;
@@ -79,6 +80,16 @@ const QuestDetailPage = () => {
                     return <TaskItem key={item.id} complete={complete} isOngoing={isOngoing} {...item} />;
                 })}
             </CustomList>
+
+            {/* Description */}
+            {questData?.description && (
+                <>
+                    <div
+                        className={styles.description}
+                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(questData.description) }}
+                    ></div>
+                </>
+            )}
         </div>
     );
 };

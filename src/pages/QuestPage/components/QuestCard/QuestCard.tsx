@@ -7,12 +7,11 @@ import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 import { Quest } from '../../QuestPage.types';
 import styles from './QuestCard.module.scss';
-import DOMPurify from 'dompurify';
 
 type QuestCardProps = Quest;
 
 const QuestCard = (props: QuestCardProps) => {
-    const { image, name, start_date, end_date, views, rewards, slug, id, description } = props;
+    const { image, name, start_date, end_date, views, rewards, slug, id } = props;
 
     return (
         <CustomCard className={styles.card}>
@@ -26,12 +25,6 @@ const QuestCard = (props: QuestCardProps) => {
                 <Link to={`/earn/quest/${id}`} className={styles.title}>
                     {name}
                 </Link>
-
-                {/* Description */}
-                <div
-                    className={styles.description}
-                    dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(description) }}
-                ></div>
 
                 {/* Time */}
                 <Flex align='center'>
