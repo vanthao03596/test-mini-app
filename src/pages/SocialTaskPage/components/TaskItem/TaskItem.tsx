@@ -47,7 +47,7 @@ const TaskItem = (props: TaskItemProps) => {
 
     const handleClick = () => {
         if (!canCheck) {
-            window.open(link, '_blank');
+            window.Telegram.WebApp.openLink(link);
             startCountdown();
             setIsPending(true);
         } else {
@@ -126,7 +126,7 @@ const TaskItem = (props: TaskItemProps) => {
                 {canCheck && hasUsername && (
                     <Input
                         value={username}
-                        placeholder='ENTER_YOUR_USERNAME'
+                        placeholder='ENTER YOUR USERNAME'
                         clearable
                         onChange={handleChangeUsername}
                         className={styles.input}
