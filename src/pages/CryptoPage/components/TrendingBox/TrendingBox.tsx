@@ -22,7 +22,7 @@ const TrendingBox = () => {
 
             {/* List */}
             <CustomList>
-                {data?.trending.slice(0, 5).map((item) => (
+                {data?.trending?.slice(0, 5).map((item) => (
                     <Link key={item.id} to={`https://gemx.io/coin/${item.coin.slug}`} target='_blank'>
                         <List.Item
                             prefix={<Avatar src={item.coin.logo} />}
