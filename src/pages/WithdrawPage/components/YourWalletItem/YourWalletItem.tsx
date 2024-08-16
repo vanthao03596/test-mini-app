@@ -60,7 +60,7 @@ const YourWalletItem = () => {
                 onClick={handleTogglePopup}
                 className={styles.item}
             >
-                <Ellipsis content='Your wallet' />
+                <Ellipsis content='Your Metamask Wallet Address' />
             </List.Item>
 
             {/* Popup */}
