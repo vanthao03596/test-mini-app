@@ -8,7 +8,7 @@ import styles from './NetworkShare.module.scss';
 const NetworkShare = () => {
     const userId = Telegram.WebApp.initDataUnsafe.user?.id;
     const shareText = 'Join with us to get rewards together';
-    const inviteLink = `https://t.me/GemxMiniappBot?start=${userId || ''}`;
+    const inviteLink = `https://t.me/GemxNetworkBot?start=${userId || ''}`;
     const shareLink = `https://t.me/share/url?url=${inviteLink}&text=${shareText}`;
     const [, copy] = useCopyToClipboard();
 
