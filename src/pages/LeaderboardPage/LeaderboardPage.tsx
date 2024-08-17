@@ -28,6 +28,7 @@ type Leaderboard = {
 
 type LeaderboardResponse = {
     leader_boards: Leaderboard[];
+    current_rank: number;
 };
 
 const LeaderboardPage = () => {
@@ -45,6 +46,7 @@ const LeaderboardPage = () => {
         <div className={styles.container}>
             <Title text='Leaderboard' />
             <Title text='This month' type='subtitle' />
+            <Title text={`Your rank: #${data?.current_rank}`} type='gold' />
 
             <CustomList className={styles.list}>
                 {data?.leader_boards.map((item, index) => (
@@ -62,7 +64,7 @@ const LeaderboardPage = () => {
                                     <FluentEmojiFlat3rdPlaceMedal className={styles.icon} />
                                 ) : (
                                     <Flex align='center' justify='center' className={styles.normalRank}>
-                                        {index + 1}
+                                        #{index + 1}
                                     </Flex>
                                 )}
                             </Flex>
