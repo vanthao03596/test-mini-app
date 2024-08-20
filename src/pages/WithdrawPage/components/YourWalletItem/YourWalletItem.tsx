@@ -1,7 +1,7 @@
 import IMAGES from '@/assets/images';
 import { TablerChevronRight } from '@/components/icon';
 import axiosAuth from '@/lib/axios';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Avatar, Button, Ellipsis, Form, Input, List, Popup, Toast } from 'antd-mobile';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
@@ -17,6 +17,7 @@ type WithdrawStatusResponse = {
 const YourWalletItem = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [form] = Form.useForm();
+    const queryClient = useQueryClient();
 
     const getWithdrawStatus = async () => {
         const res = await axiosAuth.get<WithdrawStatusResponse>('/withdraw-status');
@@ -41,6 +42,7 @@ const YourWalletItem = () => {
         mutationKey: ['create-withdraw-wallet'],
         mutationFn: createWithdraw,
         onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ['get-withdraw-status'] });
             Toast.show({
                 icon: 'success',
                 content: <div className={styles.toastContent}>Withdraw created! Please wait up to 24 hours</div>,
