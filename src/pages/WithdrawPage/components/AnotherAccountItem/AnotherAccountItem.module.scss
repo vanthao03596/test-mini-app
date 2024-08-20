@@ -6,6 +6,19 @@
 
 .popupContent {
     padding: 2.5rem 1.25rem 1.25rem;
+
+    .earn {
+        color: var(--adm-color-primary);
+    }
+
+    .limit {
+        color: var(--adm-color-danger);
+        font-size: 0.875rem;
+    }
+
+    .tip {
+        font-size: 0.875rem;
+    }
 }
 
 .toastContent {

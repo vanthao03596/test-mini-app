@@ -3,15 +3,19 @@ import { TablerChevronRight } from '@/components/icon';
 import { Avatar, Button, Ellipsis, Form, Input, List, Popup, Toast } from 'antd-mobile';
 import { useState } from 'react';
 import styles from './AnotherAccountItem.module.scss';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import axiosAuth from '@/lib/axios';
+import useWithdrawStatus from '@/hooks/useWithdrawStatus';
 
 type FormProps = { amount: number; address: string };
 
 const AnotherAccountItem = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [form] = Form.useForm();
+    const queryClient = useQueryClient();
+
+    const { data: withdrawStatusData, isLoading: isWithdrawStatusLoading } = useWithdrawStatus();
 
     const createWithdraw = async (values: FormProps) => {
         const res = await axiosAuth.post('/wallet/withdraw', {
@@ -27,6 +31,7 @@ const AnotherAccountItem = () => {
         mutationKey: ['create-withdraw-wallet'],
         mutationFn: createWithdraw,
         onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ['get-withdraw-status'] });
             Toast.show({
                 icon: 'success',
                 content: <div className={styles.toastContent}>Withdraw created! Please wait up to 24 hours</div>,
@@ -81,6 +86,11 @@ const AnotherAccountItem = () => {
             >
                 <div className={styles.popupContent}>
                     <Form layout='vertical' mode='card' form={form} onFinish={onFinish}>
+                        {/* Earn */}
+                        <Form.Item className={styles.earn}>
+                            Earned this month: {withdrawStatusData?.total_earn || 0} GXP
+                        </Form.Item>
+
                         {/* Amount */}
                         <Form.Item
                             label='Amount'
@@ -123,9 +133,27 @@ const AnotherAccountItem = () => {
                             <Input placeholder='0x . . .' clearable />
                         </Form.Item>
 
+                        <Form.Item>
+                            {/* Limit */}
+                            {withdrawStatusData?.limit_reached && (
+                                <div className={styles.limit}>You have reached the limit</div>
+                            )}
+
+                            {/* Tip */}
+                            <div className={styles.tip}>
+                                Earn 5.000 GXP to withdraw 20% USDT or 10.000 GXP to withdraw 30% USDT
+                            </div>
+                        </Form.Item>
+
                         {/* Submit */}
                         <Form.Item>
-                            <Button block type='submit' color='primary' size='large'>
+                            <Button
+                                block
+                                type='submit'
+                                color='primary'
+                                size='large'
+                                disabled={isWithdrawStatusLoading || !withdrawStatusData?.can_withdraw}
+                            >
                                 Submit
                             </Button>
                         </Form.Item>

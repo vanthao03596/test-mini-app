@@ -1,33 +1,19 @@
 import IMAGES from '@/assets/images';
 import { TablerChevronRight } from '@/components/icon';
+import useWithdrawStatus from '@/hooks/useWithdrawStatus';
 import axiosAuth from '@/lib/axios';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Avatar, Button, Ellipsis, Form, Input, List, Popup, Toast } from 'antd-mobile';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
 import styles from './YourWalletItem.module.scss';
-
-type WithdrawStatusResponse = {
-    can_withdraw: boolean;
-    withdraw_percent: number;
-    total_earn: string;
-    limit_reached: boolean;
-};
 
 const YourWalletItem = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
 
-    const getWithdrawStatus = async () => {
-        const res = await axiosAuth.get<WithdrawStatusResponse>('/withdraw-status');
-        return res.data;
-    };
-
-    const { data: withdrawStatusData, isLoading: isWithdrawStatusLoading } = useQuery({
-        queryKey: ['get-withdraw-status'],
-        queryFn: getWithdrawStatus,
-    });
+    const { data: withdrawStatusData, isLoading: isWithdrawStatusLoading } = useWithdrawStatus();
 
     const createWithdraw = async (amount: number) => {
         const res = await axiosAuth.post('/wallet/withdraw', {
