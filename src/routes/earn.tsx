@@ -18,10 +18,10 @@ const earnRouter: RouteObject[] = [
     {
         path: '/earn/quest',
         element: <QuestPage />,
-        lazy: async () => {
-            const { QuestPage } = await import('@/pages/QuestPage');
-            return { Component: QuestPage };
-        },
+        // lazy: async () => {
+        //     const { QuestPage } = await import('@/pages/QuestPage');
+        //     return { Component: QuestPage };
+        // },
     },
     {
         path: '/earn/quest/:questId',
