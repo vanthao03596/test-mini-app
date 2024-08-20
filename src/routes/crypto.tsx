@@ -1,33 +1,41 @@
+import { CryptoPage } from '@/pages/CryptoPage';
+import { ResearchDetailPage } from '@/pages/ResearchDetailPage';
+import { ResearchPage } from '@/pages/ResearchPage';
+import { TrendingPage } from '@/pages/TrendingPage';
 import { RouteObject } from 'react-router-dom';
 
 const cryptoRouter: RouteObject[] = [
     {
         path: 'crypto',
-        lazy: async () => {
-            const { CryptoPage } = await import('@/pages/CryptoPage');
-            return { Component: CryptoPage };
-        },
+        element: <CryptoPage />,
+        // lazy: async () => {
+        //     const { CryptoPage } = await import('@/pages/CryptoPage');
+        //     return { Component: CryptoPage };
+        // },
     },
     {
         path: 'trending',
-        lazy: async () => {
-            const { TrendingPage } = await import('@/pages/TrendingPage');
-            return { Component: TrendingPage };
-        },
+        element: <TrendingPage />,
+        // lazy: async () => {
+        //     const { TrendingPage } = await import('@/pages/TrendingPage');
+        //     return { Component: TrendingPage };
+        // },
     },
     {
         path: 'research',
-        lazy: async () => {
-            const { ResearchPage } = await import('@/pages/ResearchPage');
-            return { Component: ResearchPage };
-        },
+        element: <ResearchPage />,
+        // lazy: async () => {
+        //     const { ResearchPage } = await import('@/pages/ResearchPage');
+        //     return { Component: ResearchPage };
+        // },
     },
     {
         path: 'research/:researchId',
-        lazy: async () => {
-            const { ResearchDetailPage } = await import('@/pages/ResearchDetailPage');
-            return { Component: ResearchDetailPage };
-        },
+        element: <ResearchDetailPage />,
+        // lazy: async () => {
+        //     const { ResearchDetailPage } = await import('@/pages/ResearchDetailPage');
+        //     return { Component: ResearchDetailPage };
+        // },
     },
 ];
 

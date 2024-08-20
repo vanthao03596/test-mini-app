@@ -1,15 +1,23 @@
+import { BoosterPage } from '@/pages/BoosterPage';
+import { EarnPage } from '@/pages/EarnPage';
+import { LeaderboardPage } from '@/pages/LeaderboardPage';
+import { QuestDetailPage } from '@/pages/QuestDetailPage';
+import { QuestPage } from '@/pages/QuestPage';
+import { SocialTaskPage } from '@/pages/SocialTaskPage';
 import { RouteObject } from 'react-router-dom';
 
 const earnRouter: RouteObject[] = [
     {
         path: 'earn',
-        lazy: async () => {
-            const { EarnPage } = await import('@/pages/EarnPage');
-            return { Component: EarnPage };
-        },
+        element: <EarnPage />,
+        // lazy: async () => {
+        //     const { EarnPage } = await import('@/pages/EarnPage');
+        //     return { Component: EarnPage };
+        // },
     },
     {
         path: '/earn/quest',
+        element: <QuestPage />,
         lazy: async () => {
             const { QuestPage } = await import('@/pages/QuestPage');
             return { Component: QuestPage };
@@ -17,31 +25,35 @@ const earnRouter: RouteObject[] = [
     },
     {
         path: '/earn/quest/:questId',
-        lazy: async () => {
-            const { QuestDetailPage } = await import('@/pages/QuestDetailPage');
-            return { Component: QuestDetailPage };
-        },
+        element: <QuestDetailPage />,
+        // lazy: async () => {
+        //     const { QuestDetailPage } = await import('@/pages/QuestDetailPage');
+        //     return { Component: QuestDetailPage };
+        // },
     },
     {
         path: '/earn/social-task',
-        lazy: async () => {
-            const { SocialTaskPage } = await import('@/pages/SocialTaskPage');
-            return { Component: SocialTaskPage };
-        },
+        element: <SocialTaskPage />,
+        // lazy: async () => {
+        //     const { SocialTaskPage } = await import('@/pages/SocialTaskPage');
+        //     return { Component: SocialTaskPage };
+        // },
     },
     {
         path: '/earn/leaderboard',
-        lazy: async () => {
-            const { LeaderboardPage } = await import('@/pages/LeaderboardPage');
-            return { Component: LeaderboardPage };
-        },
+        element: <LeaderboardPage />,
+        // lazy: async () => {
+        //     const { LeaderboardPage } = await import('@/pages/LeaderboardPage');
+        //     return { Component: LeaderboardPage };
+        // },
     },
     {
         path: 'booster',
-        lazy: async () => {
-            const { BoosterPage } = await import('@/pages/BoosterPage');
-            return { Component: BoosterPage };
-        },
+        element: <BoosterPage />,
+        // lazy: async () => {
+        //     const { BoosterPage } = await import('@/pages/BoosterPage');
+        //     return { Component: BoosterPage };
+        // },
     },
 ];
 

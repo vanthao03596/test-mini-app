@@ -1,33 +1,41 @@
+import { ReceivePage } from '@/pages/ReceivePage';
+import { WalletHistoryPage } from '@/pages/WalletHistoryPage';
+import { WalletPage } from '@/pages/WalletPage';
+import { WithdrawPage } from '@/pages/WithdrawPage';
 import { RouteObject } from 'react-router-dom';
 
 const walletRouter: RouteObject[] = [
     {
         path: 'wallet',
-        lazy: async () => {
-            const { WalletPage } = await import('@/pages/WalletPage');
-            return { Component: WalletPage };
-        },
+        element: <WalletPage />,
+        // lazy: async () => {
+        //     const { WalletPage } = await import('@/pages/WalletPage');
+        //     return { Component: WalletPage };
+        // },
     },
     {
         path: 'wallet/history',
-        lazy: async () => {
-            const { WalletHistoryPage } = await import('@/pages/WalletHistoryPage');
-            return { Component: WalletHistoryPage };
-        },
+        element: <WalletHistoryPage />,
+        // lazy: async () => {
+        //     const { WalletHistoryPage } = await import('@/pages/WalletHistoryPage');
+        //     return { Component: WalletHistoryPage };
+        // },
     },
     {
         path: 'wallet/withdraw',
-        lazy: async () => {
-            const { WithdrawPage } = await import('@/pages/WithdrawPage');
-            return { Component: WithdrawPage };
-        },
+        element: <WithdrawPage />,
+        // lazy: async () => {
+        //     const { WithdrawPage } = await import('@/pages/WithdrawPage');
+        //     return { Component: WithdrawPage };
+        // },
     },
     {
         path: 'wallet/receive',
-        lazy: async () => {
-            const { ReceivePage } = await import('@/pages/ReceivePage');
-            return { Component: ReceivePage };
-        },
+        element: <ReceivePage />,
+        // lazy: async () => {
+        //     const { ReceivePage } = await import('@/pages/ReceivePage');
+        //     return { Component: ReceivePage };
+        // },
     },
 ];
 

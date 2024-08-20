@@ -6,11 +6,6 @@ const initData =
 
 const BASE_URL = 'https://api.gemx.io/api/miniapp';
 
-const axiosClient = axios.create({
-    baseURL: BASE_URL,
-    headers: { 'Content-Type': 'application/json' },
-});
-
 const axiosAuth = axios.create({
     baseURL: BASE_URL,
     headers: { 'Content-Type': 'application/json' },
@@ -21,5 +16,4 @@ axiosAuth.interceptors.request.use((config) => {
     return config;
 });
 
-export { axiosClient };
 export default axiosAuth;

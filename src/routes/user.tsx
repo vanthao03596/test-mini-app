@@ -1,19 +1,23 @@
+import { ReferencePage } from '@/pages/ReferencePage';
+import { UserPage } from '@/pages/UserPage';
 import { RouteObject } from 'react-router-dom';
 
 const userRouter: RouteObject[] = [
     {
         path: 'user',
-        lazy: async () => {
-            const { UserPage } = await import('@/pages/UserPage');
-            return { Component: UserPage };
-        },
+        element: <UserPage />,
+        // lazy: async () => {
+        //     const { UserPage } = await import('@/pages/UserPage');
+        //     return { Component: UserPage };
+        // },
     },
     {
         path: 'reference',
-        lazy: async () => {
-            const { ReferencePage } = await import('@/pages/ReferencePage');
-            return { Component: ReferencePage };
-        },
+        element: <ReferencePage />,
+        // lazy: async () => {
+        //     const { ReferencePage } = await import('@/pages/ReferencePage');
+        //     return { Component: ReferencePage };
+        // },
     },
 ];
 
