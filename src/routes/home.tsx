@@ -5,10 +5,6 @@ const homeRouter: RouteObject[] = [
     {
         index: true,
         element: <MintPage />,
-        // lazy: async () => {
-        //     const { MintPage } = await import('@/pages/MintPage');
-        //     return { Component: MintPage };
-        // },
     },
 ];
 

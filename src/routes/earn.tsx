@@ -10,50 +10,26 @@ const earnRouter: RouteObject[] = [
     {
         path: 'earn',
         element: <EarnPage />,
-        // lazy: async () => {
-        //     const { EarnPage } = await import('@/pages/EarnPage');
-        //     return { Component: EarnPage };
-        // },
     },
     {
         path: '/earn/quest',
         element: <QuestPage />,
-        // lazy: async () => {
-        //     const { QuestPage } = await import('@/pages/QuestPage');
-        //     return { Component: QuestPage };
-        // },
     },
     {
         path: '/earn/quest/:questId',
         element: <QuestDetailPage />,
-        // lazy: async () => {
-        //     const { QuestDetailPage } = await import('@/pages/QuestDetailPage');
-        //     return { Component: QuestDetailPage };
-        // },
     },
     {
         path: '/earn/social-task',
         element: <SocialTaskPage />,
-        // lazy: async () => {
-        //     const { SocialTaskPage } = await import('@/pages/SocialTaskPage');
-        //     return { Component: SocialTaskPage };
-        // },
     },
     {
         path: '/earn/leaderboard',
         element: <LeaderboardPage />,
-        // lazy: async () => {
-        //     const { LeaderboardPage } = await import('@/pages/LeaderboardPage');
-        //     return { Component: LeaderboardPage };
-        // },
     },
     {
         path: 'booster',
         element: <BoosterPage />,
-        // lazy: async () => {
-        //     const { BoosterPage } = await import('@/pages/BoosterPage');
-        //     return { Component: BoosterPage };
-        // },
     },
 ];
 

@@ -116,7 +116,9 @@ const WalletHistoryPage = () => {
                                 </Flex>
                             }
                         >
-                            <Ellipsis content={capitalizeFirstLetter(item.transactionable_type)}></Ellipsis>
+                            <Ellipsis
+                                content={capitalizeFirstLetter(item.transactionable_type.split('_').join(' '))}
+                            ></Ellipsis>
                         </List.Item>
                     ))}
                 </CustomList>
