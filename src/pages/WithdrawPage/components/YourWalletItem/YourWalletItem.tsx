@@ -1,6 +1,5 @@
 import IMAGES from '@/assets/images';
 import { TablerChevronRight } from '@/components/icon';
-import useWithdrawStatus from '@/hooks/useWithdrawStatus';
 import axiosAuth from '@/lib/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Avatar, Button, Ellipsis, Form, Input, List, Popup, Toast } from 'antd-mobile';
@@ -13,7 +12,7 @@ const YourWalletItem = () => {
     const [form] = Form.useForm();
     const queryClient = useQueryClient();
 
-    const { data: withdrawStatusData, isLoading: isWithdrawStatusLoading } = useWithdrawStatus();
+    // const { data: withdrawStatusData, isLoading: isWithdrawStatusLoading } = useWithdrawStatus();
 
     const createWithdraw = async (amount: number) => {
         const res = await axiosAuth.post('/wallet/withdraw', {
@@ -82,9 +81,9 @@ const YourWalletItem = () => {
                 <div className={styles.popupContent}>
                     <Form layout='vertical' mode='card' form={form} onFinish={onFinish}>
                         {/* Earn */}
-                        <Form.Item className={styles.earn}>
+                        {/* <Form.Item className={styles.earn}>
                             Earned this month: {withdrawStatusData?.total_earn || 0} GXP
-                        </Form.Item>
+                        </Form.Item> */}
 
                         {/* Amount */}
                         <Form.Item
@@ -107,17 +106,15 @@ const YourWalletItem = () => {
                             <Input placeholder='USDT' clearable />
                         </Form.Item>
 
-                        <Form.Item>
-                            {/* Limit */}
+                        {/* <Form.Item>
                             {withdrawStatusData?.limit_reached && (
                                 <div className={styles.limit}>You have reached the limit</div>
                             )}
 
-                            {/* Tip */}
                             <div className={styles.tip}>
                                 Earn 5.000 GXP to withdraw 20% USDT or 10.000 GXP to withdraw 30% USDT
                             </div>
-                        </Form.Item>
+                        </Form.Item> */}
 
                         {/* Submit */}
                         <Form.Item>
@@ -126,7 +123,7 @@ const YourWalletItem = () => {
                                 type='submit'
                                 color='primary'
                                 size='large'
-                                disabled={isWithdrawStatusLoading || !withdrawStatusData?.can_withdraw}
+                                // disabled={isWithdrawStatusLoading || !withdrawStatusData?.can_withdraw}
                             >
                                 Submit
                             </Button>
