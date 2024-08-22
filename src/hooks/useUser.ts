@@ -17,7 +17,7 @@ const useUser = () => {
         queryFn: getResearch,
     });
 
-    return account;
+    return account?.user;
 };
 
 export default useUser;

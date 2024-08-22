@@ -5,17 +5,17 @@ import { Avatar, Ellipsis, List } from 'antd-mobile';
 import styles from './NetworkUser.module.scss';
 
 const NetworkUser = () => {
-    const account = useUser();
+    const user = useUser();
 
     return (
         <div className={styles.container}>
             <CustomList className={styles.list}>
                 <List.Item
-                    prefix={<Avatar src={account?.user.image_path || ''} />}
-                    description={`Level ${account?.user.gas_rate_lvl}`}
+                    prefix={<Avatar src={user?.image_path || ''} />}
+                    description={`Level ${user?.gas_rate_lvl}`}
                     className={styles.listItem}
                 >
-                    <Ellipsis content={truncateEthAddress(account?.user.address)} />
+                    <Ellipsis content={truncateEthAddress(user?.address)} />
                 </List.Item>
             </CustomList>
         </div>

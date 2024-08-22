@@ -8,10 +8,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 const NetworkRef = () => {
-    const account = useUser();
+    const user = useUser();
     const [address, setAddress] = useState<string>('');
 
-    const ref = account?.user.ref_address;
+    const ref = user?.ref_address;
 
     const createRef = async () => {
         const res = await axiosAuth.post('/user/ref', {

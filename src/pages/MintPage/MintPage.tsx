@@ -15,7 +15,7 @@ const MintPage = () => {
         return res.data;
     };
 
-    const account = useUser();
+    const user = useUser();
 
     const { data: lastClaimData } = useQuery({
         queryKey: ['last-claim'],
@@ -24,14 +24,14 @@ const MintPage = () => {
 
     return (
         <div className={styles.container}>
-            {account && lastClaimData && (
+            {user && lastClaimData && (
                 <>
                     {/* Info */}
                     <UserInfo
-                        username={account.user.name || truncateEthAddress(account.user.address)}
-                        level={account.user.gas_rate_lvl}
-                        image={account.user.image_path || 'https://avatars.githubusercontent.com/u/84640980?v=4'}
-                        gemInSecond={account.user.mint_gxp_per_second}
+                        username={user.name || truncateEthAddress(user.address)}
+                        level={user.gas_rate_lvl}
+                        image={user.image_path || 'https://avatars.githubusercontent.com/u/84640980?v=4'}
+                        gemInSecond={user.mint_gxp_per_second}
                     />
 
                     {/* Gif */}
@@ -41,12 +41,12 @@ const MintPage = () => {
 
                     {/* Mining */}
                     <UserMining
-                        gemInSecond={account.user.mint_gxp_per_second}
+                        gemInSecond={user.mint_gxp_per_second}
                         lastClaim={lastClaimData.last_claim}
-                        address={account.user.address}
-                        gasPower={account.user.gas_power}
-                        level={account.user.gas_rate_lvl}
-                        gasPrice={account.user.gas_price}
+                        address={user.address}
+                        gasPower={user.gas_power}
+                        level={user.gas_rate_lvl}
+                        gasPrice={user.gas_price}
                     />
                 </>
             )}
