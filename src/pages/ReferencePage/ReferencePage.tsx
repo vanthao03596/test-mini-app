@@ -49,7 +49,7 @@ const ReferencePage = () => {
             {/* List */}
             <Tabs defaultActiveKey='f1'>
                 {/* Tab F1 */}
-                <Tabs.Tab title={`F1 ${listF1 ? `(${listF1.length})` : ''}`} key='f1'>
+                <Tabs.Tab {...(listF1 ? {title: `F1 ${listF1.length}`} : {title: ''})} key='f1'>
                     {listF1 && listF1.length > 0 && (
                         <CustomList className={styles.list}>
                             {listF1?.map((item) => (
@@ -60,7 +60,7 @@ const ReferencePage = () => {
                 </Tabs.Tab>
 
                 {/* Tab F2 */}
-                <Tabs.Tab title={`F2 ${listF2 ? `(${listF2.length})` : ''}`} key='f2'>
+                <Tabs.Tab {...(listF2 ? {title: `F2 ${listF2.length}`} : {title: ''})} key='f2'>
                     {listF2 && listF2.length > 0 && (
                         <List className={styles.list}>
                             {listF2?.map((item) => (
