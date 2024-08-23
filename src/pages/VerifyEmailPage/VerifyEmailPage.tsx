@@ -171,7 +171,7 @@ const VerifyEmailPage = () => {
                         </Flex>
                     </Flex>
                 ) : (
-                    <Button color='primary' fill='solid' block onClick={handleSendCode}>
+                    <Button color='primary' loading={codeMutation.isPending} disabled={codeMutation.isPending} fill='solid' block onClick={handleSendCode}>
                         Send code
                     </Button>
                 )}
@@ -205,7 +205,7 @@ const VerifyEmailPage = () => {
                     </Flex>
 
                     {/* Submit */}
-                    <Button color='primary' fill='solid' block onClick={handleVerifyCode}>
+                    <Button color='primary' loading={verifyMutation.isPending} disabled={verifyMutation.isPending} fill='solid' block onClick={handleVerifyCode}>
                         Submit
                     </Button>
                 </div>
