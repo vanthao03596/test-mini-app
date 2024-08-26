@@ -4,19 +4,40 @@ import { List, Modal } from 'antd-mobile';
 import clsx from 'clsx';
 import { useState } from 'react';
 import styles from './MiningSpeed.module.scss';
+import axiosAuth from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
 
 type MiningSpeedProps = {
     gasPrice: number;
     level: number;
 };
 
-const indexArray = Array.from({ length: 100 }, (_, i) => i + 1); // Return [1, 2, 3, ..., 99, 100]
-const baseMiningSpeed = indexArray.map((item) => ({
-    level: item,
-    speed: 1 + (item - 1) * 0.09,
-}));
+type MiningSpeedResponse = {
+    info: {
+        [key: number]: number;
+    };
+};
 
 const ModalContent = ({ level }: Pick<MiningSpeedProps, 'level'>) => {
+    const getMiningSpeed = async () => {
+        const res = await axiosAuth.get<MiningSpeedResponse>('/mint-lvl');
+        return res.data;
+    };
+
+    const { data, isLoading } = useQuery({
+        queryKey: ['get-mint-lv'],
+        queryFn: getMiningSpeed,
+    });
+
+    if (isLoading || !data?.info) return;
+
+    const baseMiningSpeed = Object.keys(data?.info)
+        .map(Number)
+        .map((item) => ({
+            level: item,
+            speed: data?.info[item],
+        }));
+
     return (
         <div className={styles.modal}>
             <div className={styles.title}>Mining Rules</div>
