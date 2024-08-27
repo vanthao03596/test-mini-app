@@ -2,7 +2,7 @@ import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import useUser from '@/hooks/useUser';
 import axiosAuth from '@/lib/axios';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button, Divider, Input, PasscodeInput, Toast } from 'antd-mobile';
 import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
@@ -24,6 +24,8 @@ const VerifyEmailPage = () => {
     const [count, { startCountdown, resetCountdown }] = useCountdown({
         countStart: RESEND_TIME,
     });
+
+    const queryClient = useQueryClient();
 
     const sendCode = async () => {
         const res = await axiosAuth.post('/user/send-code-verify', {
@@ -72,11 +74,12 @@ const VerifyEmailPage = () => {
     const verifyMutation = useMutation({
         mutationKey: ['verify-code'],
         mutationFn: verifyCode,
-        onSuccess: () => {
+        onSuccess: async () => {
             Toast.show({
                 icon: 'success',
                 content: <div className={styles.successModal}>Verify email success</div>,
             });
+            await queryClient.invalidateQueries({queryKey: ['get-user-info']})
             navigate('/wallet/withdraw');
         },
         onError: (error) => {
@@ -141,7 +144,9 @@ const VerifyEmailPage = () => {
     useEffect(() => {
         if (hasEmail) {
             setIsSent(true);
-            handleSendCode();
+            if(!user?.email_verified_at) {
+                handleSendCode();
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasEmail]);
