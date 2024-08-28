@@ -1,10 +1,9 @@
 import { CustomList } from '@/components/ui/CustomList';
 import { Title } from '@/components/ui/Title';
-import { AnotherAccountItem } from './components/AnotherAccountItem';
-import { YourWalletItem } from './components/YourWalletItem';
-import styles from './WithdrawPage.module.scss';
 import useUser from '@/hooks/useUser';
 import { Navigate } from 'react-router-dom';
+import { YourWalletItem } from './components/YourWalletItem';
+import styles from './WithdrawPage.module.scss';
 
 const WithdrawPage = () => {
     const user = useUser();
@@ -17,7 +16,7 @@ const WithdrawPage = () => {
             <Title text='Withdraw' />
             <CustomList>
                 <YourWalletItem />
-                <AnotherAccountItem />
+                {/* <AnotherAccountItem /> */}
             </CustomList>
         </div>
     );
