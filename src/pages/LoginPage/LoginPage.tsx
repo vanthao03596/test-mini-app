@@ -80,6 +80,12 @@ const LoginPage = () => {
                 >
                     <Input placeholder='0x . . .' clearable />
                 </Form.Item>
+
+                <Form.Item>
+                    <div className={styles.noti}>
+                        Make sure this wallet address supports Base Chain. This address cannot be changed in the future
+                    </div>
+                </Form.Item>
             </Form>
         </div>
     );

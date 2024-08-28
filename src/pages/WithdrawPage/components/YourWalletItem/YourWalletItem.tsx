@@ -30,7 +30,7 @@ const YourWalletItem = () => {
             await queryClient.invalidateQueries({ queryKey: ['get-withdraw-status'] });
             Toast.show({
                 icon: 'success',
-                content: <div className={styles.toastContent}>Withdraw created! Please wait up to 24 hours</div>,
+                content: <div className={styles.toastContent}>Withdraw created! Please wait up to 48 hours</div>,
             });
             form.resetFields();
             handleTogglePopup();
@@ -58,7 +58,7 @@ const YourWalletItem = () => {
             {/* Item */}
             <List.Item
                 prefix={<Avatar src={IMAGES.cryptoWallet} />}
-                description={'Withdraw to your wallet'}
+                description={'Address on Base Chain'}
                 extra={<TablerChevronRight />}
                 clickable={false}
                 onClick={handleTogglePopup}
