@@ -32,6 +32,8 @@ const MintPage = () => {
                         level={user.gas_rate_lvl}
                         image={user.image_path || 'https://avatars.githubusercontent.com/u/84640980?v=4'}
                         gemInSecond={user.mint_gxp_per_second}
+                        gxpEarn={user.gxp_earn}
+                        nextLvlGxp={user.next_lvl_gxp}
                     />
 
                     {/* Gif */}

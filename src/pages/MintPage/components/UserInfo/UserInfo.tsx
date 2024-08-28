@@ -1,6 +1,6 @@
 import { TablerCopy, TablerInfoCircle } from '@/components/icon';
 import { Flex } from '@/components/ui/Flex';
-import { Avatar, Modal, Space, Toast } from 'antd-mobile';
+import { Avatar, Modal, ProgressBar, Space, Toast } from 'antd-mobile';
 import { useState } from 'react';
 import { useCopyToClipboard } from 'usehooks-ts';
 import styles from './UserInfo.module.scss';
@@ -10,6 +10,8 @@ type UserInfoProps = {
     level: number;
     image: string;
     gemInSecond: number;
+    gxpEarn: string;
+    nextLvlGxp: number;
 };
 
 const ModalContent = () => {
@@ -25,7 +27,7 @@ const ModalContent = () => {
 };
 
 const UserInfo = (props: UserInfoProps) => {
-    const { level, image, gemInSecond } = props;
+    const { level, image, gemInSecond, gxpEarn, nextLvlGxp } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [, copy] = useCopyToClipboard();
 
@@ -57,6 +59,12 @@ const UserInfo = (props: UserInfoProps) => {
                         <TablerCopy className={styles.icon} onClick={handleCopy} />
                     </Flex>
                     <div>Level {level}</div>
+                    <div className={styles.level}>
+                        <ProgressBar percent={(Number(gxpEarn) / Number(nextLvlGxp)) * 100} />
+                        <div className={styles.number}>
+                            {gxpEarn} / {nextLvlGxp}
+                        </div>
+                    </div>
                 </div>
             </Flex>
 

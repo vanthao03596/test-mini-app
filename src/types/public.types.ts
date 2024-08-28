@@ -22,6 +22,8 @@ export type User = {
     last_claim_gxp: string | null;
     gas_price: number;
     mint_gxp_per_second: number;
+    next_lvl_gxp: number;
+    gxp_earn: string;
 };
 
 export type CursorBased = {
