@@ -34,7 +34,7 @@ const TrendingBox = () => {
                                         fill='outline'
                                     >
                                         {Number(item.coin.percent_change_24h) > 0 && '+'}
-                                        {Number(item.coin.percent_change_24h).toFixed(2)}
+                                        {Number(item.coin.percent_change_24h).toFixed(2) + '%'}
                                     </Tag>
                                     <Flex align='center'>
                                         <TablerChevronRight />
