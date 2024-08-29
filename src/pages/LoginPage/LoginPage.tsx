@@ -60,7 +60,7 @@ const LoginPage = () => {
                 }
             >
                 <Form.Item
-                    label='Your Metamask Wallet Address'
+                    label='Your Web3 Wallet Address'
                     name='address'
                     rules={[
                         {
