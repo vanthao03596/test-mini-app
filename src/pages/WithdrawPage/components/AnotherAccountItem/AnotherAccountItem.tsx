@@ -108,7 +108,7 @@ const AnotherAccountItem = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder='USDT' clearable />
+                            <Input placeholder='USDC' clearable />
                         </Form.Item>
 
                         {/* Address */}

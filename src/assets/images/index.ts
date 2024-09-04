@@ -1,4 +1,4 @@
-import USDT from './usdt.png';
+import USDT from './usd-coin-usdc-logo.png';
 import logoWithText from './gemx-logo-with-text.png';
 import facebook from './facebook.png';
 import twitter from './twitter.png';

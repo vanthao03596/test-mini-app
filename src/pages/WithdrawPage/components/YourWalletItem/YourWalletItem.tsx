@@ -103,7 +103,7 @@ const YourWalletItem = () => {
                                 },
                             ]}
                         >
-                            <Input placeholder='USDT' clearable />
+                            <Input placeholder='USDC' clearable />
                         </Form.Item>
 
                         {/* <Form.Item>
