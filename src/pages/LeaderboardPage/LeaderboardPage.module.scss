@@ -1,18 +1,22 @@
 .container {
     padding: var(--custom-page-padding);
 
-    .list {
-        .icon {
-            font-size: 2.25rem;
-        }
+    .tabItem {
+        margin-top: 0.5rem;
 
-        .normalRank {
-            width: 2.25rem;
-            height: 2.25rem;
-        }
+        .list {
+            .icon {
+                font-size: 2.25rem;
+            }
 
-        .amount {
-            color: var(--adm-color-primary);
+            .normalRank {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+
+            .amount {
+                color: var(--adm-color-primary);
+            }
         }
     }
 }

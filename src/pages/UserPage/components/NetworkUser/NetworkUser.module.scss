@@ -5,8 +5,12 @@
         border-radius: 0.5rem;
 
         .listItem {
-            .vip {
+            .address {
                 color: var(--adm-color-primary);
+            }
+
+            .level {
+                font-size: 0.875rem;
             }
         }
     }

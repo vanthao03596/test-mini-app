@@ -12,10 +12,11 @@ const NetworkUser = () => {
             <CustomList className={styles.list}>
                 <List.Item
                     prefix={<Avatar src={user?.image_path || ''} />}
-                    description={`Level ${user?.gas_rate_lvl}`}
+                    description={user?.email}
                     className={styles.listItem}
                 >
-                    <Ellipsis content={truncateEthAddress(user?.address)} />
+                    <Ellipsis content={truncateEthAddress(user?.address)} className={styles.address} />
+                    <div className={styles.level}>Level {user?.gas_rate_lvl}</div>
                 </List.Item>
             </CustomList>
         </div>
