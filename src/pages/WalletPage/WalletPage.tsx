@@ -65,8 +65,8 @@ const WalletPage = () => {
         },
         {
             image: IMAGES.usdt,
-            name: 'USDT',
-            description: 'USDT',
+            name: 'USDC',
+            description: 'USDC',
             amount: dataBalances?.usdt,
             link: '/wallet/history?unit=usdt',
         },

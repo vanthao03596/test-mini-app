@@ -80,7 +80,7 @@ const WalletHistoryPage = () => {
     return (
         <div className={styles.container}>
             {/* Title */}
-            <Title text={unit ? unit + ' balance' : 'history'} />
+            <Title text={unit ? (unit == 'usdt' ? 'usdc' : unit) + ' balance' : 'history'} />
 
             {/* Balance */}
             {unit && (
@@ -112,7 +112,7 @@ const WalletHistoryPage = () => {
                                         {Number(item.amount) > 0 && '+'}
                                         {item.amount}
                                     </div>
-                                    <div className={styles.unit}>{item.wallet.type}</div>
+                                    <div className={styles.unit}>{item.wallet.type == 'usdt' ? 'USDC' : item.wallet.type == 'usdt'}</div>
                                 </Flex>
                             }
                         >
