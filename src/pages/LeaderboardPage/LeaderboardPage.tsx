@@ -31,22 +31,33 @@ type LeaderboardResponse = {
     current_rank: number;
 };
 
+type Unit = 'GXP' | 'TOKEN' | 'REF';
+
+type TabItem = {
+    key: string;
+    title: string;
+    data: LeaderboardResponse | undefined;
+    unit: Unit;
+};
+
 type TabItemProps = LeaderboardResponse & {
-    unit: string;
+    unit: Unit;
 };
 
 const TabItem = (props: TabItemProps) => {
     const { current_rank, leader_boards, unit } = props;
+    const photoUrl = Telegram.WebApp.initDataUnsafe.user?.photo_url;
 
     return (
-        <div className={styles.tabItem}>
+        <>
+            {unit === 'GXP' && <Title text='This month' type='subtitle' />}
             {Number(current_rank) > 0 && <Title text={`Your rank: #${current_rank}`} type='gold' />}
 
             <CustomList className={styles.list}>
                 {leader_boards.map((item, index) => (
                     <List.Item
-                        key={item.user_id}
-                        prefix={<Avatar src={item.user.image_path || ''} />}
+                        key={index}
+                        prefix={<Avatar src={photoUrl || ''} />}
                         description={truncateEthAddress(item.user.address)}
                         extra={
                             <Flex align='center'>
@@ -71,7 +82,7 @@ const TabItem = (props: TabItemProps) => {
                     </List.Item>
                 ))}
             </CustomList>
-        </div>
+        </>
     );
 };
 
@@ -105,7 +116,7 @@ const LeaderboardPage = () => {
         ],
     });
 
-    const tabItems = [
+    const tabItems: TabItem[] = [
         {
             key: 'gxp',
             title: 'GXP',
@@ -129,7 +140,7 @@ const LeaderboardPage = () => {
     return (
         <div className={styles.container}>
             <Title text='Leaderboard' />
-            <Title text='This month' type='subtitle' />
+
             <Tabs>
                 {tabItems.map((item) => (
                     <Tabs.Tab title={item.title} key={item.key}>
