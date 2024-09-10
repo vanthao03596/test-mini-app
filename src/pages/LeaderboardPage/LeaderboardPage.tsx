@@ -104,14 +104,14 @@ const LeaderboardPage = () => {
                 queryKey: ['get-leaderboard-gxp'],
                 queryFn: () => getLeaderboard(),
             },
-            {
-                queryKey: ['get-leaderboard-gemx-token'],
-                queryFn: () => getLeaderboard('gp'),
-            },
-            {
-                queryKey: ['get-leaderboard-reference'],
-                queryFn: () => getLeaderboard('ref'),
-            },
+            // {
+            //     queryKey: ['get-leaderboard-gemx-token'],
+            //     queryFn: () => getLeaderboard('gp'),
+            // },
+            // {
+            //     queryKey: ['get-leaderboard-reference'],
+            //     queryFn: () => getLeaderboard('ref'),
+            // },
         ],
     });
 
@@ -122,18 +122,18 @@ const LeaderboardPage = () => {
             data: results[0].data,
             unit: 'GXP',
         },
-        {
-            key: 'gemx-token',
-            title: 'TOKEN',
-            data: results[1].data,
-            unit: 'TOKEN',
-        },
-        {
-            key: 'reference',
-            title: 'REF',
-            data: results[2].data,
-            unit: 'REF',
-        },
+        // {
+        //     key: 'gemx-token',
+        //     title: 'TOKEN',
+        //     data: results[1].data,
+        //     unit: 'TOKEN',
+        // },
+        // {
+        //     key: 'reference',
+        //     title: 'REF',
+        //     data: results[2].data,
+        //     unit: 'REF',
+        // },
     ];
 
     return (
