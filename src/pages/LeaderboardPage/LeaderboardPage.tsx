@@ -46,7 +46,6 @@ type TabItemProps = LeaderboardResponse & {
 
 const TabItem = (props: TabItemProps) => {
     const { current_rank, leader_boards, unit } = props;
-    const photoUrl = Telegram.WebApp.initDataUnsafe.user?.photo_url;
 
     return (
         <>
@@ -57,7 +56,7 @@ const TabItem = (props: TabItemProps) => {
                 {leader_boards.map((item, index) => (
                     <List.Item
                         key={index}
-                        prefix={<Avatar src={photoUrl || ''} />}
+                        prefix={<Avatar src={item.user.image_path || ''} />}
                         description={truncateEthAddress(item.user.address)}
                         extra={
                             <Flex align='center'>
