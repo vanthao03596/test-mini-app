@@ -31,14 +31,16 @@ type LeaderboardResponse = {
     current_rank: number;
 };
 
-type TabItemProps = LeaderboardResponse;
+type TabItemProps = LeaderboardResponse & {
+    unit: string;
+};
 
 const TabItem = (props: TabItemProps) => {
-    const { current_rank, leader_boards } = props;
+    const { current_rank, leader_boards, unit } = props;
 
     return (
         <div className={styles.tabItem}>
-            <Title text={`Your rank: #${current_rank}`} type='gold' />
+            {Number(current_rank) > 0 && <Title text={`Your rank: #${current_rank}`} type='gold' />}
 
             <CustomList className={styles.list}>
                 {leader_boards.map((item, index) => (
@@ -63,7 +65,7 @@ const TabItem = (props: TabItemProps) => {
                         }
                     >
                         <Ellipsis
-                            content={`${Number(item.total_mint).toFixed(4)} GXP`}
+                            content={`${Number(item.total_mint).toFixed(unit === 'REF' ? 0 : 4)} ${unit}`}
                             className={[0, 1, 2].includes(index) ? styles.amount : ''}
                         />
                     </List.Item>
@@ -74,8 +76,15 @@ const TabItem = (props: TabItemProps) => {
 };
 
 const LeaderboardPage = () => {
-    const getLeaderboard = async () => {
-        const res = await axiosAuth.get<LeaderboardResponse>('/leader-boards');
+    const getLeaderboard = async (type?: 'gp' | 'ref') => {
+        // Create url
+        let url = '/leader-boards';
+        if (type) {
+            url += `?type=${type}`;
+        }
+
+        // Get
+        const res = await axiosAuth.get<LeaderboardResponse>(url);
         return res.data;
     };
 
@@ -83,15 +92,15 @@ const LeaderboardPage = () => {
         queries: [
             {
                 queryKey: ['get-leaderboard-gxp'],
-                queryFn: getLeaderboard,
+                queryFn: () => getLeaderboard(),
             },
             {
                 queryKey: ['get-leaderboard-gemx-token'],
-                queryFn: getLeaderboard,
+                queryFn: () => getLeaderboard('gp'),
             },
             {
                 queryKey: ['get-leaderboard-reference'],
-                queryFn: getLeaderboard,
+                queryFn: () => getLeaderboard('ref'),
             },
         ],
     });
@@ -101,16 +110,19 @@ const LeaderboardPage = () => {
             key: 'gxp',
             title: 'GXP',
             data: results[0].data,
+            unit: 'GXP',
         },
         {
             key: 'gemx-token',
-            title: 'Gemx Token',
+            title: 'TOKEN',
             data: results[1].data,
+            unit: 'TOKEN',
         },
         {
             key: 'reference',
-            title: 'Reference',
+            title: 'REF',
             data: results[2].data,
+            unit: 'REF',
         },
     ];
 
@@ -121,7 +133,7 @@ const LeaderboardPage = () => {
             <Tabs>
                 {tabItems.map((item) => (
                     <Tabs.Tab title={item.title} key={item.key}>
-                        {item.data && <TabItem {...item.data} />}
+                        {item.data && <TabItem {...item.data} unit={item.unit} />}
                     </Tabs.Tab>
                 ))}
             </Tabs>
