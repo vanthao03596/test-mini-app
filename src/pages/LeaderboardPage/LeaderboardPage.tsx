@@ -96,24 +96,35 @@ const LeaderboardPage = () => {
         ],
     });
 
+    const tabItems = [
+        {
+            key: 'gxp',
+            title: 'GXP',
+            data: results[0].data,
+        },
+        {
+            key: 'gemx-token',
+            title: 'Gemx Token',
+            data: results[1].data,
+        },
+        {
+            key: 'reference',
+            title: 'Reference',
+            data: results[2].data,
+        },
+    ];
+
     return (
         <div className={styles.container}>
             <Title text='Leaderboard' />
             <Title text='This month' type='subtitle' />
-
-            {results && (
-                <Tabs>
-                    <Tabs.Tab title='GXP' key='gxp'>
-                        {results[0].data && <TabItem {...results[0].data} />}
+            <Tabs>
+                {tabItems.map((item) => (
+                    <Tabs.Tab title={item.title} key={item.key}>
+                        {item.data && <TabItem {...item.data} />}
                     </Tabs.Tab>
-                    <Tabs.Tab title='Gemx Token' key='gemx-token'>
-                        {results[1].data && <TabItem {...results[1].data} />}
-                    </Tabs.Tab>
-                    <Tabs.Tab title='Reference' key='reference'>
-                        {results[2].data && <TabItem {...results[2].data} />}
-                    </Tabs.Tab>
-                </Tabs>
-            )}
+                ))}
+            </Tabs>
         </div>
     );
 };
