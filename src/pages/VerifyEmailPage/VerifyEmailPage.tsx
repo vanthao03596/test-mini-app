@@ -79,8 +79,8 @@ const VerifyEmailPage = () => {
                 icon: 'success',
                 content: <div className={styles.successModal}>Verify email success</div>,
             });
-            await queryClient.invalidateQueries({queryKey: ['get-user-info']})
-            navigate('/wallet/withdraw');
+            await queryClient.invalidateQueries({ queryKey: ['get-user-info'] });
+            navigate('/user');
         },
         onError: (error) => {
             if (error instanceof AxiosError) {
@@ -144,7 +144,7 @@ const VerifyEmailPage = () => {
     useEffect(() => {
         if (hasEmail) {
             setIsSent(true);
-            if(!user?.email_verified_at) {
+            if (!user?.email_verified_at) {
                 handleSendCode();
             }
         }
@@ -176,7 +176,14 @@ const VerifyEmailPage = () => {
                         </Flex>
                     </Flex>
                 ) : (
-                    <Button color='primary' loading={codeMutation.isPending} disabled={codeMutation.isPending} fill='solid' block onClick={handleSendCode}>
+                    <Button
+                        color='primary'
+                        loading={codeMutation.isPending}
+                        disabled={codeMutation.isPending}
+                        fill='solid'
+                        block
+                        onClick={handleSendCode}
+                    >
                         Send code
                     </Button>
                 )}
@@ -210,7 +217,14 @@ const VerifyEmailPage = () => {
                     </Flex>
 
                     {/* Submit */}
-                    <Button color='primary' loading={verifyMutation.isPending} disabled={verifyMutation.isPending} fill='solid' block onClick={handleVerifyCode}>
+                    <Button
+                        color='primary'
+                        loading={verifyMutation.isPending}
+                        disabled={verifyMutation.isPending}
+                        fill='solid'
+                        block
+                        onClick={handleVerifyCode}
+                    >
                         Submit
                     </Button>
                 </div>
