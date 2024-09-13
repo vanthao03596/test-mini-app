@@ -1,34 +1,70 @@
+import { TablerChevronLeft, TablerChevronRight } from '@/components/icon';
 import { CustomCard } from '@/components/ui/CustomCard';
+import { Flex } from '@/components/ui/Flex';
 import useQuiz from '@/hooks/useQuiz';
+import useQuizSession from '@/hooks/useQuizSession';
 import axiosAuth from '@/lib/axios';
 import { useMutation } from '@tanstack/react-query';
-import { Button, CheckList, ProgressBar, Space, Toast } from 'antd-mobile';
+import { Button, CheckList, ProgressBar, ResultPage, Space, Toast } from 'antd-mobile';
 import { CheckListValue } from 'antd-mobile/es/components/check-list';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './QuizDetail.module.scss';
-import { Flex } from '@/components/ui/Flex';
-import { TablerChevronLeft, TablerChevronRight } from '@/components/icon';
 
 type AnswerType = {
-    questionId: number;
+    question_id: number;
     choose: number;
+};
+
+type QuizSubmitResponse = {
+    session: {
+        id: number;
+        quizz_id: number;
+        user_id: number;
+        start_time: Date;
+        end_time: Date;
+        duration: number;
+        total_correct: number;
+        created_at: Date;
+        updated_at: Date;
+        answers: AnswerSubmit[];
+    };
+};
+
+type AnswerSubmit = {
+    id: number;
+    quiz_session_id: number;
+    question_id: number;
+    answer: string;
+    is_correct: number;
+    created_at: Date;
+    updated_at: Date;
 };
 
 const QuizDetail = () => {
     const { data } = useQuiz();
     const [index, setIndex] = useState<number>(0);
+    const [isDone, setIsDone] = useState<boolean>(false);
+    const [result, setResult] = useState<QuizSubmitResponse['session']>();
     const [answers, setAnswers] = useState<AnswerType[]>([]);
+    const { data: sessionData } = useQuizSession();
+    const navigate = useNavigate();
 
     const submitQuiz = async () => {
-        const res = await axiosAuth.post('');
+        const res = await axiosAuth.post<QuizSubmitResponse>(`/quizz-session/${sessionData?.session?.id}/complete`, {
+            answers: answers,
+        });
         return res.data;
     };
 
     const quizMutation = useMutation({
         mutationKey: ['submit-quiz'],
         mutationFn: submitQuiz,
-        onSuccess: () => {},
+        onSuccess: (data) => {
+            setIsDone(true);
+            setResult(data.session);
+        },
         onError: (error) => {
             if (error instanceof AxiosError) {
                 Toast.show({
@@ -44,7 +80,7 @@ const QuizDetail = () => {
     const currentQuiz = quiz[index];
 
     const getCurrentValue = () => {
-        const item = answers.find((item) => item.questionId === currentQuiz.id);
+        const item = answers.find((item) => item.question_id === currentQuiz.id);
         if (item) return [item.choose];
         else return [];
     };
@@ -52,27 +88,27 @@ const QuizDetail = () => {
     const handleCheckListChange = (val: CheckListValue[]) => {
         const checked = val.length > 0;
         const value = val[0] as number;
-        const hasChoose = answers.some((item) => item.questionId === currentQuiz.id);
+        const hasChoose = answers.some((item) => item.question_id === currentQuiz.id);
 
         if (hasChoose) {
             if (checked) {
                 const newAnswers = answers.map((item) => {
-                    if (item.questionId === currentQuiz.id) {
+                    if (item.question_id === currentQuiz.id) {
                         return {
-                            questionId: item.questionId,
+                            question_id: item.question_id,
                             choose: value,
                         };
                     } else return item;
                 });
                 setAnswers(newAnswers);
             } else {
-                setAnswers(answers.filter((item) => item.questionId !== currentQuiz.id));
+                setAnswers(answers.filter((item) => item.question_id !== currentQuiz.id));
             }
         } else {
             setAnswers((prev) => [
                 ...prev,
                 {
-                    questionId: currentQuiz.id,
+                    question_id: currentQuiz.id,
                     choose: value,
                 },
             ]);
@@ -86,6 +122,24 @@ const QuizDetail = () => {
     const handleSubmit = () => {
         quizMutation.mutate();
     };
+
+    if (isDone) {
+        return (
+            <ResultPage
+                status='success'
+                title={`Correct: ${result?.total_correct}`}
+                description={
+                    <div className={styles.resultDescription}>
+                        Congratulations! You've successfully completed the quiz. Here are your results.
+                    </div>
+                }
+                secondaryButtonText='Back to home'
+                onSecondaryButtonClick={() => navigate('/')}
+                primaryButtonText='Do others quiz'
+                onPrimaryButtonClick={() => navigate('/earn/quiz')}
+            />
+        );
+    }
 
     return (
         <div className={styles.container}>

@@ -1,4 +1,4 @@
-import { Button, Toast } from 'antd-mobile';
+import { Button, Modal, Toast } from 'antd-mobile';
 import styles from './QuizSummary.module.scss';
 import { CustomCard } from '@/components/ui/CustomCard';
 import useQuiz from '@/hooks/useQuiz';
@@ -71,7 +71,20 @@ const QuizSummary = () => {
                         </div>
                     </Flex>
 
-                    <Button block fill='solid' color='primary' className={styles.btn} onClick={handleClick}>
+                    <Button
+                        block
+                        fill='solid'
+                        color='primary'
+                        className={styles.btn}
+                        onClick={() => {
+                            Modal.confirm({
+                                title: 'Pay and join quiz?',
+                                confirmText: 'OK',
+                                cancelText: 'Cancel',
+                                onConfirm: handleClick,
+                            });
+                        }}
+                    >
                         Start (-{quiz.price_join} {quiz.type_reward})
                     </Button>
                 </div>
