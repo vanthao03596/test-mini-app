@@ -4,11 +4,11 @@ import { Flex } from '@/components/ui/Flex';
 import { DATE_FORMAT_TYPE } from '@/constants/public';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
-import { Quiz } from '../../QuizPage.types';
+import { QuizList } from '../../QuizPage.types';
 import styles from './QuizCard.module.scss';
 import { Space } from 'antd-mobile';
 
-type QuizCardProps = Quiz;
+type QuizCardProps = QuizList;
 
 const QuizCard = (props: QuizCardProps) => {
     const {
@@ -16,6 +16,7 @@ const QuizCard = (props: QuizCardProps) => {
         research: { img_path },
         title,
         max_user_join,
+        price_join,
         type_reward,
         id,
     } = props;
@@ -49,7 +50,7 @@ const QuizCard = (props: QuizCardProps) => {
                 <Flex align='center'>
                     <TablerCoin className={styles.marginRight} />
                     <div>
-                        Price join: {max_user_join} {type_reward}
+                        Price join: {price_join} {type_reward}
                     </div>
                 </Flex>
 
@@ -58,9 +59,9 @@ const QuizCard = (props: QuizCardProps) => {
                     <div className={styles.state}>
                         {dayjs.utc().isBefore(dayjs.utc(start_date)) ? 'Upcoming' : 'Started'}
                     </div>
-                    <Link to={`/quiz/${id}`} className={styles.more}>
+                    <Link to={`/earn/quiz/${id}`} className={styles.more}>
                         <Space align='center'>
-                            <Link to={`/earn/quiz/${id}`}>Join now</Link>
+                            <div>Join now</div>
                             <Flex align='center'>
                                 <TablerExternalLink />
                             </Flex>

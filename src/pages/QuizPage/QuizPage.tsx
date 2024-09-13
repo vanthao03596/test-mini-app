@@ -5,17 +5,16 @@ import { useState } from 'react';
 import { InfiniteScrollContent } from './components/InfiniteScrollContent';
 import { QuizCard } from './components/QuizCard';
 import styles from './QuizPage.module.scss';
-import { QuizResponse } from './QuizPage.types';
+import { QuizListResponse } from './QuizPage.types';
 import { Flex } from '@/components/ui/Flex';
 import { TablerSearch } from '@/components/icon';
 
 const BASE_URL = '/quizz';
 
 const QuizPage = () => {
-    const [data, setData] = useState<QuizResponse['data']>([]);
-    console.log('🚀 ~ data: ', data)
+    const [data, setData] = useState<QuizListResponse['data']>([]);
     const [hasMore, setHasMore] = useState<boolean>(true);
-    const [nextUrl, setNextUrl] = useState<QuizResponse['next_page_url']>(BASE_URL);
+    const [nextUrl, setNextUrl] = useState<QuizListResponse['next_page_url']>(BASE_URL);
     const [search, setSearch] = useState<string>('');
 
     const getQuiz = async () => {
@@ -28,7 +27,7 @@ const QuizPage = () => {
         }
 
         // Fetch
-        const res = await axiosAuth.get<QuizResponse>(url);
+        const res = await axiosAuth.get<QuizListResponse>(url);
         return res.data;
     };
 

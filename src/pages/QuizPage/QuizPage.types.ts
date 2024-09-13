@@ -1,7 +1,7 @@
 import { CursorBased } from '@/types/public.types';
 import { Research } from '../ResearchPage/ResearchPage.types';
 
-export type Quiz = {
+export type QuizList = {
     id: number;
     research_id: number;
     title: string;
@@ -15,6 +15,6 @@ export type Quiz = {
     research: Research;
 };
 
-export type QuizResponse = CursorBased & {
-    data: Quiz[];
+export type QuizListResponse = CursorBased & {
+    data: QuizList[];
 };

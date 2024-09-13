@@ -3,6 +3,7 @@ import { EarnPage } from '@/pages/EarnPage';
 import { LeaderboardPage } from '@/pages/LeaderboardPage';
 import { QuestDetailPage } from '@/pages/QuestDetailPage';
 import { QuestPage } from '@/pages/QuestPage';
+import { QuizDetailPage } from '@/pages/QuizDetailPage';
 import QuizPage from '@/pages/QuizPage/QuizPage';
 import { SocialTaskPage } from '@/pages/SocialTaskPage';
 import { RouteObject } from 'react-router-dom';
@@ -31,6 +32,10 @@ const earnRouter: RouteObject[] = [
     {
         path: 'earn/quiz',
         element: <QuizPage />,
+    },
+    {
+        path: 'earn/quiz/:quizId',
+        element: <QuizDetailPage />,
     },
     {
         path: 'booster',

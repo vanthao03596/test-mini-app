@@ -1,0 +1,30 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .wrapper {
+        > * + * {
+            margin-top: 0.25rem;
+        }
+
+        .marginRight {
+            margin-right: 0.5rem;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            color: var(--adm-color-primary);
+        }
+
+        .description {
+            color: var(--adm-color-weak);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            margin-top: 1rem;
+        }
+    }
+}
