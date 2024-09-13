@@ -28,11 +28,11 @@ type QuizSubmitResponse = {
         total_correct: number;
         created_at: Date;
         updated_at: Date;
-        answers: AnswerSubmit[];
+        answers: QuizSubmitAnswer[];
     };
 };
 
-type AnswerSubmit = {
+type QuizSubmitAnswer = {
     id: number;
     quiz_session_id: number;
     question_id: number;

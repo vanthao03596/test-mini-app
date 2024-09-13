@@ -58,8 +58,8 @@ const WalletPage = () => {
         // },
         {
             image: '/gemx-crypto.png',
-            name: 'GEMX',
-            description: 'GEMX TOKEN',
+            name: 'GXN',
+            description: 'GXN',
             amount: dataBalances?.gemx,
             link: '/wallet/history?unit=gemx',
         },
