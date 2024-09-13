@@ -1,0 +1,38 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .search {
+        border: 1px solid var(--adm-color-primary);
+        border-radius: 0.5rem;
+        padding: 12px;
+        background: var(--adm-color-background);
+        display: flex;
+        align-items: center;
+        position: sticky;
+        z-index: 999999;
+        top: 1px;
+        left: 0;
+
+        .left {
+            flex: auto;
+
+            .icon {
+                color: var(--adm-color-primary);
+            }
+        }
+
+        .right {
+            margin-left: 0.5rem;
+            flex: none;
+            padding-left: var(--padding-left);
+        }
+    }
+
+    .list {
+        margin-top: 1rem;
+
+        & > * + * {
+            margin-top: 1rem;
+        }
+    }
+}

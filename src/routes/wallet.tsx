@@ -1,5 +1,4 @@
 import { ComingSoonPage } from '@/pages/ComingSoonPage';
-import { VerifyEmailPage } from '@/pages/VerifyEmailPage';
 import { WalletHistoryPage } from '@/pages/WalletHistoryPage';
 import { WalletPage } from '@/pages/WalletPage';
 import { WithdrawPage } from '@/pages/WithdrawPage';
@@ -17,9 +16,7 @@ const walletRouter: RouteObject[] = [
     {
         path: 'wallet/withdraw',
         element: <WithdrawPage />,
-        // element: <ComingSoonPage />,
     },
-    { path: '/verify-email', element: <VerifyEmailPage /> },
     {
         path: 'wallet/receive',
         element: <ComingSoonPage />,
