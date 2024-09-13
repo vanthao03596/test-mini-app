@@ -3,7 +3,7 @@ import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { AutoCenter, Button, Skeleton, Space, Toast } from 'antd-mobile';
+import { AutoCenter, Button, FloatingBubble, Skeleton, Space, Toast } from 'antd-mobile';
 import { AxiosError } from 'axios';
 import DOMPurify from 'dompurify';
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useCountdown, useIntersectionObserver } from 'usehooks-ts';
 import styles from './ResearchDetailPage.module.scss';
 import { OtherResearch } from './components/OtherResearch';
+import { QuizDetailResponse } from '../QuizDetailPage/QuizDetailPage.types';
 
 type ResearchDetail = {
     content: string;
@@ -100,6 +101,17 @@ const ResearchDetailPage = () => {
         },
     });
 
+    // Get quiz
+    const getQuizByResearch = async () => {
+        const res = await axiosAuth.get<QuizDetailResponse>(`researchs/${researchId}/quizz`);
+        return res.data;
+    };
+
+    const { data: quizData } = useQuery({
+        queryKey: ['get-quiz-by-research', researchId],
+        queryFn: getQuizByResearch,
+    });
+
     const detail = data?.research;
     const hasRead = researchReadData?.researchs.some((item) => item.id === Number(researchId));
 
@@ -109,6 +121,10 @@ const ResearchDetailPage = () => {
 
     const handleBack = () => {
         navigate(-1);
+    };
+
+    const handleDoQuiz = (quizId: number) => {
+        navigate(`/earn/quiz/${quizId}`);
     };
 
     useEffect(() => {
@@ -185,7 +201,6 @@ const ResearchDetailPage = () => {
             )}
 
             {/* Claim reward */}
-
             <div ref={ref} className={styles.claim}>
                 {!hasRead ? (
                     <Button
@@ -204,6 +219,20 @@ const ResearchDetailPage = () => {
             </div>
 
             <OtherResearch currentId={data?.research.id} />
+
+            {quizData && (
+                <FloatingBubble
+                    style={{
+                        '--initial-position-bottom': '72px',
+                        '--initial-position-right': '16px',
+                        '--edge-distance': '24px',
+                        '--background': '#239b7b',
+                    }}
+                    onClick={() => handleDoQuiz(quizData.quizz.id)}
+                >
+                    Quiz
+                </FloatingBubble>
+            )}
         </div>
     );
 };
