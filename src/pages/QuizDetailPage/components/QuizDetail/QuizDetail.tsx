@@ -4,12 +4,12 @@ import { Flex } from '@/components/ui/Flex';
 import useQuiz from '@/hooks/useQuiz';
 import useQuizSession from '@/hooks/useQuizSession';
 import axiosAuth from '@/lib/axios';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button, CheckList, ProgressBar, ResultPage, Space, Toast } from 'antd-mobile';
 import { CheckListValue } from 'antd-mobile/es/components/check-list';
 import { AxiosError } from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './QuizDetail.module.scss';
 
 type AnswerType = {
@@ -42,14 +42,22 @@ type QuizSubmitAnswer = {
     updated_at: Date;
 };
 
-const QuizDetail = () => {
+type QuizDetailProps = {
+    isDone: boolean;
+    setIsDone: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const QuizDetail = (props: QuizDetailProps) => {
+    const { isDone, setIsDone } = props;
     const { data } = useQuiz();
     const [index, setIndex] = useState<number>(0);
-    const [isDone, setIsDone] = useState<boolean>(false);
+    const { quizId } = useParams();
+
     const [result, setResult] = useState<QuizSubmitResponse['session']>();
     const [answers, setAnswers] = useState<AnswerType[]>([]);
     const { data: sessionData } = useQuizSession();
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     const submitQuiz = async () => {
         const res = await axiosAuth.post<QuizSubmitResponse>(`/quizz-session/${sessionData?.session?.id}/complete`, {
@@ -64,6 +72,7 @@ const QuizDetail = () => {
         onSuccess: (data) => {
             setIsDone(true);
             setResult(data.session);
+            queryClient.invalidateQueries({ queryKey: ['get-quiz-session', quizId] });
         },
         onError: (error) => {
             if (error instanceof AxiosError) {

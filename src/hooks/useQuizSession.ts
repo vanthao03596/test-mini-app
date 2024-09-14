@@ -12,8 +12,9 @@ const useQuizSession = () => {
     };
 
     return useQuery({
-        queryKey: ['get-quiz-session'],
+        queryKey: ['get-quiz-session', quizId],
         queryFn: getSession,
+        staleTime: 0,
     });
 };
 
