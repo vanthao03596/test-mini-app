@@ -34,6 +34,7 @@ const MintPage = () => {
                         gemInSecond={user.mint_gxp_per_second}
                         gxpEarn={user.gxp_earn}
                         nextLvlGxp={user.next_lvl_gxp}
+                        totalRead={user.total_read}
                     />
 
                     {/* Gif */}

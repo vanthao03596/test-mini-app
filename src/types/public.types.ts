@@ -24,6 +24,7 @@ export type User = {
     mint_gxp_per_second: number;
     next_lvl_gxp: number;
     gxp_earn: string;
+    total_read: number;
 };
 
 export type CursorBased = {
