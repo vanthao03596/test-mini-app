@@ -78,8 +78,10 @@ const BoosterPlusPage = () => {
                 icon: 'success',
                 content: 'Transaction Processing',
             });
-            queryClient.invalidateQueries({ queryKey: ['get-membership'] });
-            queryClient.invalidateQueries({ queryKey: ['get-user-info'] });
+            setTimeout(() => {
+                queryClient.invalidateQueries({ queryKey: ['get-membership'] });
+                queryClient.invalidateQueries({ queryKey: ['get-user-info'] });
+            }, 2000);
         },
         onError: (error) => {
             if (isAxiosError(error)) {
