@@ -1,4 +1,10 @@
-import { TablerArrowBarToDown, TablerArrowBarUp, TablerChevronRight, TablerHistory } from '@/components/icon';
+import {
+    TablerArrowBarToDown,
+    TablerArrowBarUp,
+    TablerChevronRight,
+    TablerHistory,
+    TablerPlus,
+} from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
@@ -28,6 +34,11 @@ const actions = [
         text: 'History',
         link: '/wallet/history',
     },
+    {
+        icon: <TablerPlus className={styles.svg} />,
+        text: 'Booster Plus',
+        link: '/wallet/booster-plus',
+    },
 ];
 
 const WalletPage = () => {
@@ -49,13 +60,6 @@ const WalletPage = () => {
             amount: dataBalances?.gxp,
             link: '/wallet/history?unit=gxp',
         },
-        // {
-        //     image: '/gemx-crypto.png',
-        //     name: 'GPAY',
-        //     description: 'GEMX PAY',
-        //     amount: dataBalances?.gp,
-        //     link: '/wallet/history?unit=gp',
-        // },
         {
             image: '/gemx-crypto.png',
             name: 'GXN',

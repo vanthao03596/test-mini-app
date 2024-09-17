@@ -7,6 +7,9 @@ import tiktok from './tiktok.png';
 import website from './website.png';
 import cryptoWallet from './crypto-wallet.png';
 import money from './money.png';
+import bronzeMedal from './bronze-medal.png';
+import silverMedal from './silver-medal.png';
+import goldMedal from './gold-medal.png';
 
 const IMAGES = {
     usdt: USDT,
@@ -20,6 +23,11 @@ const IMAGES = {
     },
     cryptoWallet: cryptoWallet,
     money: money,
+    medal: {
+        bronze: bronzeMedal,
+        silver: silverMedal,
+        gold: goldMedal,
+    },
 };
 
 export default IMAGES;

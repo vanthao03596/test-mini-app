@@ -1,3 +1,4 @@
+import { BoosterPlusPage } from '@/pages/BoosterPlusPage';
 import { ComingSoonPage } from '@/pages/ComingSoonPage';
 import { WalletHistoryPage } from '@/pages/WalletHistoryPage';
 import { WalletPage } from '@/pages/WalletPage';
@@ -20,6 +21,10 @@ const walletRouter: RouteObject[] = [
     {
         path: 'wallet/receive',
         element: <ComingSoonPage />,
+    },
+    {
+        path: 'wallet/booster-plus',
+        element: <BoosterPlusPage />,
     },
 ];
 

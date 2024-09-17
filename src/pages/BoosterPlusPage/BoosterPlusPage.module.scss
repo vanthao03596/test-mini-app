@@ -1,0 +1,15 @@
+.container {
+    padding: var(--custom-page-padding);
+
+    .action {
+        color: var(--adm-color-primary);
+    }
+}
+
+.modalContent {
+    text-align: center;
+    
+    .colorPrimary {
+        color: var(--adm-color-primary);
+    }
+}
