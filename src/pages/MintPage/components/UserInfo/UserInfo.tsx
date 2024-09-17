@@ -76,7 +76,7 @@ const UserInfo = (props: UserInfoProps) => {
     const [, copy] = useCopyToClipboard();
 
     const telegramUsername = Telegram.WebApp.initDataUnsafe.user?.id;
-    const readItem = readConditions.find((item) => item.level === totalRead + 1);
+    const readItem = readConditions.find((item) => item.level === level + 1);
 
     const handleCopy = () => {
         if (telegramUsername) {
