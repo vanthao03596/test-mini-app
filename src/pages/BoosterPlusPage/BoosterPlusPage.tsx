@@ -92,7 +92,9 @@ const BoosterPlusPage = () => {
     });
 
     const handlePurchase = (type: PackageType) => {
-        packageMutation.mutate(type);
+        if (!packageMutation.isPending) {
+            packageMutation.mutate(type);
+        }
     };
 
     if (!membershipData) return;
