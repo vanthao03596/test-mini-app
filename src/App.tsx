@@ -1,6 +1,7 @@
 import '@/lib/dayjs';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { SpinLoading } from 'antd-mobile';
+import { ConfigProvider, SpinLoading } from 'antd-mobile';
+import enUS from 'antd-mobile/es/locales/en-US';
 import { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import './App.module.scss';
@@ -62,7 +63,9 @@ function App() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
+            <ConfigProvider locale={enUS}>
+                <RouterProvider router={router} />
+            </ConfigProvider>
         </QueryClientProvider>
     );
 }

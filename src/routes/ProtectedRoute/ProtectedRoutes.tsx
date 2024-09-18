@@ -1,7 +1,7 @@
+import axiosAuth from '@/lib/axios';
+import { useQuery } from '@tanstack/react-query';
 import { Navigate, Outlet } from 'react-router-dom';
 import { CustomTabBar } from '../../components/layout/CustomTabBar';
-import { useQuery } from '@tanstack/react-query';
-import axiosAuth from '@/lib/axios';
 
 interface GetUserInfoResponse {
     user: {

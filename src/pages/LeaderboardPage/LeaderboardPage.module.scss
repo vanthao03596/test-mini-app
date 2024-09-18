@@ -15,4 +15,15 @@
             color: var(--adm-color-primary);
         }
     }
+
+    .date {
+        color: var(--adm-color-primary);
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+
+        .iconContainer {
+            margin-right: 0.5rem;
+        }
+    }
 }
