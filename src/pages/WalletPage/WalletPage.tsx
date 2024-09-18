@@ -1,9 +1,9 @@
+import IMAGES from '@/assets/images';
 import {
     TablerArrowBarToDown,
     TablerArrowBarUp,
     TablerChevronRight,
-    TablerHistory,
-    TablerPlus,
+    TablerHistory
 } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
@@ -13,7 +13,6 @@ import { useQuery } from '@tanstack/react-query';
 import { Avatar, Ellipsis, List, Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
-import IMAGES from '@/assets/images';
 
 type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt';
 export type WalletBalanceResponse = Record<WalletUnit, number>;
@@ -34,11 +33,11 @@ const actions = [
         text: 'History',
         link: '/wallet/history',
     },
-    {
-        icon: <TablerPlus className={styles.svg} />,
-        text: 'Booster Plus',
-        link: '/wallet/booster-plus',
-    },
+    // {
+    //     icon: <TablerPlus className={styles.svg} />,
+    //     text: 'Booster Plus',
+    //     link: '/wallet/booster-plus',
+    // },
 ];
 
 const WalletPage = () => {
