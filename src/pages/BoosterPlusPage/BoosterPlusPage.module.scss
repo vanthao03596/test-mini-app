@@ -4,12 +4,18 @@
     .action {
         color: var(--adm-color-primary);
     }
+
+    .detail {
+        margin-bottom: 1rem;
+        font-size: 0.875rem;
+        line-height: 1.25;
+    }
 }
 
 .modalContent {
     text-align: center;
-    
-    .colorPrimary {
-        color: var(--adm-color-primary);
-    }
+}
+
+.colorPrimary {
+    color: var(--adm-color-primary);
 }

@@ -1,5 +1,5 @@
 import IMAGES from '@/assets/images';
-import { TablerChevronRight } from '@/components/icon';
+import { TablerCheck, TablerChevronRight } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
@@ -7,6 +7,7 @@ import axiosAuth from '@/lib/axios';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Avatar, List, Modal, Space, Toast } from 'antd-mobile';
 import { isAxiosError } from 'axios';
+import { Fragment } from 'react/jsx-runtime';
 import styles from './BoosterPlusPage.module.scss';
 
 type PackageType = 'Base' | 'Silver';
@@ -17,6 +18,14 @@ type Package = {
     price: number;
     unit: string;
     icon: string;
+    detail: {
+        totalShare: number;
+        boost: number;
+        referrals: {
+            level: number;
+            commission: number;
+        }[];
+    };
 };
 
 type Membership = {
@@ -40,6 +49,20 @@ const packages: Package[] = [
         price: 5,
         unit: 'USDC',
         icon: IMAGES.medal.bronze,
+        detail: {
+            totalShare: 5,
+            boost: 300,
+            referrals: [
+                {
+                    level: 1,
+                    commission: 1,
+                },
+                {
+                    level: 2,
+                    commission: 0.5,
+                },
+            ],
+        },
     },
     {
         key: 'Silver',
@@ -47,6 +70,20 @@ const packages: Package[] = [
         price: 30,
         unit: 'USDC',
         icon: IMAGES.medal.silver,
+        detail: {
+            totalShare: 10,
+            boost: 3000,
+            referrals: [
+                {
+                    level: 1,
+                    commission: 10,
+                },
+                {
+                    level: 2,
+                    commission: 4,
+                },
+            ],
+        },
     },
 ];
 
@@ -107,48 +144,91 @@ const BoosterPlusPage = () => {
 
             <CustomList>
                 {packages.map((item) => (
-                    <List.Item
-                        key={item.key}
-                        prefix={<Avatar src={item.icon} />}
-                        description={`${item.price} ${item.unit}`}
-                        extra={
-                            <Space align='center'>
-                                {!membershipData.memberships.some((i) => i.package === item.key) ? (
-                                    <div
-                                        className={styles.action}
-                                        onClick={() => {
-                                            Modal.confirm({
-                                                title: 'PURCHASE',
-                                                content: (
-                                                    <div className={styles.modalContent}>
-                                                        You're about to buy the{' '}
-                                                        <span className={styles.colorPrimary}>{item.name}</span> package
-                                                        for{' '}
-                                                        <span className={styles.colorPrimary}>
-                                                            {item.price} {item.unit}
-                                                        </span>
-                                                    </div>
-                                                ),
-                                                confirmText: 'Sure',
-                                                cancelText: 'Cancel',
-                                                onConfirm: () => handlePurchase(item.key),
-                                            });
-                                        }}
-                                    >
-                                        Update
-                                    </div>
-                                ) : (
-                                    'Purchased'
-                                )}
+                    <Fragment key={item.key}>
+                        {/* Info */}
+                        <List.Item
+                            prefix={<Avatar src={item.icon} />}
+                            description={`${item.price} ${item.unit}`}
+                            extra={
+                                <Space align='center'>
+                                    {!membershipData.memberships.some((i) => i.package === item.key) ? (
+                                        <div
+                                            className={styles.action}
+                                            onClick={() => {
+                                                Modal.confirm({
+                                                    title: 'PURCHASE',
+                                                    content: (
+                                                        <div className={styles.modalContent}>
+                                                            You're about to buy the{' '}
+                                                            <span className={styles.colorPrimary}>{item.name}</span>{' '}
+                                                            package for{' '}
+                                                            <span className={styles.colorPrimary}>
+                                                                {item.price} {item.unit}
+                                                            </span>
+                                                        </div>
+                                                    ),
+                                                    confirmText: 'Sure',
+                                                    cancelText: 'Cancel',
+                                                    onConfirm: () => handlePurchase(item.key),
+                                                });
+                                            }}
+                                        >
+                                            Update
+                                        </div>
+                                    ) : (
+                                        'Purchased'
+                                    )}
 
-                                <Flex align='center'>
-                                    <TablerChevronRight />
+                                    <Flex align='center'>
+                                        <TablerChevronRight />
+                                    </Flex>
+                                </Space>
+                            }
+                        >
+                            {item.name}
+                        </List.Item>
+
+                        {/* Detail */}
+                        <Flex direction='column' className={styles.detail}>
+                            {/* Share */}
+                            <Space align='start'>
+                                <Flex align='center' justify='center'>
+                                    <TablerCheck />
                                 </Flex>
+                                <div>
+                                    Increase your total share by{' '}
+                                    <span className={styles.colorPrimary}>{item.detail.totalShare}%</span>
+                                </div>
                             </Space>
-                        }
-                    >
-                        {item.name}
-                    </List.Item>
+
+                            {/* Boost */}
+                            <Space align='start'>
+                                <Flex align='center' justify='center'>
+                                    <TablerCheck />
+                                </Flex>
+                                <div>
+                                    Increase your boost by{' '}
+                                    <span className={styles.colorPrimary}>{item.detail.boost}%</span>
+                                </div>
+                            </Space>
+
+                            {/* Referral */}
+                            <Space align='start'>
+                                <Flex align='center' justify='center'>
+                                    <TablerCheck />
+                                </Flex>
+                                <div>
+                                    <div>Referral commissions</div>
+                                    {item.detail.referrals.map((i, index) => (
+                                        <div key={index}>
+                                            Level {i.level}:{' '}
+                                            <span className={styles.colorPrimary}>${i.commission}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Space>
+                        </Flex>
+                    </Fragment>
                 ))}
             </CustomList>
         </div>
