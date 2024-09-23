@@ -11,8 +11,9 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <ProtectedRoutes />,
-        children: [...homeRouter, ...earnRouter, ...walletRouter, ...cryptoRouter, ...userRouter, ...authRouter],
+        children: [...homeRouter, ...earnRouter, ...walletRouter, ...cryptoRouter, ...userRouter],
     },
+    ...authRouter,
     {
         path: '*',
         element: <Navigate to='/' />,
