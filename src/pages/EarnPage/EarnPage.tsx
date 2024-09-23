@@ -16,11 +16,11 @@ const links = [
         link: '/earn/quest',
         description: 'Do the quest and get more GXP',
     },
-    // {
-    //     text: 'Quiz',
-    //     link: '/earn/quiz',
-    //     description: 'Do the quiz and get more GXP',
-    // },
+    {
+        text: 'Quiz',
+        link: '/earn/quiz',
+        description: 'Do the quiz and get more GXP',
+    },
     {
         text: 'Leaderboard',
         link: '/earn/leaderboard',
