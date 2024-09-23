@@ -33,7 +33,7 @@ const ListItem = (props: ListItemProps) => {
             }
             description={truncateEthAddress(address)}
         >
-            <Ellipsis content={telegram_username} />
+            <Ellipsis content={telegram_username || ''} />
         </List.Item>
     );
 };

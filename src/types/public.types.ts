@@ -15,7 +15,7 @@ export type User = {
     can_create_report: number;
     invite_earned: number;
     telegram_id: number;
-    telegram_username: string;
+    telegram_username: string | undefined;
     nonce: string | null;
     gas_power: number;
     gas_rate_lvl: number;
