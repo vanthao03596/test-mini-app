@@ -4,7 +4,7 @@ import {
     TablerArrowBarUp,
     TablerChevronRight,
     TablerHistory,
-    TablerPlus
+    // TablerPlus
 } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
@@ -34,11 +34,11 @@ const actions = [
         text: 'History',
         link: '/wallet/history',
     },
-    {
-        icon: <TablerPlus className={styles.svg} />,
-        text: 'Booster Plus',
-        link: '/wallet/booster-plus',
-    },
+    // {
+    //     icon: <TablerPlus className={styles.svg} />,
+    //     text: 'Booster Plus',
+    //     link: '/wallet/booster-plus',
+    // },
 ];
 
 const WalletPage = () => {
