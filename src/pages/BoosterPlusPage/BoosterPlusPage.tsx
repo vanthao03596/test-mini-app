@@ -3,8 +3,9 @@ import { TablerCheck, TablerChevronRight } from '@/components/icon';
 import { CustomList } from '@/components/ui/CustomList';
 import { Flex } from '@/components/ui/Flex';
 import { Title } from '@/components/ui/Title';
+import useMembership from '@/hooks/useMembership';
 import axiosAuth from '@/lib/axios';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Avatar, List, Modal, Space, Toast } from 'antd-mobile';
 import { isAxiosError } from 'axios';
 import { Fragment } from 'react/jsx-runtime';
@@ -25,20 +26,6 @@ type Package = {
             commission: number;
         }[];
     };
-};
-
-type Membership = {
-    id: number;
-    price: number;
-    buyer: string;
-    package: string;
-    tx_hash: string | null;
-    user_id: number;
-    created_at: Date;
-};
-
-type MembershipResponse = {
-    memberships: Membership[];
 };
 
 const packages: Package[] = [
@@ -94,15 +81,7 @@ const BoosterPlusPage = () => {
 
     const queryClient = useQueryClient();
 
-    const getMembership = async () => {
-        const res = await axiosAuth.get<MembershipResponse>('/my-membership');
-        return res.data;
-    };
-
-    const { data: membershipData } = useQuery({
-        queryKey: ['get-membership'],
-        queryFn: getMembership,
-    });
+    const { data: membershipData } = useMembership();
 
     const packageMutation = useMutation({
         mutationKey: ['purchase-package'],
@@ -207,7 +186,7 @@ const BoosterPlusPage = () => {
                                     <div>Referral commissions</div>
                                     {item.detail.referrals.map((i, index) => (
                                         <div key={index}>
-                                            Level {i.level}:{' '}
+                                            Level {i.level} (Direct referral):{' '}
                                             <span className={styles.colorPrimary}>${i.commission}</span>
                                         </div>
                                     ))}

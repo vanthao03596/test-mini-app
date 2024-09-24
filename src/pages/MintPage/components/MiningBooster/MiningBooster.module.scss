@@ -4,13 +4,19 @@
     font-weight: 500;
     flex: 1;
     cursor: pointer;
+    position: relative;
+    margin-left: 0.5rem;
 
-    &.left {
-        margin-right: 0.5rem;
-    }
+    .update {
+        position: absolute;
+        top: 1rem;
+        left: 50%;
+        transform: translate(-50%, 0);
+        text-transform: uppercase;
 
-    &.right {
-        margin-left: 0.5rem;
+        svg {
+            font-size: 1rem;
+        }
     }
 
     .amount {

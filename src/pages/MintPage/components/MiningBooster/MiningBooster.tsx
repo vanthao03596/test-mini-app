@@ -1,7 +1,8 @@
-import { TablerRocket } from '@/components/icon';
+import { TablerArrowBadgeUp, TablerRocket } from '@/components/icon';
 import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
-import clsx from 'clsx';
+import useMembership from '@/hooks/useMembership';
+import { Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './MiningBooster.module.scss';
 
@@ -10,8 +11,19 @@ type MiningBoosterProps = {
 };
 
 const MiningBooster = ({ gasPower }: MiningBoosterProps) => {
+    const { data: membershipData } = useMembership();
+
     return (
-        <CustomCard className={clsx(styles.card, styles.right)}>
+        <CustomCard className={styles.card}>
+            {membershipData?.memberships.length !== 2 && (
+                <Space className={styles.update}>
+                    <Link to='/wallet/booster-plus'>Update</Link>
+                    <Flex align='center' justify='center'>
+                        <TablerArrowBadgeUp />
+                    </Flex>
+                </Space>
+            )}
+
             <Link to='/booster'>
                 <Flex className={styles.amount} align='center'>
                     {gasPower}%

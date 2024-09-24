@@ -14,30 +14,35 @@ import { useQuery } from '@tanstack/react-query';
 import { Avatar, Ellipsis, List, Space } from 'antd-mobile';
 import { Link } from 'react-router-dom';
 import styles from './WalletPage.module.scss';
+import clsx from 'clsx';
 
 type WalletUnit = 'gxp' | 'gp' | 'gemx' | 'usdt';
 export type WalletBalanceResponse = Record<WalletUnit, number>;
 
 const actions = [
     {
+        icon: <TablerRocket className={styles.svg} />,
+        text: 'Booster Plus',
+        link: '/wallet/booster-plus',
+        active: true,
+    },
+    {
         icon: <TablerArrowBarUp className={styles.svg} />,
         text: 'Withdraw',
         link: '/wallet/withdraw',
+        active: false,
     },
     {
         icon: <TablerArrowBarToDown className={styles.svg} />,
         text: 'Receive',
         link: '/wallet/receive',
+        active: false,
     },
     {
         icon: <TablerHistory className={styles.svg} />,
         text: 'History',
         link: '/wallet/history',
-    },
-    {
-        icon: <TablerRocket className={styles.svg} />,
-        text: 'Booster Plus',
-        link: '/wallet/booster-plus',
+        active: false,
     },
 ];
 
@@ -86,7 +91,11 @@ const WalletPage = () => {
                 {actions.map((item, index) => (
                     <Link to={item.link} key={index}>
                         <Space direction='vertical' justify='center' align='center'>
-                            <Flex align='center' justify='center' className={styles.icon}>
+                            <Flex
+                                align='center'
+                                justify='center'
+                                className={clsx(styles.icon, item.active && styles.active)}
+                            >
                                 {item.icon}
                             </Flex>
                             <div className={styles.text}>{item.text}</div>
