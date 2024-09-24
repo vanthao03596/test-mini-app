@@ -19,7 +19,6 @@ type Package = {
     unit: string;
     icon: string;
     detail: {
-        totalShare: number;
         boost: number;
         referrals: {
             level: number;
@@ -50,7 +49,6 @@ const packages: Package[] = [
         unit: 'USDC',
         icon: IMAGES.medal.bronze,
         detail: {
-            totalShare: 5,
             boost: 300,
             referrals: [
                 {
@@ -71,7 +69,6 @@ const packages: Package[] = [
         unit: 'USDC',
         icon: IMAGES.medal.silver,
         detail: {
-            totalShare: 10,
             boost: 3000,
             referrals: [
                 {
@@ -190,17 +187,6 @@ const BoosterPlusPage = () => {
 
                         {/* Detail */}
                         <Flex direction='column' className={styles.detail}>
-                            {/* Share */}
-                            <Space align='start'>
-                                <Flex align='center' justify='center'>
-                                    <TablerCheck />
-                                </Flex>
-                                <div>
-                                    Increase your total share by{' '}
-                                    <span className={styles.colorPrimary}>{item.detail.totalShare}%</span>
-                                </div>
-                            </Space>
-
                             {/* Boost */}
                             <Space align='start'>
                                 <Flex align='center' justify='center'>
