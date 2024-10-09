@@ -1,15 +1,16 @@
 import { CustomList } from '@/components/ui/CustomList';
 import { Title } from '@/components/ui/Title';
 import { DATE_DETAIL_FORMAT_TYPE } from '@/constants/public';
+import useGetCompleteTask from '@/hooks/useGetCompleteTask';
 import axiosAuth from '@/lib/axios';
+import { SocialTask } from '@/types/public.types';
 import { useQuery } from '@tanstack/react-query';
 import { AutoCenter } from 'antd-mobile';
 import dayjs from 'dayjs';
+import DOMPurify from 'dompurify';
 import { useParams } from 'react-router-dom';
-import { SocialTask } from '../SocialTaskPage/SocialTaskPage';
 import { TaskItem } from './components/TaskItem';
 import styles from './QuestDetailPage.module.scss';
-import DOMPurify from 'dompurify';
 
 type QuestDetailResponse = {
     id: number;
@@ -34,35 +35,21 @@ type QuestDetailResponse = {
     tasks: SocialTask[];
 };
 
-type TaskCompleteResponse = {
-    completed_task_id: number[];
+const useGetDetailQuest = (questId?: string) => {
+    return useQuery({
+        queryKey: ['get-detail-quest'],
+        queryFn: async (): Promise<QuestDetailResponse> => {
+            const res = await axiosAuth.get(`/campaigns/${questId}`);
+            return res.data;
+        },
+    });
 };
 
 const QuestDetailPage = () => {
     const { questId } = useParams();
-
-    const getDetailQuest = async () => {
-        const res = await axiosAuth.get<QuestDetailResponse>(`/campaigns/${questId}`);
-        return res.data;
-    };
-
-    const getCompleteTask = async () => {
-        const res = await axiosAuth.get<TaskCompleteResponse>('/completed-task');
-        return res.data;
-    };
-
-    const { data: questData, isLoading: isQuestLoading } = useQuery({
-        queryKey: ['get-detail-quest'],
-        queryFn: getDetailQuest,
-    });
-
-    const { data: taskCompleteData, isLoading: isCompleteTaskLoading } = useQuery({
-        queryKey: ['get-complete-social-task'],
-        queryFn: getCompleteTask,
-    });
-
+    const { data: questData, isLoading: isQuestLoading } = useGetDetailQuest(questId);
+    const { data: taskCompleteData, isLoading: isCompleteTaskLoading } = useGetCompleteTask();
     const isOngoing = dayjs().isBefore(questData?.end_date);
-
     if (isQuestLoading || isCompleteTaskLoading) return;
 
     return (

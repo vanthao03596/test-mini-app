@@ -35,3 +35,33 @@ export type CursorBased = {
     prev_cursor: string | null;
     prev_page_url: string | null;
 };
+
+export type SocialTask = {
+    id: number;
+    link: string;
+    name: string;
+    reward: number;
+    social: 'facebook' | 'twitter' | 'tiktok' | 'website' | 'telegram' | 'gemx';
+    template_id:
+        | 'ViewPageFacebook'
+        | 'LikeATweet'
+        | 'RetweetTwitter'
+        | 'FollowTiktok'
+        | 'VisitWebsite'
+        | 'JoinTelegram'
+        | 'QuoteTweetAndHashTag'
+        | 'FollowTwitter'
+        | 'DailyCheckin'
+        | 'AnswerQuestion'
+        | 'ChooseCorrectAnswer'
+        | 'SendWalletAddress'
+        | 'SendEmail'
+        | 'SendUrl'
+        | 'SendImage';
+    params: {
+        answers?: { text: string; is_correct: boolean }[];
+        question?: string;
+        description?: string;
+        [key: string]: any;
+    };
+};

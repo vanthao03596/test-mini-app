@@ -1,12 +1,24 @@
 import IMAGES from '@/assets/images';
 import { TablerCheck, TablerChevronRight } from '@/components/icon';
+import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
+import useVerifyTask from '@/hooks/useVerifyTask';
 import axiosAuth from '@/lib/axios';
-import { SocialTask } from '@/pages/SocialTaskPage/SocialTaskPage';
+import { SocialTask } from '@/types/public.types';
 import { formatAmount } from '@/utils/formatCurrency';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Avatar, Button, Ellipsis, Image, Input, List, Modal, Toast } from 'antd-mobile';
-import { AxiosError } from 'axios';
+import {
+    Avatar,
+    Button,
+    CheckList,
+    Ellipsis,
+    Image,
+    ImageUploader,
+    ImageUploadItem,
+    Input,
+    List,
+    Modal
+} from 'antd-mobile';
+import { CheckListValue } from 'antd-mobile/es/components/check-list';
 import { useEffect, useState } from 'react';
 import { useCountdown } from 'usehooks-ts';
 import styles from './TaskItem.module.scss';
@@ -20,16 +32,17 @@ type TaskItemProps = SocialTask & {
 };
 
 const TaskItem = (props: TaskItemProps) => {
-    const { id, social, name, reward, link, template_id, complete, isOngoing } = props;
+    const { id, social, name, reward, link, template_id, complete, isOngoing, params } = props;
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
+    const [fileList, setFileList] = useState<ImageUploadItem[]>([]);
+    const [data, setData] = useState<string>('');
     const [count, { startCountdown, resetCountdown }] = useCountdown({
         countStart: COUNTDOWN_TIME,
     });
-    const queryClient = useQueryClient();
 
-    const canCheck = !isPending && count === 0;
+    const canCheck = (!isPending && count === 0) || social === 'gemx';
     const logo = (IMAGES.social as any)[social];
     const hasUsername = listHasInput.includes(template_id);
 
@@ -52,7 +65,7 @@ const TaskItem = (props: TaskItemProps) => {
             startCountdown();
             setIsPending(true);
         } else {
-            handleSubmit();
+            verifyTask();
         }
     };
 
@@ -60,45 +73,39 @@ const TaskItem = (props: TaskItemProps) => {
         setUsername(value);
     };
 
-    const verifyTask = async () => {
-        const res = await axiosAuth.post('/verify-task', {
-            task_id: id,
-            username: username,
-        });
+    const { mutate: verifyTask, isPending: isVerifyTaskPending } = useVerifyTask(
+        id,
+        data,
+        username,
+        fileList,
+        handleCloseModal
+    );
 
-        return res.data;
+    const handleUploadImage = async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const res = await axiosAuth.post('/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            return {
+                url: res.data.url,
+            };
+        } catch (error) {
+            throw new Error('Fail');
+        }
     };
 
-    const taskMutation = useMutation({
-        mutationKey: ['verify-social-task'],
-        mutationFn: verifyTask,
-        onSuccess: async (data) => {
-            if (data.status) {
-                await queryClient.invalidateQueries({ queryKey: ['get-complete-social-task'] });
-                Toast.show({
-                    icon: 'success',
-                    content: 'Task completed',
-                });
-                handleCloseModal();
-            } else {
-                Toast.show({
-                    icon: 'fail',
-                    content: data.message,
-                });
-            }
-        },
-        onError: (error) => {
-            if (error instanceof AxiosError) {
-                Toast.show({
-                    icon: 'fail',
-                    content: error.response?.data.message,
-                });
-            }
-        },
-    });
+    const handleChangeData = (value: string) => {
+        setData(value);
+    };
 
-    const handleSubmit = () => {
-        taskMutation.mutate();
+    const handleAnswersChange = (value: CheckListValue[]) => {
+        setData(String(value));
     };
 
     // Change button to submit if pending done
@@ -134,13 +141,48 @@ const TaskItem = (props: TaskItemProps) => {
                     />
                 )}
 
+                {social === 'gemx' &&
+                    (template_id === 'SendImage' ? (
+                        <ImageUploader
+                            value={fileList}
+                            onChange={setFileList}
+                            upload={handleUploadImage}
+                            maxCount={1}
+                        />
+                    ) : template_id === 'ChooseCorrectAnswer' ? (
+                        <div className={styles.chooseCorrectAnswer}>
+                            {/* Question */}
+                            <div className={styles.question}>Question: {params.question}</div>
+
+                            {/* Answers */}
+                            <CustomCard>
+                                <CheckList
+                                    mode='card'
+                                    value={data ? [Number(data)] : []}
+                                    onChange={handleAnswersChange}
+                                >
+                                    {params.answers?.map((item, index) => (
+                                        <CheckList.Item key={index} value={index}>
+                                            {item.text}
+                                        </CheckList.Item>
+                                    ))}
+                                </CheckList>
+                            </CustomCard>
+                        </div>
+                    ) : template_id === 'DailyCheckin' ? null : (
+                        <>
+                            {params.question && <div className={styles.question}>Question: {params.question}</div>}
+                            <Input value={data} placeholder='ENTER HERE' clearable onChange={handleChangeData} />
+                        </>
+                    ))}
+
                 {/* Submit */}
                 <Button
                     color='primary'
                     fill='solid'
                     block
                     disabled={isPending || (canCheck && hasUsername && !username)}
-                    loading={taskMutation.isPending}
+                    loading={isVerifyTaskPending}
                     onClick={handleClick}
                     className={styles.btn}
                 >

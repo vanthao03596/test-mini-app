@@ -3,8 +3,8 @@ import { TablerCheck, TablerChevronRight } from '@/components/icon';
 import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
+import { SocialTask } from '@/types/public.types';
 import { formatAmount } from '@/utils/formatCurrency';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     Avatar,
     Button,
@@ -16,14 +16,12 @@ import {
     Input,
     List,
     Modal,
-    Toast,
 } from 'antd-mobile';
 import { CheckListValue } from 'antd-mobile/es/components/check-list';
-import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { useCountdown } from 'usehooks-ts';
-import { SocialTask } from '../../SocialTaskPage';
 import styles from './TaskItem.module.scss';
+import useVerifyTask from '@/hooks/useVerifyTask';
 
 const COUNTDOWN_TIME = 10;
 const listHasInput = ['LikeATweet', 'RetweetTwitter', 'FollowTiktok', 'QuoteTweetAndHashTag', 'FollowTwitter'];
@@ -42,7 +40,6 @@ const TaskItem = (props: TaskItemProps) => {
     const [count, { startCountdown, resetCountdown }] = useCountdown({
         countStart: COUNTDOWN_TIME,
     });
-    const queryClient = useQueryClient();
 
     const canCheck = (!isPending && count === 0) || social === 'gemx';
     const logo = (IMAGES.social as any)[social];
@@ -67,7 +64,7 @@ const TaskItem = (props: TaskItemProps) => {
             startCountdown();
             setIsPending(true);
         } else {
-            handleSubmit();
+            verifyTask();
         }
     };
 
@@ -102,47 +99,13 @@ const TaskItem = (props: TaskItemProps) => {
         setData(String(value));
     };
 
-    const verifyTask = async () => {
-        const res = await axiosAuth.post('/verify-task', {
-            task_id: id,
-            data: fileList[0]?.url || data,
-            username: username,
-        });
-
-        return res.data;
-    };
-
-    const taskMutation = useMutation({
-        mutationKey: ['verify-social-task'],
-        mutationFn: verifyTask,
-        onSuccess: async (data) => {
-            if (data.status) {
-                await queryClient.invalidateQueries({ queryKey: ['get-complete-social-task'] });
-                Toast.show({
-                    icon: 'success',
-                    content: 'Task completed',
-                });
-                handleCloseModal();
-            } else {
-                Toast.show({
-                    icon: 'fail',
-                    content: data.message,
-                });
-            }
-        },
-        onError: (error) => {
-            if (error instanceof AxiosError) {
-                Toast.show({
-                    icon: 'fail',
-                    content: error.response?.data.message,
-                });
-            }
-        },
-    });
-
-    const handleSubmit = () => {
-        taskMutation.mutate();
-    };
+    const { mutate: verifyTask, isPending: isVerifyTaskPending } = useVerifyTask(
+        id,
+        data,
+        username,
+        fileList,
+        handleCloseModal
+    );
 
     // Change button to submit if pending done
     useEffect(() => {
@@ -216,7 +179,7 @@ const TaskItem = (props: TaskItemProps) => {
                     fill='solid'
                     block
                     disabled={isPending || (canCheck && hasUsername && !username)}
-                    loading={taskMutation.isPending}
+                    loading={isVerifyTaskPending}
                     onClick={handleClick}
                     className={styles.btn}
                 >
