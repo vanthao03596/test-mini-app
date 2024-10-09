@@ -22,12 +22,31 @@
             text-align: center;
         }
 
+        .description {
+            color: var(--adm-color-weak);
+        }
+
         .icon {
             margin-left: 0.5rem;
         }
 
         .input {
             width: 256px;
+        }
+
+        .chooseCorrectAnswer {
+            align-self: flex-start;
+            width: 100%;
+
+            > * + * {
+                margin-top: 1rem;
+            }
+        }
+
+        .question {
+            color: var(--adm-color-primary);
+            text-align: center;
+            text-transform: uppercase;
         }
     }
 }

@@ -10,7 +10,7 @@ export type SocialTask = {
     link: string;
     name: string;
     reward: number;
-    social: 'facebook' | 'twitter' | 'tiktok' | 'website' | 'telegram';
+    social: 'facebook' | 'twitter' | 'tiktok' | 'website' | 'telegram' | 'gemx';
     template_id:
         | 'ViewPageFacebook'
         | 'LikeATweet'
@@ -19,7 +19,20 @@ export type SocialTask = {
         | 'VisitWebsite'
         | 'JoinTelegram'
         | 'QuoteTweetAndHashTag'
-        | 'FollowTwitter';
+        | 'FollowTwitter'
+        | 'DailyCheckin'
+        | 'AnswerQuestion'
+        | 'ChooseCorrectAnswer'
+        | 'SendWalletAddress'
+        | 'SendEmail'
+        | 'SendUrl'
+        | 'UploadImage';
+    params: {
+        answers?: { text: string; is_correct: boolean }[];
+        question?: string;
+        description?: string;
+        [key: string]: any;
+    };
 };
 
 type SocialTaskResponse = {

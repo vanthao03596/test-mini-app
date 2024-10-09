@@ -1,15 +1,29 @@
 import IMAGES from '@/assets/images';
 import { TablerCheck, TablerChevronRight } from '@/components/icon';
+import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import axiosAuth from '@/lib/axios';
 import { formatAmount } from '@/utils/formatCurrency';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { Avatar, Button, Ellipsis, Image, Input, List, Modal, Toast } from 'antd-mobile';
+import {
+    Avatar,
+    Button,
+    CheckList,
+    Ellipsis,
+    Image,
+    ImageUploader,
+    ImageUploadItem,
+    Input,
+    List,
+    Modal,
+    Toast,
+} from 'antd-mobile';
+import { CheckListValue } from 'antd-mobile/es/components/check-list';
 import { AxiosError } from 'axios';
 import { useEffect, useState } from 'react';
 import { useCountdown } from 'usehooks-ts';
-import styles from './TaskItem.module.scss';
 import { SocialTask } from '../../SocialTaskPage';
+import styles from './TaskItem.module.scss';
 
 const COUNTDOWN_TIME = 10;
 const listHasInput = ['LikeATweet', 'RetweetTwitter', 'FollowTiktok', 'QuoteTweetAndHashTag', 'FollowTwitter'];
@@ -19,16 +33,18 @@ type TaskItemProps = SocialTask & {
 };
 
 const TaskItem = (props: TaskItemProps) => {
-    const { id, social, name, reward, link, template_id, complete } = props;
+    const { id, social, name, reward, link, template_id, complete, params } = props;
+    const [fileList, setFileList] = useState<ImageUploadItem[]>([]);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [isPending, setIsPending] = useState<boolean>(false);
     const [username, setUsername] = useState<string>('');
+    const [data, setData] = useState<string>('');
     const [count, { startCountdown, resetCountdown }] = useCountdown({
         countStart: COUNTDOWN_TIME,
     });
     const queryClient = useQueryClient();
 
-    const canCheck = !isPending && count === 0;
+    const canCheck = (!isPending && count === 0) || social === 'gemx';
     const logo = (IMAGES.social as any)[social];
     const hasUsername = listHasInput.includes(template_id);
 
@@ -59,9 +75,37 @@ const TaskItem = (props: TaskItemProps) => {
         setUsername(value);
     };
 
+    const handleChangeData = (value: string) => {
+        setData(value);
+    };
+
+    const handleUploadImage = async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const res = await axiosAuth.post('/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            return {
+                url: res.data.url,
+            };
+        } catch (error) {
+            throw new Error('Fail');
+        }
+    };
+
+    const handleAnswersChange = (value: CheckListValue[]) => {
+        setData(String(value));
+    };
+
     const verifyTask = async () => {
         const res = await axiosAuth.post('/verify-task', {
             task_id: id,
+            data: fileList[0]?.url || data,
             username: username,
         });
 
@@ -110,11 +154,9 @@ const TaskItem = (props: TaskItemProps) => {
     const modalContent = (
         <div className={styles.modal}>
             <Flex justify='center' align='center' direction='column' className={styles.layout}>
-                {/* Logo */}
                 <Image src={logo} width={'33.3333%'} />
-
-                {/* Name */}
                 <div className={styles.name}>{name}</div>
+                {params.description && <div className={styles.description}>{params.description}</div>}
 
                 {/* Amount */}
                 <Flex align='center'>
@@ -132,6 +174,41 @@ const TaskItem = (props: TaskItemProps) => {
                         className={styles.input}
                     />
                 )}
+
+                {social === 'gemx' &&
+                    (template_id === 'UploadImage' ? (
+                        <ImageUploader
+                            value={fileList}
+                            onChange={setFileList}
+                            upload={handleUploadImage}
+                            maxCount={1}
+                        />
+                    ) : template_id === 'ChooseCorrectAnswer' ? (
+                        <div className={styles.chooseCorrectAnswer}>
+                            {/* Question */}
+                            <div className={styles.question}>Question: {params.question}</div>
+
+                            {/* Answers */}
+                            <CustomCard>
+                                <CheckList
+                                    mode='card'
+                                    value={data ? [Number(data)] : []}
+                                    onChange={handleAnswersChange}
+                                >
+                                    {params.answers?.map((item, index) => (
+                                        <CheckList.Item key={index} value={index}>
+                                            {item.text}
+                                        </CheckList.Item>
+                                    ))}
+                                </CheckList>
+                            </CustomCard>
+                        </div>
+                    ) : template_id === 'DailyCheckin' ? null : (
+                        <>
+                            {params.question && <div className={styles.question}>Question: {params.question}</div>}
+                            <Input value={data} placeholder='ENTER HERE' clearable onChange={handleChangeData} />
+                        </>
+                    ))}
 
                 {/* Submit */}
                 <Button
