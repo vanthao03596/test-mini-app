@@ -176,7 +176,7 @@ const TaskItem = (props: TaskItemProps) => {
                 )}
 
                 {social === 'gemx' &&
-                    (template_id === 'UploadImage' ? (
+                    (template_id === 'SendImage' ? (
                         <ImageUploader
                             value={fileList}
                             onChange={setFileList}

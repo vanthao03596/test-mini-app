@@ -26,7 +26,7 @@ export type SocialTask = {
         | 'SendWalletAddress'
         | 'SendEmail'
         | 'SendUrl'
-        | 'UploadImage';
+        | 'SendImage';
     params: {
         answers?: { text: string; is_correct: boolean }[];
         question?: string;
