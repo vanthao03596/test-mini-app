@@ -119,7 +119,7 @@ const TaskItem = (props: TaskItemProps) => {
             <Flex justify='center' align='center' direction='column' className={styles.layout}>
                 <Image src={logo} width={'33.3333%'} />
                 <div className={styles.name}>{name}</div>
-                {params.description && <div className={styles.description}>{params.description}</div>}
+                {params?.description && <div className={styles.description}>{params.description}</div>}
 
                 {/* Amount */}
                 <Flex align='center'>
@@ -201,7 +201,7 @@ const TaskItem = (props: TaskItemProps) => {
                 description={
                     <Flex align='center'>
                         <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.iconLogo} />
-                        <div>+{formatAmount(reward)} GXP</div>
+                        <div className={styles.rewardText}>+{formatAmount(reward)} GXP</div>
                     </Flex>
                 }
                 clickable={false}

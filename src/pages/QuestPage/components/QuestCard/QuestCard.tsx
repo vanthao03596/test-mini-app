@@ -1,4 +1,4 @@
-import { TablerCalendarMonth, TablerExternalLink, TablerEye, TablerGift } from '@/components/icon';
+import { TablerCalendarMonth, TablerExternalLink, TablerGift, TablerUser } from '@/components/icon';
 import { CustomCard } from '@/components/ui/CustomCard';
 import { Flex } from '@/components/ui/Flex';
 import { DATE_FORMAT_TYPE } from '@/constants/public';
@@ -11,7 +11,7 @@ import styles from './QuestCard.module.scss';
 type QuestCardProps = Quest;
 
 const QuestCard = (props: QuestCardProps) => {
-    const { image, name, start_date, end_date, views, rewards, id } = props;
+    const { image, name, start_date, end_date, participants_count, rewards, id } = props;
 
     return (
         <CustomCard className={styles.card}>
@@ -38,8 +38,8 @@ const QuestCard = (props: QuestCardProps) => {
 
                 {/* Views */}
                 <Flex align='center'>
-                    <TablerEye className={styles.marginRight} />
-                    <div>{views}</div>
+                    <TablerUser className={styles.marginRight} />
+                    <div>{participants_count}</div>
                 </Flex>
 
                 {/* Rewards */}
@@ -67,7 +67,7 @@ const QuestCard = (props: QuestCardProps) => {
                     </div>
                     <div className={styles.more}>
                         <Space align='center'>
-                            <Link to={`/earn/quest/${id}`}>Read more</Link>
+                            <Link to={`/earn/quest/${id}`}>Join Now</Link>
                             <Flex align='center'>
                                 <TablerExternalLink />
                             </Flex>

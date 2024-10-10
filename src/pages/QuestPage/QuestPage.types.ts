@@ -20,6 +20,7 @@ export type Quest = {
     status: string;
     views: number;
     slug: string;
+    participants_count: number;
 };
 
 export type QuestsResponse = CursorBased & {
