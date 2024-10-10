@@ -125,10 +125,10 @@ const TaskItem = (props: TaskItemProps) => {
                 <div className={styles.name}>{name}</div>
 
                 {/* Amount */}
-                <Flex align='center'>
-                    <div>+{formatAmount(reward)} GXP</div>
+                {reward > 0 && (<Flex align='center'>
+                    <div>+{formatAmount(reward)} POINT</div>
                     <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.icon} />
-                </Flex>
+                </Flex>)}
 
                 {/* If have to enter `username` */}
                 {canCheck && hasUsername && (
@@ -143,12 +143,15 @@ const TaskItem = (props: TaskItemProps) => {
 
                 {social === 'gemx' &&
                     (template_id === 'SendImage' ? (
+                        <>
                         <ImageUploader
                             value={fileList}
                             onChange={setFileList}
                             upload={handleUploadImage}
                             maxCount={1}
                         />
+                        <p>Max file size is 2MB</p>
+                        </>
                     ) : template_id === 'ChooseCorrectAnswer' ? (
                         <div className={styles.chooseCorrectAnswer}>
                             {/* Question */}
@@ -200,7 +203,7 @@ const TaskItem = (props: TaskItemProps) => {
                 description={
                     <Flex align='center'>
                         <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.iconLogo} />
-                        {reward > 0 && (<div className={styles.rewardText}>+{formatAmount(reward)} POINT</div>)}
+                        <div className={styles.rewardText}>+{formatAmount(reward)} POINT</div>
                     </Flex>
                 }
                 clickable={false}
