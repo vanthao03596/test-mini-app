@@ -200,7 +200,7 @@ const TaskItem = (props: TaskItemProps) => {
                 description={
                     <Flex align='center'>
                         <Image src='/gemx-crypto.png' width={24} height={24} fit='cover' className={styles.iconLogo} />
-                        <div>+{formatAmount(reward)} GXP</div>
+                        <div className={styles.rewardText}>+{formatAmount(reward)} GXP</div>
                     </Flex>
                 }
                 clickable={false}
