@@ -17,16 +17,18 @@ type BannersResponse = {
     banners: Banner[];
 };
 
-const HomeBanner = () => {
-    const getBanners = async () => {
-        const res = await axiosAuth.get<BannersResponse>('/banners');
-        return res.data;
-    };
-
-    const { data } = useQuery({
+const useGetBanners = () => {
+    return useQuery({
         queryKey: ['get-banners'],
-        queryFn: getBanners,
+        queryFn: async (): Promise<BannersResponse> => {
+            const res = await axiosAuth.get('/banners');
+            return res.data;
+        },
     });
+};
+
+const HomeBanner = () => {
+    const { data } = useGetBanners();
 
     return (
         <div className={styles.container}>

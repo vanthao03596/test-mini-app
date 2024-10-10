@@ -178,7 +178,11 @@ const TaskItem = (props: TaskItemProps) => {
                     color='primary'
                     fill='solid'
                     block
-                    disabled={isPending || (canCheck && hasUsername && !username)}
+                    disabled={
+                        isPending ||
+                        (canCheck && hasUsername && !username) ||
+                        (template_id === 'DailyCheckin' && !canCheck)
+                    }
                     loading={isVerifyTaskPending}
                     onClick={handleClick}
                     className={styles.btn}

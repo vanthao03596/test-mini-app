@@ -16,7 +16,7 @@ import {
     ImageUploadItem,
     Input,
     List,
-    Modal
+    Modal,
 } from 'antd-mobile';
 import { CheckListValue } from 'antd-mobile/es/components/check-list';
 import { useEffect, useState } from 'react';

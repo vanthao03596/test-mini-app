@@ -11,7 +11,7 @@ import styles from './QuestCard.module.scss';
 type QuestCardProps = Quest;
 
 const QuestCard = (props: QuestCardProps) => {
-    const { image, name, start_date, end_date, views, rewards, slug, id } = props;
+    const { image, name, start_date, end_date, views, rewards, id } = props;
 
     return (
         <CustomCard className={styles.card}>
@@ -65,14 +65,14 @@ const QuestCard = (props: QuestCardProps) => {
                     <div className={styles.state}>
                         {dayjs.utc().isBefore(dayjs.utc(end_date)) ? 'Ongoing' : 'Finished'}
                     </div>
-                    <Link to={`https://gemx.io/campaign/${slug}`} target='blank' className={styles.more}>
+                    <div className={styles.more}>
                         <Space align='center'>
                             <Link to={`/earn/quest/${id}`}>Read more</Link>
                             <Flex align='center'>
                                 <TablerExternalLink />
                             </Flex>
                         </Space>
-                    </Link>
+                    </div>
                 </Flex>
             </div>
         </CustomCard>

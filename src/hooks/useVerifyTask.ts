@@ -8,7 +8,7 @@ const useVerifyTask = (
     data: string,
     username: string,
     fileList: ImageUploadItem[],
-    callback: () => void
+    callback: () => void,
 ) => {
     const queryClient = useQueryClient();
 

@@ -6,16 +6,17 @@ import { useQuery } from '@tanstack/react-query';
 
 type BoosterResponse = Record<'f1' | 'f2' | 'membership' | 'quest' | 'total', number>;
 
-const BoosterPage = () => {
-    const getBooster = async () => {
-        const res = await axiosAuth.get<BoosterResponse>('/booster-info');
-        return res.data;
-    };
-
-    const { data } = useQuery({
+const useGetBooster = () => {
+    return useQuery({
         queryKey: ['get-booster'],
-        queryFn: getBooster,
+        queryFn: async (): Promise<BoosterResponse> => {
+            const res = await axiosAuth.get('/booster-info');
+            return res.data;
+        },
     });
+};
+const BoosterPage = () => {
+    const { data } = useGetBooster();
 
     const boosters = [
         {
