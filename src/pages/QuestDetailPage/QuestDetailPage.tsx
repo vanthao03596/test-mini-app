@@ -64,10 +64,14 @@ const QuestDetailPage = () => {
             <CustomList>
                 {questData?.tasks.map((item) => {
                     let complete = false;
-                    if (item.template_id === 'DailyCheckin' && !taskCompleteData?.can_checkin) {
-                        complete = true;
-                    } else if (taskCompleteData?.completed_task_id.includes(item.id)) {
-                        complete = true;
+                    if (item.template_id === 'DailyCheckin') {
+                        if(!taskCompleteData?.can_checkin) {
+                            complete = true;
+                        }
+                    } else {
+                        if (taskCompleteData?.completed_task_id.includes(item.id)) {
+                            complete = true;
+                        }
                     }
                     return <TaskItem key={item.id} complete={complete} isOngoing={isOngoing} {...item} />;
                 })}

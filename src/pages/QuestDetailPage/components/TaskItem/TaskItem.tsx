@@ -61,7 +61,11 @@ const TaskItem = (props: TaskItemProps) => {
 
     const handleClick = () => {
         if (!canCheck) {
-            window.open(link, '_blank');
+            if (template_id === 'JoinTelegram') {
+                window.Telegram.WebApp.openTelegramLink(link);
+            } else {
+                window.open(link, '_blank');
+            }
             startCountdown();
             setIsPending(true);
         } else {
@@ -139,6 +143,10 @@ const TaskItem = (props: TaskItemProps) => {
                         onChange={handleChangeUsername}
                         className={styles.input}
                     />
+                )}
+
+                {template_id === 'JoinTelegram' && (
+                    <p className={styles.textDanger}>Try rejoining the group if verification fails</p>
                 )}
 
                 {social === 'gemx' &&
