@@ -73,6 +73,7 @@ const UserMining = (props: UserMiningProps) => {
         <div className={styles.container}>
             {/* Card */}
             <div className={styles.mine}>
+                <Button onClick={() => window.Telegram.WebApp.openInvoice('https://t.me/$o_f57aj38FU8AQAARv58FsG66pc', (s) => {console.log(s)})}>Test</Button>
                 <CustomCard className={styles.card}>
                     <Flex align='center' direction='column'>
                         {/* Amount */}
